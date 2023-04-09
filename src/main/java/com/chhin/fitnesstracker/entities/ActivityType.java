@@ -1,12 +1,7 @@
 package com.chhin.fitnesstracker.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
 @Entity
@@ -15,11 +10,11 @@ public class ActivityType {
 
   @Id
   @Column(name = "activity_type_id")
-  @SequenceGenerator(name = "activity_type_pk_seq", sequenceName = "activity_type_pk_seq", allocationSize = 1)
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "activity_pk_seq")
+  @SequenceGenerator(name = "activity_type_gen", sequenceName = "activity_type_pk_seq", allocationSize = 1)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "activity_type_gen")
   private Integer activityTypeId;
 
-  @Column(name = "activity_type_description", nullable = false,unique = true, length = 100)
+  @Column(name = "activity_type_description", nullable = false, unique = true, length = 100)
   private String activityTypeDescription;
 
   public Integer getActivityTypeId() {
@@ -47,12 +42,11 @@ public class ActivityType {
       return false;
     }
     ActivityType that = (ActivityType) o;
-    return Objects.equals(activityTypeId, that.activityTypeId) && Objects.equals(
-        activityTypeDescription, that.activityTypeDescription);
+    return Objects.equals(activityTypeId, that.activityTypeId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(activityTypeId, activityTypeDescription);
+    return Objects.hash(activityTypeId);
   }
 }

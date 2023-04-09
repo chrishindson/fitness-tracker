@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html th:replace="~{fitness-tracker-design-system/layout :: layout(~{}, ~{::main}, ~{}, false)}">
+<body>
+<main class="nhsuk-main-wrapper" id="main-content" role="main">
+
+  <form method="post" th:action="@{/login}" th:object="${loginForm}">
+    <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-full">
+        <h1 class="nhsuk-label-wrapper">
+          Login
+        </h1>
+
+        <div class="nhsuk-form-group">
+          <label class="nhsuk-label--m" for="username" id="username-txt">Username</label>
+          <input class="nhsuk-input nhsuk-input--width-20" id="username" th:field="*{username}"
+                 type="text">
+          <label class="nhsuk-label--m" for="password" id="password-txt">Password</label>
+          <input class="nhsuk-input nhsuk-input--width-20" id="password" th:field="*{password}"
+                 type="password">
+        </div>
+        <button class="nhsuk-button" id="submit" type="submit">Login</button>
+      </div>
+    </div>
+
+  </form>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<th:block th:fragment="breadcrumbs(breadcrumbs)"
+          th:unless="${breadcrumbs == null or breadcrumbs.isEmpty()}"
+          th:with="showAll=${showAll?:false}">
+  <nav aria-label="breadcrumb" class="nhsuk-breadcrumb" th:if="${#lists.size(breadcrumbs) > 1}">
+    <div class="nhsuk-width-container" id="breadcrumbs">
+      <ol class="nhsuk-breadcrumb__list">
+        <th:block th:each="crumb, i : ${breadcrumbs}">
+          <li class="nhsuk-breadcrumb__item"
+              th:if="${((i.index ==0) or (i.index >= #lists.size(breadcrumbs) -3) and crumb.pageTitle != pageTitleRaw)}">
+            <a class="nhsuk-breadcrumb__link" th:href="@{'~' + ${crumb.url}}"
+               th:id="'breadcrumb-' + ${i.index}" th:text="${crumb.pageTitle}"></a>
+          </li>
+        </th:block>
+      </ol>
+      <p class="nhsuk-breadcrumb__back" th:if="${#lists.size(breadcrumbs) > 1}">
+        <a class="nhsuk-breadcrumb__backlink"
+           th:href="@{'~' + ${breadcrumbs[#lists.size(breadcrumbs) - 2].url}}"
+           th:text="'Back to ' + ${breadcrumbs[#lists.size(breadcrumbs) - 2].pageTitle}">
+
+        </a>
+      </p>
+    </div>
+  </nav>
+</th:block>

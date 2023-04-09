@@ -1,0 +1,31 @@
+<th:block th:fragment="textarea">
+
+</th:block>
+<th:block th:fragment="character-count(id, field, label, length)">
+  <div class="nhsuk-character-count" data-module="nhsuk-character-count"
+       th:data-maxlength="${length}">
+
+    <div class="nhsuk-form-group">
+      <label class="nhsuk-label" for="more-detail" th:text="${label}">
+      </label>
+      <div class="nhsuk-hint" id="more-detail-hint">
+      </div>
+      <textarea aria-describedby="more-detail-hint" class="nhsuk-textarea nhsuk-js-character-count"
+                data-ms-editor="true"
+                id="more-detail" name="more-detail" rows="5"
+                spellcheck="false"></textarea>
+      <div class="nhsuk-hint nhsuk-character-count__message nhsuk-u-visually-hidden"
+           id="more-detail-info" th:text="'You can enter up to ' + ${length} + ' characters'">
+      </div>
+      <div aria-hidden="true"
+           class="nhsuk-hint nhsuk-character-count__message nhsuk-character-count__status"
+           th:text="'You have ' + ${length} + ' characters remaining'">
+      </div>
+      <div aria-live="polite" class="nhsuk-character-count__sr-status nhsuk-u-visually-hidden"
+           th:text="'You have ' + ${length} + ' characters remaining'">
+      </div>
+    </div>
+
+
+  </div>
+</th:block>

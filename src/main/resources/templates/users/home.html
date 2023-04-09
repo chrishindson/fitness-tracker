@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html th:replace="~{fitness-tracker-design-system/layout :: layout(~{}, ~{::main}, ~{}, true)}">
+<body>
+<main class="nhsuk-main-wrapper" id="main-content" role="main">
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+      <h1 th:text="${pageTitleRaw}">-</h1>
+    </div>
+  </div>
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+      <div class="nhsuk-card">
+        <div class="nhsuk-card__content">
+          <h2 class="nhsuk-card__heading nhsuk-heading-m">User details
+          </h2>
+
+          <dl class="nhsuk-summary-list nhsuk-summary-list--no-border">
+            <th:block
+                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='username',key='Username',value=${user.username}, numeric=true)}">
+            </th:block>
+            <th:block
+                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='name',key='Name',value=${user.getFullName()}, numeric=true)}">
+            </th:block>
+            <th:block
+                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='email',key='Email',value=${user.emailAddress}, numeric=true)}">
+            </th:block>
+            <th:block
+                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='height',key='Height',value=${user.height + ' cm'}, numeric=true)}">
+            </th:block>
+            <th:block
+                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='date-of-birth',key='Date of birth',value=${#temporals.format(user.dateOfBirth,'d MMMM yyyy')}, numeric=true)}">
+            </th:block>
+            <th:block
+                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='user-role',key='User role',value=${user.userGroup.userGroupDescription}, numeric=true)}">
+            </th:block>
+            <th:block
+                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='created',key='Created date',value=${#temporals.format(user.createdDate,'d MMMM yyyy h:mm:ss')}, numeric=true)}">
+            </th:block>
+            <th:block
+                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='last-updated',key='Last updated',value=${#temporals.format(user.lastUpdated,'d MMMM yyyy h:mm:ss')}, numeric=true)}">
+            </th:block>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="nhsuk-grid-column-one-third">
+      <div class="nhsuk-card">
+        <div class="nhsuk-card__content">
+          <h2 class="nhsuk-card__heading nhsuk-heading-m">User management
+          </h2>
+          <ul class="nhsuk-list">
+            <li class="nhsuk-card__link">
+              <a href="#">Amend details</a>
+            </li>
+            <li class="nhsuk-card__link">
+              <a href="#">Change password</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+</html>

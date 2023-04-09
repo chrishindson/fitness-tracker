@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html th:replace="~{fitness-tracker-design-system/layout :: layout(~{}, ~{::main}, ~{}, true)}">
+<body>
+<main class="nhsuk-main-wrapper" id="main-content" role="main">
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+      <h1 th:text="${pageTitleRaw}">Dashboard</h1>
+    </div>
+  </div>
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-three-quarters">
+      <table class="nhsuk-table-responsive" role="table">
+        <caption class="nhsuk-table__caption">Activities</caption>
+        <thead class="nhsuk-table__head" role="rowgroup">
+        <tr role="row">
+          <th class="" role="columnheader" scope="col">
+            Activity
+          </th>
+          <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">
+            Distance (km)
+          </th>
+          <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">
+            Time taken
+          </th>
+          <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">
+            Calories (kCal)
+          </th>
+          <th class="" role="columnheader" scope="col">
+            Action
+          </th>
+        </tr>
+        </thead>
+        <tbody class="nhsuk-table__body">
+        <tr class="nhsuk-table__row" role="row" th:each="activity : ${activityList}">
+          <td class="nhsuk-table__cell" role="cell">
+            <span class="nhsuk-table-responsive__heading">Activity</span>
+            <span th:text="${activity.activityType.activityTypeDescription}"></span>
+          </td>
+          <td class="nhsuk-table__cell nhsuk-table__cell--numeric " role="cell">
+            <span class="nhsuk-table-responsive__heading">Distance (km)</span>
+            <span th:text="${activity.distance}"></span>
+          </td>
+          <td class="nhsuk-table__cell nhsuk-table__cell--numeric " role="cell">
+            <span class="nhsuk-table-responsive__heading">Time taken</span>
+            <span th:text="${activity.timeTaken}"></span>
+          </td>
+          <td class="nhsuk-table__cell nhsuk-table__cell--numeric" role="cell">
+            <span class="nhsuk-table-responsive__heading">Calories (kCal)</span>
+            <span th:text="${activity.calorieCount}"></span>
+          </td>
+          <td class="nhsuk-table__cell " role="cell">
+            <span class="nhsuk-table-responsive__heading">Action</span>
+            <a class="nhsuk-link--no-visited-state"
+               th:href="@{${'/activity/activities/' + activity.activityId}}">View all</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html th:replace="~{fitness-tracker-design-system/layout :: layout(~{}, ~{::main}, ~{}, true)}">
+<body>
+<main class="nhsuk-main-wrapper" id="main-content" role="main">
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+      <h1 th:text="${pageTitleRaw}">Dashboard</h1>
+    </div>
+  </div>
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-one-half">
+      <th:block
+          th:insert="~{fitness-tracker-design-system/component/misc ::action-link('Add activity', '/activity/add-activity')}"></th:block>
+      <th:block
+          th:insert="~{fitness-tracker-design-system/component/misc ::action-link('View activity history', '/activity/activity-history')}"></th:block>
+    </div>
+    <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-one-half">
+        <div class="nhsuk-card">
+          <div class="nhsuk-card__content">
+            <h2 class="nhsuk-card__heading nhsuk-heading-m">All time totals
+            </h2>
+
+            <dl class="nhsuk-summary-list">
+              <th:block
+                  th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='activityCount',key='Activity count',value=${activityHistory.activityCount}, numeric=true)}">
+              </th:block>
+              <th:block
+                  th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='totalCalories',key='Total calories',value=${activityHistory.totalCalories}, numeric=true)}">
+              </th:block>
+              <th:block
+                  th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='totalDistance',key='Total distance',value=${activityHistory.totalDistance}, numeric=true)}">
+              </th:block>
+              <th:block
+                  th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='totalTime',key='Total time',value=${activityHistory.totalTime}, numeric=true)}">
+              </th:block>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+</body>
+</html>

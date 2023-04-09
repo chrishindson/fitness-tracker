@@ -1,0 +1,11 @@
+.nhsuk-grid-column-one-seventh {
+    box-sizing: border-box;
+    padding: 0 16px
+}
+
+@media (min-width: 48.0625em) {
+    .nhsuk-grid-column-one-seventh {
+        float: left;
+        width: 14.2857%
+    }
+}

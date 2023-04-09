@@ -1,0 +1,140 @@
+<th:block th:fragment="text-input(id, field)"
+          th:with="showHints=${showHints?:false}">
+  <div class="nhsuk-form-group"
+       th:classappend="${#fields.hasErrors(field)} ? 'nhsuk-form-group--error' : ''">
+    <label class="nhsuk-label" th:for="${id}" th:text="${label}">
+    </label>
+    <span
+        th:replace="~{fitness-tracker-design-system/form/errors :: error-message(${field})}"></span>
+    <input class="nhsuk-input nhsuk-input--width-5"
+           th:classappend="${#fields.hasErrors(field) ? 'nhsuk-input--error' : ''}" th:field="*{__${field}__}"
+           th:id="${id}"
+           th:name="${field}"
+           type="text">
+  </div>
+</th:block>
+
+<th:block th:fragment="date-input(id, field)"
+          th:with="label=${label?:''},showHints=${showHints?:false}">
+  <div class="nhsuk-form-group"
+       th:classappend="${#fields.hasErrors(field)} ? 'nhsuk-form-group--error' : ''">
+    <fieldset class="nhsuk-fieldset" role="group" th:aria-describedby="${id}+'-hint'">
+      <legend class="nhsuk-fieldset__legend nhsuk-label">
+        <h1 class="nhsuk-fieldset__heading" th:text="${label}">
+          Default heading
+        </h1>
+      </legend>
+      <div class="nhsuk-hint" th:for="${id}+'-hint'" th:if="${showHints}">
+        For example, 15 3 1984
+      </div>
+      <span
+          th:replace="~{fitness-tracker-design-system/form/errors :: error-message(${field})}"></span>
+      <span
+          th:replace="~{fitness-tracker-design-system/form/errors :: error-message(${field} + '.day')}"></span>
+      <span
+          th:replace="~{fitness-tracker-design-system/form/errors :: error-message(${field} + '.month')}"></span>
+      <span
+          th:replace="~{fitness-tracker-design-system/form/errors :: error-message(${field} + '.year')}"></span>
+      <div class="nhsuk-date-input" th:id="${id}">
+        <div class="nhsuk-date-input__item">
+          <div class="nhsuk-form-group">
+            <label class="nhsuk-label nhsuk-date-input__label" th:for="${id}+'.day'">
+              Day
+            </label>
+            <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2"
+                   inputmode="numeric"
+                   pattern="[0-9]*"
+                   th:classappend="${#fields.hasErrors(field)} ? 'nhsuk-form-group--error' : ''"
+                   th:field="*{__${field}__.day}" th:id="${id}+'.day'" th:name="${id}+'.day'"
+                   type="text">
+          </div>
+        </div>
+        <div class="nhsuk-date-input__item">
+          <div class="nhsuk-form-group">
+            <label class="nhsuk-label nhsuk-date-input__label" th:for="${id}+'.month'">
+              Month
+            </label>
+            <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2"
+                   inputmode="numeric" pattern="[0-9]*" th:field="*{__${field}__.month}" th:id="${id}+'.month'"
+                   th:name="${id}+'.month'"
+                   type="text">
+          </div>
+        </div>
+        <div class="nhsuk-date-input__item">
+          <div class="nhsuk-form-group">
+            <label class="nhsuk-label nhsuk-date-input__label" th:for="${id}+'.year'">
+              Year
+            </label>
+            <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-4"
+                   inputmode="numeric" pattern="[0-9]*" th:field="*{__${field}__.year}" th:id="${id}+'.year'"
+                   th:name="${id}+'.year'"
+                   type="text">
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+  </div>
+</th:block>
+<th:block th:fragment="time-input"
+          th:with="id=${id},field=${field},label=${label?:''},showHints=${showHints?:false}">
+  <div class="nhsuk-form-group"
+       th:classappend="${#fields.hasErrors(field)} ? 'nhsuk-form-group--error' : ''">
+    <fieldset class="nhsuk-fieldset" role="group" th:aria-describedby="${id}+'-hint'">
+      <legend class="nhsuk-fieldset__legend nhsuk-label">
+        <h1 class="nhsuk-fieldset__heading" th:text="${label}">
+          Default heading
+        </h1>
+      </legend>
+      <div class="nhsuk-hint" th:for="${id}+'-hint'" th:if="${showHints}">
+        For example, 15 3 1984
+      </div>
+      <span
+          th:replace="~{fitness-tracker-design-system/form/errors :: error-message(${field})}"></span>
+      <span
+          th:replace="~{fitness-tracker-design-system/form/errors :: error-message(${field} + '.hours')}"></span>
+      <span
+          th:replace="~{fitness-tracker-design-system/form/errors :: error-message(${field} + '.minutes')}"></span>
+      <span
+          th:replace="~{fitness-tracker-design-system/form/errors :: error-message(${field} + '.seconds')}"></span>
+      <div class="nhsuk-date-input" th:id="${id}">
+        <div class="nhsuk-date-input__item">
+          <div class="nhsuk-form-group">
+            <label class="nhsuk-label nhsuk-date-input__label" th:for="${id}+'.hours'">
+              Hr
+            </label>
+            <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2"
+                   inputmode="numeric"
+                   pattern="[0-9]*"
+                   th:classappend="${#fields.hasErrors(field)} ? 'nhsuk-form-group--error' : ''"
+                   th:field="*{__${field}__.hours}" th:id="${id}+'.hours'" th:name="${id}+'.hours'"
+                   type="text">
+          </div>
+        </div>
+        <div class="nhsuk-date-input__item">
+          <div class="nhsuk-form-group">
+            <label class="nhsuk-label nhsuk-date-input__label" th:for="${id}+'.minutes'">
+              Min
+            </label>
+            <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2"
+                   inputmode="numeric" pattern="[0-9]*" th:field="*{__${field}__.minutes}" th:id="${id}+'.minutes'"
+                   th:name="${id}+'.minutes'"
+                   type="text">
+          </div>
+        </div>
+        <div class="nhsuk-date-input__item">
+          <div class="nhsuk-form-group">
+            <label class="nhsuk-label nhsuk-date-input__label" th:for="${id}+'.seconds'">
+              Secs
+            </label>
+            <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2"
+                   inputmode="numeric" pattern="[0-9]*" th:field="*{__${field}__.seconds}" th:id="${id}+'.seconds'"
+                   th:name="${id}+'.seconds'"
+                   type="text">
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+  </div>
+</th:block>

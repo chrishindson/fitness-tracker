@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" th:fragment="layout (backLink, main, scripts, includedNav)"
+      th:with="accessible=${accessible}">
+<!--[if lt IE 9]>
+<html class="lte-ie8" xlmns="http://www.w3.org/1999/html"
+      xmlns:th="http://www.thymeleaf.org"></html>
+<html lang="en" xlmns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org"><![endif]-->
+<!--[if gt IE8]><!-->
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+  <meta content="Fitness tracking" name="description">
+  <meta th:content="${@environment.getProperty('server.servlet.context-path')}"
+        th:name="_context_path">
+  <title th:text="${pageTitle}">Fitness tracker</title>
+  <!--  <link rel="stylesheet" th:href="@{/webjars/nhsuk-frontend/6.2.0/dist/nhsuk-6.2.0.min.css}"-->
+  <!--        type="text/css">-->
+  <link rel="stylesheet" th:href="@{/css/nhsuk-7.0.0.min.css}" type="text/css">
+  <link rel="stylesheet" th:href="@{/css/calendar.css}" type="text/css">
+  <th:block th:if="${var}">
+    <link rel="stylesheet" th:href="@{/css/accessible-autocomplete.min.css}" type="text/css">
+    <script th:src="@{/js/accessible-autocomplete.min.js}"></script>
+  </th:block>
+</head>
+<body class="nhsuk-body-l">
+<a class="nhsuk-skip-link" href="#main-content">Skip to main content</a>
+<script>
+  document.body.className = ((document.body.className) ? document.body.className + ' js-enabled'
+      : 'js-enabled');
+</script>
+
+<header class="nhsuk-header" id="fitness-tracker-global-header" role="banner">
+  <th:block
+      th:replace="~{fitness-tracker-design-system/header ::header(${includedNav})}"></th:block>
+</header>
+
+<div class="nhsuk-width-container">
+  <th:block
+      th:insert="~{fitness-tracker-design-system/component/breadcrumbs ::breadcrumbs(${breadcrumbs})}"></th:block>
+  <main id="main-content" th:replace="${main}">
+    <h1>Default page template</h1>
+  </main>
+</div>
+
+<footer role="contentinfo">
+  <div class="nhsuk-footer" id="footer">
+    <div class="nhsuk-width-container">
+      <h2 class="nhsuk-u-visually-hidden">Support links</h2>
+      <ul class="nhsuk-footer__list">
+        <li class="nhsuk-footer__list-item">
+          <a class="nhsuk-footer__list-item-link" href="#">Link</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <script th:src="@{/webjars/jquery/3.6.4/dist/jquery.js}"></script>
+  <!--  <script th:src="@{/webjars/nhsuk-frontend/6.2.0/dist/nhsuk-6.2.0.min.js}"></script>-->
+  <script th:src="@{/js/nhsuk-7.0.0.min.js}"></script>
+</footer>
+
+</body>
+
+
+</html>

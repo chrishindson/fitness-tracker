@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html
+    th:replace="~{fitness-tracker-design-system/layout :: layout(backLink=~{}, main=~{::main}, scripts=~{}, includedNav=true, var=true)}">
+
+<body>
+<main class="nhsuk-main-wrapper" id="main-content" role="main">
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+      <h1 th:text="${pageTitleRaw}">Dashboard</h1>
+    </div>
+  </div>
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+      <dl class="nhsuk-summary-list">
+        <th:block
+            th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='activity-id',key='Activity ID',value=${activity.activityId}, numeric=false)}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='activity-type',key='Activity type',value=${activity.activityType.activityTypeDescription}, numeric=false)}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='start-time',key='Start time',value=${activity.startTime}, numeric=false)}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='distance',key='Distance (km)',value=${activity.distance}, numeric=false)}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='colories',key='Calories (kCal)',value=${activity.calorieCount}, numeric=false)}">
+        </th:block>
+        <th:block th:if="${activity.notes != null}"
+                  th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='notes',key='Notes',value=${activity.notes}, numeric=false)}">
+        </th:block>
+      </dl>
+      <th:block th:if="${activity.activityDetails.size() > 0 }">
+        <table>
+          <thead>
+          <tr>
+            <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">Repetitions</th>
+            <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">Number of sets</th>
+            <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">Weight</th>
+          </tr>
+          </thead>
+          <tr th:each="detail : ${activity.activityDetails}">
+            <td class="nhsuk-table__cell--numeric" th:text="${detail.repetitions}"></td>
+            <td class="nhsuk-table__cell--numeric" th:text="${detail.numberOfSets}"></td>
+            <td class="nhsuk-table__cell--numeric" th:text="${detail.weight}"></td>
+          </tr>
+        </table>
+      </th:block>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>

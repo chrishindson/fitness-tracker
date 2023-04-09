@@ -1,0 +1,70 @@
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-full">
+    <svg aria-labelledby="title" class="graph" role="img" version="1.2" xmlns="http://www.w3.org/2000/svg">
+      <title id="title">A line chart showing some information</title>
+      <g class="grid x-grid" id="xGrid">
+        <line x1="90" x2="90" y1="5" y2="371"></line>
+      </g>
+      <g class="grid y-grid" id="yGrid">
+        <line x1="90" x2="705" y1="370" y2="370"></line>
+      </g>
+      <g class="labels x-labels">
+        <text x="100" y="400">2008</text>
+        <text x="246" y="400">2009</text>
+        <text class="label-title" x="400" y="440">Year</text>
+      </g>
+      <g class="labels y-labels">
+        <text x="80" y="15">95</text>
+        <text x="80" y="131">90</text>
+        <text x="80" y="248">85</text>
+        <text x="80" y="373">80</text>
+        <text class="label-title" x="50" y="200">Weight</text>
+      </g>
+      <g class="data" data-setname="Our first data set">
+        <circle cx="90" cy="130" data-value="89.5" r="4"></circle>
+        <circle cx="240" cy="140" data-value="89.0" r="4"></circle>
+      </g>
+    </svg>
+  </div>
+</div>
+<style>
+  body {
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .graph .labels.x-labels {
+    text-anchor: middle;
+  }
+
+  .graph .labels.y-labels {
+    text-anchor: end;
+  }
+
+
+  .graph {
+    height: 500px;
+    width: 800px;
+  }
+
+  .graph .grid {
+    stroke: #ccc;
+    stroke-dasharray: 0;
+    stroke-width: 1;
+  }
+
+  .labels {
+    font-size: 13px;
+  }
+
+  .label-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+    fill: black;
+  }
+
+  .data {
+    fill: red;
+    stroke-width: 1;
+  }
+</style>
