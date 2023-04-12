@@ -16,7 +16,7 @@ public class Activity {
   @SequenceGenerator(name = "activity_gen", sequenceName = "activity_pk_seq", allocationSize = 1)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "activity_gen")
   @Column(name = "activity_id")
-  private Integer activityId;
+  private Long activityId;
 
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "activity_type_id")
@@ -48,11 +48,11 @@ public class Activity {
   private List<ActivityDetails> activityDetails;
 
 
-  public Integer getActivityId() {
+  public Long getActivityId() {
     return activityId;
   }
 
-  public void setActivityId(Integer activityId) {
+  public void setActivityId(Long activityId) {
     this.activityId = activityId;
   }
 

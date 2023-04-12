@@ -1,0 +1,28 @@
+<th:block th:fragment="activity-summary(activitySummaryDTO, summaryDate)">
+  <th:block th:if="${dailySummaryDTO.getActivitySummaryDTO() == null}">
+    <p>No activities found</p>
+    <!--    <th:block-->
+    <!--        th:insert="~{fitness-tracker-design-system/component/misc ::action-link('add-activity','Add activity', '/activity/add-activity')}"></th:block>-->
+  </th:block>
+  <th:block th:if="${dailySummaryDTO.getActivitySummaryDTO() != null}">
+    <dl class="nhsuk-summary-list nhsuk-summary-list--no-border nhsuk-u-margin-bottom-0">
+      <th:block
+          th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='activityCount',
+                key='Activity count',value=${activitySummaryDTO.activityCount}, numeric=true)}">
+      </th:block>
+      <th:block
+          th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='totalCalories',
+                key='Total calories',value=${activitySummaryDTO.totalCalories}, numeric=true)}">
+      </th:block>
+      <th:block
+          th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='totalDistance',
+                key='Total distance',value=${activitySummaryDTO.totalDistance}, numeric=true)}">
+      </th:block>
+      <th:block
+          th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='totalTime',
+                key='Total time',value=${activitySummaryDTO.totalTime}, numeric=true)}">
+      </th:block>
+    </dl>
+    <!--    <button class="nhsuk-button-looks-like-link nhsuk-link&#45;&#45;no-visited-state nhsuk-u-text-align-centre" formaction="#">View all activities</button>-->
+  </th:block>
+</th:block>

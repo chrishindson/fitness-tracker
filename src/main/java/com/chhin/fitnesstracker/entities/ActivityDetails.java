@@ -13,7 +13,7 @@ public class ActivityDetails {
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "activity_details_gen")
   @SequenceGenerator(name = "activity_details_gen", sequenceName = "activity_details_pk_seq", allocationSize = 1)
   @Column(name = "activity_details_id", nullable = false)
-  private Integer activityDetailsId;
+  private Long activityDetailsId;
 
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "activity_id", nullable = false)
@@ -29,11 +29,11 @@ public class ActivityDetails {
   private Integer numberOfSets;
 
 
-  public Integer getActivityDetailsId() {
+  public Long getActivityDetailsId() {
     return activityDetailsId;
   }
 
-  public void setActivityDetailsId(Integer activityDetailsId) {
+  public void setActivityDetailsId(Long activityDetailsId) {
     this.activityDetailsId = activityDetailsId;
   }
 

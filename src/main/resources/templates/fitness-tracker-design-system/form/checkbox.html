@@ -1,7 +1,9 @@
 <th:block th:fragment="checkbox(id, label, field, hints)">
   <div class="nhsuk-checkboxes__item">
-    <span th:replace="~{fitness-tracker-design-system/form/errors :: error-message(${field})}"></span>
-    <input class="nhsuk-checkboxes__input" th:classappend="${#fields.hasErrors(field)} ? 'nhsuk-form-group--error' : ''"
+    <span
+        th:replace="~{fitness-tracker-design-system/form/errors :: error-message(${field})}"></span>
+    <input class="nhsuk-checkboxes__input"
+           th:classappend="${#fields.hasErrors(field)} ? 'nhsuk-form-group--error' : ''"
            th:field="${field}" th:id="${id}" th:name="${id}"
            th:value="email"
            type="checkbox">

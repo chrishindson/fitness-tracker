@@ -1,0 +1,32 @@
+<th:block th:fragment="weight-summary(weightTracking, summaryDate)">
+  <th:block th:if="${weightTracking== null}">
+    <p>No weight information found</p>
+    <!--    <th:block-->
+    <!--        th:insert="~{fitness-tracker-design-system/component/misc ::action-link('add-weight-details','Add weight details', '/weight-tracking/add-weight-details')}"></th:block>-->
+  </th:block>
+  <th:block th:if="${weightTracking != null}">
+    <dl class="nhsuk-summary-list nhsuk-summary-list--no-border nhsuk-u-margin-bottom-0">
+      <th:block
+          th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='weight',
+                key='Weight (kg)',value=${weightTracking.weight}, numeric=true)}">
+      </th:block>
+      <!--            <th:block-->
+      <!--                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='totalCalories',-->
+      <!--                key='Skeletal muscle (kg)',value=${weightTracking.skeletalMuscle}, numeric=true)}">-->
+      <!--            </th:block>-->
+      <!--            <th:block-->
+      <!--                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='fatMass',-->
+      <!--                key='Fat mass (kg)',value=${weightTracking.fatMass}, numeric=true)}">-->
+      <!--            </th:block>-->
+      <!--            <th:block-->
+      <!--                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='bodyFat',-->
+      <!--                key='Body fat (%)',value=${weightTracking.bodyFat}, numeric=true)}">-->
+      <!--            </th:block>-->
+      <!--            <th:block-->
+      <!--                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='bodyWater',-->
+      <!--                key='Body water (kg)',value=${weightTracking.bodyWater}, numeric=true)}">-->
+      <!--            </th:block>-->
+    </dl>
+    <!--    <a class="nhsuk-label&#45;&#45;s nhsuk-link&#45;&#45;no-visited-state nhsuk-u-text-align-centre" href="#">View all details</a>-->
+  </th:block>
+</th:block>

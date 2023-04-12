@@ -1,0 +1,12 @@
+<th:block th:fragment="body-measurement-summary(bodyMeasurement, summaryDate)">
+  <th:block th:if="${bodyMeasurement.size() == 0}">
+    <p>No body measurement information found</p>
+    <!--    <th:block-->
+    <!--        th:insert="~{fitness-tracker-design-system/component/misc ::action-link('add-body-measurement-information','Add body measurement information', '/body-measurement-tracking/add-body-measurement-details')}"></th:block>-->
+  </th:block>
+  <th:block th:if="${bodyMeasurement.size() != 0}">
+    <dl class="nhsuk-summary-list nhsuk-summary-list--no-border nhsuk-u-margin-bottom-1">
+    </dl>
+    <!--    <a class="nhsuk-label&#45;&#45;s nhsuk-link&#45;&#45;no-visited-state nhsuk-u-text-align-centre" href="#">View all details</a>-->
+  </th:block>
+</th:block>

@@ -1,7 +1,7 @@
 package com.chhin.fitnesstracker.controller;
 
 import com.chhin.fitnesstracker.entities.FTUser;
-import com.chhin.fitnesstracker.model.ActivityCalendarDTO;
+import com.chhin.fitnesstracker.model.ActivityDiaryDTO;
 import com.chhin.fitnesstracker.model.ActivityMonthlyDTO;
 import com.chhin.fitnesstracker.model.LoginFormDTO;
 import com.chhin.fitnesstracker.service.ActivityService;
@@ -43,9 +43,10 @@ public class HomeController extends AbstractController {
   @GetMapping("/dashboard")
   public String viewDashboard(Model model, HttpServletRequest request) {
     FTUser ftUser = loggedInUserService.getLoggedInUser().orElse(null);
-    ActivityMonthlyDTO activityMonthlyDTO = new ActivityMonthlyDTO();
-    List<ActivityCalendarDTO> calendarDTOList = activityService.getCalendarFtUserListJdbc(ftUser.getUsername(), LocalDate.now());
-    activityMonthlyDTO.setMonthlyActivities(calendarDTOList);
+    ActivityMonthlyDTO activityMonthlyDTO = new ActivityMonthlyDTO(LocalDate.now());
+    List<ActivityDiaryDTO> diaryDTOList = activityService.getDiaryFtUserListJdbc(
+        ftUser.getUsername(), activityMonthlyDTO.getActivityMonth());
+    activityMonthlyDTO.setMonthlyActivities(diaryDTOList);
     model.addAttribute("activityMonthlyDTO", activityMonthlyDTO);
     titleString = "Dashboard";
     getStarterBreadcrumbs(titleString, model, request);

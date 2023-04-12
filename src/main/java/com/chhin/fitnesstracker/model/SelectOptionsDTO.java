@@ -2,19 +2,19 @@ package com.chhin.fitnesstracker.model;
 
 public class SelectOptionsDTO {
 
-  private Integer id;
+  private Long id;
   private String description;
 
-  public SelectOptionsDTO(Integer id, String description) {
+  public SelectOptionsDTO(Long id, String description) {
     this.id = id;
     this.description = description;
   }
 
-  public Integer getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 

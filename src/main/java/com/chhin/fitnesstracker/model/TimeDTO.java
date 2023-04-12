@@ -22,6 +22,12 @@ public class TimeDTO {
     this.seconds = seconds;
   }
 
+  public TimeDTO(LocalTime localTime) {
+    this.hours = String.valueOf(localTime.getHour());
+    this.minutes = String.valueOf(localTime.getMinute());
+    this.seconds = String.valueOf(localTime.getSecond());
+  }
+
   public String getHours() {
     return hours;
   }

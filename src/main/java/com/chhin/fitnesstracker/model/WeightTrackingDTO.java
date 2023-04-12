@@ -1,6 +1,7 @@
 package com.chhin.fitnesstracker.model;
 
 import com.chhin.fitnesstracker.entities.FTUser;
+import com.chhin.fitnesstracker.entities.WeightTracking;
 
 import java.math.BigDecimal;
 
@@ -14,6 +15,20 @@ public class WeightTrackingDTO {
   private BigDecimal bodyFat;
   private BigDecimal bodyWater;
   private DateDTO recordedDate;
+
+  public WeightTrackingDTO() {
+  }
+
+  public WeightTrackingDTO(WeightTracking weightTracking) {
+    this.weightTrackingId = weightTracking.getWeightTrackingId();
+    this.ftUser = weightTracking.getFtUser();
+    this.weight = weightTracking.getWeight();
+    this.skeletalMuscle = weightTracking.getSkeletalMuscle();
+    this.fatMass = weightTracking.getFatMass();
+    this.bodyFat = weightTracking.getBodyFat();
+    this.bodyWater = weightTracking.getBodyWater();
+    this.recordedDate = new DateDTO(weightTracking.getRecordedDate());
+  }
 
   public Long getWeightTrackingId() {
     return weightTrackingId;

@@ -112,7 +112,8 @@ public class ActivityService {
     return new PageImpl<>(list.subList(start, end), pageable, list.size());
   }
 
-  public List<ActivityCalendarDTO> getCalendarFtUserListJdbc(String username, LocalDate calendarMonth) {
+  public List<ActivityDiaryDTO> getDiaryFtUserListJdbc(String username,
+                                                       LocalDate diaryMonth) {
     String sql =
         "SELECT u.username, a.activity_date as activityDate, "
             + "count(1) as activityCount, "
@@ -121,14 +122,14 @@ public class ActivityService {
             + "sum(a.time_taken) as totalTime "
             + "FROM activity a, users u "
             + "WHERE lower(u.username) = lower(:username) "
-            + "AND a.activity_date between date_trunc('month',:calendarMonth) "
-            + "and date_trunc('month',:calendarMonth + INTERVAL '1 MONTH - 1 day') "
+            + "AND a.activity_date between date_trunc('month',:diaryMonth) "
+            + "and date_trunc('month',:diaryMonth + INTERVAL '1 MONTH - 1 day') "
             + "group by u.username, a.activity_date";
     Map<String, Object> params = new HashMap<>();
     params.put("username", username);
-    params.put("calendarMonth", calendarMonth);
+    params.put("diaryMonth", diaryMonth);
     return namedParameterJdbcTemplate.query(sql, params,
-        new BeanPropertyRowMapper<>(ActivityCalendarDTO.class));
+        new BeanPropertyRowMapper<>(ActivityDiaryDTO.class));
   }
 
   public ActivityHistoryDTO getAllTimeActivitySummaryByFtUserListJdbc(String username) {
@@ -147,6 +148,7 @@ public class ActivityService {
         new BeanPropertyRowMapper<>(ActivityHistoryDTO.class));
     return list.get(0);
   }
+
 
   public Activity findByActivityId(Long activityId) {
     return activityRepository.findById(activityId).orElse(null);

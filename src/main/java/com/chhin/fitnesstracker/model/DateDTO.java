@@ -3,6 +3,7 @@ package com.chhin.fitnesstracker.model;
 import jakarta.validation.constraints.Pattern;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class DateDTO {
 
@@ -14,6 +15,12 @@ public class DateDTO {
   protected String year;
 
   public DateDTO() {
+  }
+
+  public DateDTO(LocalDate localDate) {
+    this.day = String.valueOf(localDate.getDayOfMonth());
+    this.month = String.valueOf(localDate.getMonthValue());
+    this.year = String.valueOf(localDate.getYear());
   }
 
   public DateDTO(String day, String month, String year) {
@@ -49,5 +56,10 @@ public class DateDTO {
   public LocalDate toLocalDate() {
     return LocalDate.of(Integer.parseInt(this.getYear()), Integer.parseInt(this.getMonth()),
         Integer.parseInt(this.getDay()));
+  }
+
+  public String toDisplayDate() {
+
+    return toLocalDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
   }
 }

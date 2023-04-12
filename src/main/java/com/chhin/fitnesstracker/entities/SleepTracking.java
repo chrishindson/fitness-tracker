@@ -14,7 +14,7 @@ public class SleepTracking {
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sleep_tracking_gen")
   @SequenceGenerator(name = "sleep_tracking_gen", sequenceName = "sleep_tracking_pk_seq", allocationSize = 1)
   @Column(name = "sleep_tracking_id", nullable = false)
-  private Integer sleepTrackingId;
+  private Long sleepTrackingId;
 
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "user_id")
@@ -50,11 +50,11 @@ public class SleepTracking {
   @Column(name = "sleep_end", nullable = false)
   private LocalTime sleepEnd;
 
-  public Integer getSleepTrackingId() {
+  public Long getSleepTrackingId() {
     return sleepTrackingId;
   }
 
-  public void setSleepTrackingId(Integer sleepTrackingId) {
+  public void setSleepTrackingId(Long sleepTrackingId) {
     this.sleepTrackingId = sleepTrackingId;
   }
 
@@ -152,6 +152,16 @@ public class SleepTracking {
 
   public void setSleepEnd(LocalTime sleepEnd) {
     this.sleepEnd = sleepEnd;
+  }
+
+  public LocalTime getTotalSleepTime() {
+    long totla =
+        this.awakeTime.toNanoOfDay() + this.deepSleep.toNanoOfDay() + this.remSleep.toNanoOfDay()
+            + this.lightSleep.toNanoOfDay();
+
+    return LocalTime.ofNanoOfDay(totla);
+
+
   }
 
   @Override

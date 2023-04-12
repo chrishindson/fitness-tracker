@@ -16,6 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @PropertySource("classpath:messages.properties")
 public class ApplicationConfig implements WebMvcConfigurer {
+
   @Bean
   @SessionScope
   public LoggedInUserService loggedInUserService(FTUserService ftUserService) {
@@ -26,7 +27,7 @@ public class ApplicationConfig implements WebMvcConfigurer {
     } else {
       name = authentication.getName();
     }
-    Integer anInt = ftUserService.findByUsernameOptional(name).map(FTUser::getUserId).orElse(null);
+    Long anInt = ftUserService.findByUsernameOptional(name).map(FTUser::getUserId).orElse(null);
     return new LoggedInUserService(anInt, ftUserService);
   }
 }

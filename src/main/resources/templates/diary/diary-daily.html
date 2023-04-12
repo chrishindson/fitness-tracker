@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html th:replace="~{fitness-tracker-design-system/layout :: layout(~{}, ~{::main}, ~{}, true)}">
+<body>
+<main class="nhsuk-main-wrapper" id="main-content" role="main">
+
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+      <h1 th:text="${pageTitleRaw}">Dashboard</h1>
+    </div>
+  </div>
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+      <ul class="nhsuk-grid-row nhsuk-card-group">
+        <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+          <div class="nhsuk-card nhsuk-card--clickable nhsuk-card-border-bottom-1 nhsuk-u-margin-bottom-3">
+            <div class="nhsuk-card__content">
+              <h2 class="nhsuk-card__heading nhsuk-heading-m nhsuk-u-margin-bottom-2">Daily activities
+                <a th:href="@{'/activity/activities/day/' + ${#temporals.format(dailySummaryDTO.summaryDate,'yyyy-MM-dd')}}"></a>
+              </h2>
+              <th:block
+                  th:insert="~{fitness-tracker-design-system/partial/activity-summary :: activity-summary(activitySummaryDTO=${dailySummaryDTO.getActivitySummaryDTO()}, summaryDate=${dailySummaryDTO.summaryDate})}">
+              </th:block>
+            </div>
+          </div>
+        </li>
+        <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+          <div class=" nhsuk-card nhsuk-u-margin-bottom-3">
+            <div class="nhsuk-card__content">
+              <h2 class="nhsuk-card__heading nhsuk-heading-m  nhsuk-u-margin-bottom-2">Food tracking
+              </h2>
+              <th:block
+                  th:insert="~{fitness-tracker-design-system/partial/food-summary :: food-summary(foodTracking=${dailySummaryDTO.getFoodTracking()}, summaryDate=${dailySummaryDTO.summaryDate})}">
+              </th:block>
+            </div>
+          </div>
+        </li>
+        <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+          <div class="nhsuk-card nhsuk-u-margin-bottom-3">
+            <div class="nhsuk-card__content">
+              <h2 class="nhsuk-card__heading nhsuk-heading-m">Water tracking
+              </h2>
+              <th:block
+                  th:insert="~{fitness-tracker-design-system/partial/water-summary :: water-summary(waterTracking=${dailySummaryDTO.waterTracking}, summaryDate=${dailySummaryDTO.summaryDate})}">
+              </th:block>
+            </div>
+          </div>
+          <!--    </div>-->
+
+          <!--    <div class="nhsuk-grid-column-one-half">-->
+
+        </li>
+        <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+          <div class="nhsuk-card nhsuk-u-margin-bottom-3">
+            <div class="nhsuk-card__content">
+              <h2 class="nhsuk-card__heading nhsuk-heading-m">Weight tracking
+              </h2>
+              <th:block
+                  th:insert="~{fitness-tracker-design-system/partial/weight-summary :: weight-summary(weightTracking=${dailySummaryDTO.getWeightTracking()}, summaryDate=${dailySummaryDTO.summaryDate})}">
+              </th:block>
+            </div>
+          </div>
+
+        </li>
+        <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+          <div class="nhsuk-card nhsuk-u-margin-bottom-3">
+            <div class="nhsuk-card__content">
+              <h2 class="nhsuk-card__heading nhsuk-heading-m">Sleep tracking
+              </h2>
+              <th:block
+                  th:insert="~{fitness-tracker-design-system/partial/sleep-summary :: sleep-summary(sleepTracking=${dailySummaryDTO.getSleepTracking()}, summaryDate=${dailySummaryDTO.summaryDate})}">
+              </th:block>
+            </div>
+          </div>
+
+        </li>
+        <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+          <div class="nhsuk-card nhsuk-u-margin-bottom-3">
+            <div class="nhsuk-card__content">
+              <h2 class="nhsuk-card__heading nhsuk-heading-m">Body measurements
+              </h2>
+              <th:block
+                  th:insert="~{fitness-tracker-design-system/partial/body-measurement-summary :: body-measurement-summary(bodyMeasurement=${dailySummaryDTO.bodyMeasurementList}, summaryDate=${dailySummaryDTO.summaryDate})}">
+              </th:block>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  </div>
+</main>
+</body>
+</html>

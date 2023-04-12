@@ -1,0 +1,12 @@
+<th:block th:fragment="food-summary(foodTracking, summaryDate)">
+  <th:block th:if="${foodTracking == null}">
+    <p>No food tracking information found</p>
+    <!--    <th:block-->
+    <!--        th:insert="~{fitness-tracker-design-system/component/misc ::action-link('add-food-information','Add food information', '/food-tracking/add-food-details')}"></th:block>-->
+  </th:block>
+  <th:block th:if="${foodTracking != null}">
+    <dl class="nhsuk-summary-list nhsuk-summary-list--no-border nhsuk-u-margin-bottom-1">
+    </dl>
+    <a class="nhsuk-label--s nhsuk-link--no-visited-state nhsuk-u-text-align-centre" href="#">View all details</a>
+  </th:block>
+</th:block>

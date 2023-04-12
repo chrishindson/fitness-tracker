@@ -21,12 +21,15 @@ import static com.chhin.fitnesstracker.util.Constants.WEIGHT_TRACKING_MAPPING;
 @Controller
 @RequestMapping(WEIGHT_TRACKING_MAPPING)
 public class WeightTrackingController extends AbstractController {
+
   public static final String WEIGHT_TRACKING_DTO = "weightTrackingDTO";
   private final LoggedInUserService loggedInUserService;
   private final WeightTrackingService weightTrackingService;
   private final WeightTrackingValidator weightTrackingValidator;
 
-  public WeightTrackingController(LoggedInUserService loggedInUserService, WeightTrackingService weightTrackingService, WeightTrackingValidator weightTrackingValidator) {
+  public WeightTrackingController(LoggedInUserService loggedInUserService,
+                                  WeightTrackingService weightTrackingService,
+                                  WeightTrackingValidator weightTrackingValidator) {
     super();
     this.loggedInUserService = loggedInUserService;
     this.weightTrackingService = weightTrackingService;
@@ -63,7 +66,8 @@ public class WeightTrackingController extends AbstractController {
     redirectAttributes.addFlashAttribute(WEIGHT_TRACKING_DTO, weightTrackingDTO);
 
     if (bindingResult.hasErrors()) {
-      redirectAttributes.addFlashAttribute(ATTR_BINDING_RESULT + WEIGHT_TRACKING_DTO, bindingResult);
+      redirectAttributes.addFlashAttribute(ATTR_BINDING_RESULT + WEIGHT_TRACKING_DTO,
+          bindingResult);
       return REDIRECT + "/weight-tracking/add-weight-details";
     }
     weightTrackingService.saveWeightDetails(weightTrackingDTO, ftUser);

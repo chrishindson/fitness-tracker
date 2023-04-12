@@ -12,16 +12,16 @@ public class ActivityType {
   @Column(name = "activity_type_id")
   @SequenceGenerator(name = "activity_type_gen", sequenceName = "activity_type_pk_seq", allocationSize = 1)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "activity_type_gen")
-  private Integer activityTypeId;
+  private Long activityTypeId;
 
   @Column(name = "activity_type_description", nullable = false, unique = true, length = 100)
   private String activityTypeDescription;
 
-  public Integer getActivityTypeId() {
+  public Long getActivityTypeId() {
     return activityTypeId;
   }
 
-  public void setActivityTypeId(Integer activityTypeId) {
+  public void setActivityTypeId(Long activityTypeId) {
     this.activityTypeId = activityTypeId;
   }
 

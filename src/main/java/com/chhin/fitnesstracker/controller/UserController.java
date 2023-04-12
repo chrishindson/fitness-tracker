@@ -13,6 +13,7 @@ import static com.chhin.fitnesstracker.util.Constants.USERS_MAPPING;
 @Controller
 @RequestMapping(USERS_MAPPING)
 public class UserController extends AbstractController {
+
   private final LoggedInUserService loggedInUserService;
 
   public UserController(LoggedInUserService loggedInUserService) {

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface FTUserRepository extends JpaRepository<FTUser, Integer> {
+public interface FTUserRepository extends JpaRepository<FTUser, Long> {
 
   Optional<FTUser> findByUsernameIgnoreCase(@Param("username") String username);
 }

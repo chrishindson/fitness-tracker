@@ -19,7 +19,9 @@ public class BodyMeasurement {
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "body_measurement_area_id", nullable = false)
   private BodyMeasurementArea bodyMeasurementArea;
-
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "user_id")
+  private FTUser ftUser;
   @Column(name = "measurement_date", nullable = false)
   private LocalDate measurementDate;
 
@@ -41,6 +43,14 @@ public class BodyMeasurement {
   public void setBodyMeasurementArea(
       BodyMeasurementArea bodyMeasurementArea) {
     this.bodyMeasurementArea = bodyMeasurementArea;
+  }
+
+  public FTUser getFtUser() {
+    return ftUser;
+  }
+
+  public void setFtUser(FTUser ftUser) {
+    this.ftUser = ftUser;
   }
 
   public LocalDate getMeasurementDate() {

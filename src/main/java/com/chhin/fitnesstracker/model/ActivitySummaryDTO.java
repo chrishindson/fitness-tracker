@@ -11,7 +11,7 @@ public class ActivitySummaryDTO {
   private Long activityCount;
   private BigDecimal totalDistance;
   private LocalTime totalTime;
-  private Integer totalCalories;
+  private Long totalCalories;
 
   public ActivitySummaryDTO() {
   }
@@ -21,7 +21,7 @@ public class ActivitySummaryDTO {
       LocalDate activityDate,
       BigDecimal totalDistance,
       Long activityCount,
-      Integer totalCalories,
+      Long totalCalories,
       LocalTime totalTime) {
     this.username = username;
     this.activityDate = activityDate;
@@ -71,11 +71,11 @@ public class ActivitySummaryDTO {
     this.totalTime = totalTime;
   }
 
-  public Integer getTotalCalories() {
+  public Long getTotalCalories() {
     return totalCalories;
   }
 
-  public void setTotalCalories(Integer totalCalories) {
+  public void setTotalCalories(Long totalCalories) {
     this.totalCalories = totalCalories;
   }
 }

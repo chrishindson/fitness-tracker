@@ -69,7 +69,7 @@ public class AbstractController {
 
   void populateTitle(Model model, String pageTitle) {
     model.addAttribute(PAGE_TITLE_RAW, pageTitle);
-    model.addAttribute(PAGE_TITLE, pageTitle + " | Fitness tracking");
+    model.addAttribute(PAGE_TITLE, pageTitle + " | Health tracking");
   }
 
   private void retrieveBreadcrumbs(String pageTitle, HttpServletRequest request) {

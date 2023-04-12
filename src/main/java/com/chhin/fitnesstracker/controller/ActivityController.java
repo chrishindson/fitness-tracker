@@ -53,7 +53,8 @@ public class ActivityController extends AbstractController {
   public String viewHome(Model model,
                          HttpServletRequest request) {
     FTUser ftUser = loggedInUserService.getLoggedInUser().orElse(null);
-    ActivityHistoryDTO historyDTO = activityService.getAllTimeActivitySummaryByFtUserListJdbc(ftUser.getUsername());
+    ActivityHistoryDTO historyDTO = activityService.getAllTimeActivitySummaryByFtUserListJdbc(
+        ftUser.getUsername());
     model.addAttribute("activityHistory", historyDTO);
     titleString = "Activity home";
     getBreadcrumbs(titleString, model, request);
@@ -63,7 +64,8 @@ public class ActivityController extends AbstractController {
   @GetMapping("/add-activity")
   public String viewAddActivity(Model model,
                                 HttpServletRequest request) {
-    if (!model.containsAttribute(ACTIVITY_DTO) || !model.containsAttribute(ATTR_BINDING_RESULT + ACTIVITY_DTO)) {
+    if (!model.containsAttribute(ACTIVITY_DTO) || !model.containsAttribute(
+        ATTR_BINDING_RESULT + ACTIVITY_DTO)) {
       ActivityDTO activityDTO = new ActivityDTO();
       activityDTO.setActivityTypeList(activityService.getActivityTypeList());
       model.addAttribute(ACTIVITY_DTO, activityDTO);

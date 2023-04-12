@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html th:replace="~{fitness-tracker-design-system/layout :: layout(~{}, ~{::main}, ~{}, true)}">
+<body>
+<main class="nhsuk-main-wrapper" id="main-content" role="main">
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+      <h1 th:text="${pageTitleRaw}">Dashboard</h1>
+    </div>
+  </div>
+  <div class="nhsuk-grid-row nhsuk-u-padding-bottom-0">
+    <div class="nhsuk-grid-column-full">
+      <div class="nhsuk-card nhsuk-grid-column-one-seventh nhsuk-u-margin-0 nhsuk-tag"
+           th:each="weekday, i : ${activityMonthlyDTO.getDaysOfWeek()}">
+        <p class="nhsuk-u-text-align-centre nhsuk-u-margin-0" th:text="${weekday}"></p>
+      </div>
+      <th:block
+          th:each="i : ${#numbers.sequence(1, T(java.lang.Math).min(42,activityMonthlyDTO.getLastDiaryPlace()))}">
+        <th:block
+            th:insert="~{fitness-tracker-design-system/component/card :: diary-card(id=${i},cardClassAppend='')}"
+            th:unless="${activityMonthlyDTO.firstDayOfWeek() <= i}">
+        </th:block>
+        <th:block th:if="${activityMonthlyDTO.firstDayOfWeek() <= i}"
+                  th:insert="~{fitness-tracker-design-system/component/card :: diary-clickable-card(id=${i},
+                  link=${'/diary/' + activityMonthlyDTO.getDiaryDateString(i)},
+                  description=${(i - activityMonthlyDTO.firstDayOfWeek() + 1)},title='',cardClassAppend=${activityMonthlyDTO.getActivityCount(i) != 0 ? ' nhsuk-card--clickable nhsuk nhsuk-tag--pink' : ''})}">
+        </th:block>
+      </th:block>
+    </div>
+  </div>
+</main>
+</body>
+</html>

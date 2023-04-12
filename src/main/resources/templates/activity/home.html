@@ -11,9 +11,9 @@
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-one-half">
       <th:block
-          th:insert="~{fitness-tracker-design-system/component/misc ::action-link('Add activity', '/activity/add-activity')}"></th:block>
+          th:insert="~{fitness-tracker-design-system/component/misc ::action-link('add-activity','Add activity', '/activity/add-activity')}"></th:block>
       <th:block
-          th:insert="~{fitness-tracker-design-system/component/misc ::action-link('View activity history', '/activity/activity-history')}"></th:block>
+          th:insert="~{fitness-tracker-design-system/component/misc ::action-link('view-activity-history','View activity history', '/activity/activity-history')}"></th:block>
     </div>
     <div class="nhsuk-grid-row">
       <div class="nhsuk-grid-column-one-half">
@@ -22,7 +22,7 @@
             <h2 class="nhsuk-card__heading nhsuk-heading-m">All time totals
             </h2>
 
-            <dl class="nhsuk-summary-list">
+            <dl class="nhsuk-summary-list nhsuk-summary-list--no-border">
               <th:block
                   th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='activityCount',key='Activity count',value=${activityHistory.activityCount}, numeric=true)}">
               </th:block>

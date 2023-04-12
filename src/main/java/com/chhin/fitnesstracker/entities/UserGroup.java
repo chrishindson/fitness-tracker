@@ -12,16 +12,16 @@ public class UserGroup {
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_group_gen")
   @SequenceGenerator(name = "user_group_gen", sequenceName = "user_group_pk_seq", allocationSize = 1)
   @Column(name = "user_group_id", nullable = false)
-  private Integer userGroupId;
+  private Long userGroupId;
 
   @Column(name = "user_group_description", nullable = false, length = 50)
   private String userGroupDescription;
 
-  public Integer getUserGroupId() {
+  public Long getUserGroupId() {
     return userGroupId;
   }
 
-  public void setUserGroupId(Integer userGroupId) {
+  public void setUserGroupId(Long userGroupId) {
     this.userGroupId = userGroupId;
   }
 

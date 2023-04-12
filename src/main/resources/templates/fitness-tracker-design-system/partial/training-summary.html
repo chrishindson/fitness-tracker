@@ -1,0 +1,12 @@
+<th:block th:fragment="training-plan-summary(trainingPlanDTO, summaryDate)">
+  <th:block th:if="${trainingPlanDTO == null}">
+    <p>No training plan information found</p>
+    <th:block
+        th:insert="~{fitness-tracker-design-system/component/misc ::action-link('add-training-plan','Add training plan information', '/training-plan/add-training-plan')}"></th:block>
+  </th:block>
+  <th:block th:if="${trainingPlanDTO != null}">
+    <dl class="nhsuk-summary-list nhsuk-summary-list--no-border nhsuk-u-margin-bottom-1">
+    </dl>
+    <a class="nhsuk-label--s nhsuk-link--no-visited-state nhsuk-u-text-align-centre" href="#">View all details</a>
+  </th:block>
+</th:block>

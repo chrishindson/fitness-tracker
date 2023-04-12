@@ -1,14 +1,67 @@
 <th:block th:fragment="clickable-card"
           th:with="id=${id},title=${title?:''},link=${link?:'#'},description=${description?:''}">
-  <div class="nhsuk-card nhsuk-card--clickable">
+  <div class="nhsuk-card nhsuk-card--clickable" th:classappend="${cardClassAppend}">
     <div class="nhsuk-card__content">
       <h2 class="nhsuk-card__heading nhsuk-heading-m">
-        <a class="nhsuk-card__link nhsuk-link--no-visited-state" th:href="@{${link}}" th:text="${title}">Introduction to
+        <a class="nhsuk-card__link nhsuk-link--no-visited-state" th:href="@{${link}}"
+           th:text="${title}">Introduction to
           care and
           support</a>
       </h2>
       <p class="nhsuk-card__description" th:text="${description}">A quick guide for people who have
         care and support needs and their carers</p>
     </div>
+  </div>
+</th:block>
+<th:block th:fragment="card"
+          th:with="id=${id},title=${title?:''},description=${description?:''}">
+  <div class="nhsuk-card" th:classappend="${cardClassAppend}">
+    <div class="nhsuk-card__content">
+      <h2 class="nhsuk-card__heading nhsuk-heading-m" th:text="${title}">Introduction to
+        care and
+        support
+      </h2>
+      <p class="nhsuk-card__description" th:text="${description}">A quick guide for people who have
+        care and support needs and their carers</p>
+    </div>
+  </div>
+</th:block>
+<th:block th:fragment="diary-clickable-card"
+          th:with="id=${id},link=${link?:'#'},description=${description?:''}">
+  <div
+      class="nhsuk-card nhsuk-card--clickable nhsuk-grid-column-one-seventh nhsuk-u-margin-0 nhsuk-card-border-bottom-1"
+      th:classappend="${cardClassAppend}" th:id="${'diary-card-' + id}">
+    <h2 class="nhsuk-card__heading nhsuk-u-text-align-right">
+      <span th:text="${description}"></span>
+      <a class="nhsuk-card__link nhsuk-link--no-visited-state nhsuk-u-text-align-right"
+         th:href="@{${link}}"></a>
+    </h2>
+    <p class="nhsuk-card__description">&nbsp;</p>
+  </div>
+</th:block>
+<th:block th:fragment="diary-card"
+          th:with="id=${id}">
+  <div
+      class="nhsuk-card nhsuk-card__no-content nhsuk-grid-column-one-seventh nhsuk-u-margin-0 nhsuk-card-border-bottom-1 nhsuk-logo__background"
+      th:classappend="${cardClassAppend}" th:id="${'diary-card-' + id}">
+    <h2 class="nhsuk-card__heading">&nbsp;</h2>
+    <p class="nhsuk-card__description">&nbsp;</p>
+  </div>
+</th:block>
+<th:block th:fragment="diary-clickable-card-button"
+          th:with="id=${id},link=${link?:'#'},description=${description?:''}">
+  <div
+      class="nhsuk-card nhsuk-card--clickable nhsuk-grid-column-one-seventh nhsuk-u-margin-0 nhsuk-card-border-bottom-1"
+      th:classappend="${cardClassAppend}" th:id="${'diary-card-' + id}">
+    <!--    <form method="get" th:formaction="@{${link}}">-->
+    <button class="nhsuk-card__link nhsuk-button-looks-like-link nhsuk-link--no-visited-state"
+            th:formaction="@{${link}}">
+
+      <h2 class="nhsuk-card__heading nhsuk-u-text-align-right nhsuk-u-float-right">
+        <span th:text="${description}"></span>
+      </h2>
+      <p class="nhsuk-card__description">&nbsp;</p>
+    </button>
+    <!--    </form>-->
   </div>
 </th:block>

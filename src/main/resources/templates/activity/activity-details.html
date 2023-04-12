@@ -11,6 +11,16 @@
   </div>
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
+      <th:block
+          th:insert="~{fitness-tracker-design-system/exercises/treadmill :: treadmill(75,75)}"></th:block>
+      <th:block
+          th:insert="~{fitness-tracker-design-system/exercises/running :: running(75,75)}"></th:block>
+      <th:block
+          th:insert="~{fitness-tracker-design-system/exercises/cycling :: cycling(75,75)}"></th:block>
+      <th:block
+          th:insert="~{fitness-tracker-design-system/exercises/walking :: walking(75,75)}"></th:block>
+      <th:block
+          th:insert="~{fitness-tracker-design-system/exercises/exercise-bike :: exercise-bike(75,75)}"></th:block>
       <dl class="nhsuk-summary-list">
         <th:block
             th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='activity-id',key='Activity ID',value=${activity.activityId}, numeric=false)}">
@@ -35,8 +45,11 @@
         <table>
           <thead>
           <tr>
-            <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">Repetitions</th>
-            <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">Number of sets</th>
+            <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">Repetitions
+            </th>
+            <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">Number of
+              sets
+            </th>
             <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">Weight</th>
           </tr>
           </thead>

@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.chhin</groupId>
-    <artifactId>fitness-tracker</artifactId>
+    <artifactId>health-tracker</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>fitness-tracker</name>
-    <description>fitness-tracker</description>
+    <name>health-tracker</name>
+    <description>health-tracker</description>
     <properties>
         <java.version>17</java.version>
         <jquery.version>3.6.4</jquery.version>

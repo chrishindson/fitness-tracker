@@ -1,5 +1,7 @@
 package com.chhin.fitnesstracker.model;
 
+import com.chhin.fitnesstracker.entities.SleepTracking;
+
 public class SleepTrackingDTO {
 
   private TimeDTO lightSleep;
@@ -13,6 +15,17 @@ public class SleepTrackingDTO {
   private DateDTO recordedDate;
   private TimeDTO sleepStart;
   private TimeDTO sleepEnd;
+
+  public SleepTrackingDTO(SleepTracking sleep) {
+    this.awakeTime = new TimeDTO(sleep.getAwakeTime());
+    this.lightSleep = new TimeDTO(sleep.getLightSleep());
+    this.remSleep = new TimeDTO(sleep.getRemSleep());
+    this.deepSleep = new TimeDTO(sleep.getDeepSleep());
+  }
+
+  public SleepTrackingDTO() {
+
+  }
 
   public TimeDTO getLightSleep() {
     return lightSleep;

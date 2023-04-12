@@ -4,17 +4,19 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class ActivityCalendarDTO extends ActivityHistoryDTO {
+public class ActivityDiaryDTO extends ActivityHistoryDTO {
+
   private LocalDate activityDate;
 
-  public ActivityCalendarDTO() {
+  public ActivityDiaryDTO() {
   }
 
-  public ActivityCalendarDTO(LocalDate activityDate) {
+  public ActivityDiaryDTO(LocalDate activityDate) {
     this.activityDate = activityDate;
   }
 
-  public ActivityCalendarDTO(String username, LocalDate activityDate, Long activityCount, BigDecimal totalDistance, Integer totalCalories, LocalTime totalTime) {
+  public ActivityDiaryDTO(String username, LocalDate activityDate, Long activityCount,
+                          BigDecimal totalDistance, Integer totalCalories, LocalTime totalTime) {
     super(username, activityCount, totalDistance, totalCalories, totalTime);
     this.activityDate = activityDate;
   }
@@ -29,7 +31,7 @@ public class ActivityCalendarDTO extends ActivityHistoryDTO {
 
   @Override
   public String toString() {
-    return "ActivityCalendarDTO{" +
+    return "ActivityDiaryDTO{" +
         "activityDate=" + activityDate +
         "', " + super.toString() + "'}'";
   }

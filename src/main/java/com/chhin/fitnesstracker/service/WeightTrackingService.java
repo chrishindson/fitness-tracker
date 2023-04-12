@@ -13,7 +13,8 @@ public class WeightTrackingService {
   private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
   private final WeightTrackingRepository weightTrackingRepository;
 
-  public WeightTrackingService(NamedParameterJdbcTemplate namedParameterJdbcTemplate, WeightTrackingRepository weightTrackingRepository) {
+  public WeightTrackingService(NamedParameterJdbcTemplate namedParameterJdbcTemplate,
+                               WeightTrackingRepository weightTrackingRepository) {
     this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     this.weightTrackingRepository = weightTrackingRepository;
   }

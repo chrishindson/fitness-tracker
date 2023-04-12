@@ -1,33 +1,48 @@
 package com.chhin.fitnesstracker.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class ActivityMonthlyDTO {
-  private List<ActivityCalendarDTO> monthlyActivities;
 
+  private LocalDate activityMonth;
+  private List<ActivityDiaryDTO> monthlyActivities;
+
+  public ActivityMonthlyDTO(LocalDate activityMonth) {
+    this.activityMonth = activityMonth;
+  }
 
   public Integer daysInMonth() {
-    return LocalDate.now().lengthOfMonth();
+    return activityMonth.lengthOfMonth();
+  }
+
+  public LocalDate getActivityMonth() {
+    return activityMonth;
+  }
+
+  public void setActivityMonth(LocalDate activityMonth) {
+    this.activityMonth = activityMonth;
   }
 
   public Integer firstDayOfWeek() {
-    return LocalDate.now().withDayOfMonth(1).getDayOfWeek().getValue();
+    return activityMonth.withDayOfMonth(1).getDayOfWeek().getValue();
   }
 
   public List<String> getDaysOfWeek() {
     return List.of("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
   }
 
-  public Integer getLastCalendarPlace() {
-    return LocalDate.now().withDayOfMonth(1).getDayOfWeek().getValue() + LocalDate.now().lengthOfMonth() - 1;
+  public Integer getLastDiaryPlace() {
+    return activityMonth.withDayOfMonth(1).getDayOfWeek().getValue() + activityMonth.lengthOfMonth()
+        - 1;
   }
 
-  public List<ActivityCalendarDTO> getMonthlyActivities() {
+  public List<ActivityDiaryDTO> getMonthlyActivities() {
     return monthlyActivities;
   }
 
-  public void setMonthlyActivities(List<ActivityCalendarDTO> monthlyActivities) {
+  public void setMonthlyActivities(List<ActivityDiaryDTO> monthlyActivities) {
     this.monthlyActivities = monthlyActivities;
   }
 
@@ -36,13 +51,23 @@ public class ActivityMonthlyDTO {
     if (day < 0) {
       return 0;
     }
-    LocalDate ld = LocalDate.now().withDayOfMonth(day + 1);
+    LocalDate ld = activityMonth.withDayOfMonth(day + 1);
 
-    ActivityCalendarDTO dto = monthlyActivities.stream().filter(x -> x.getActivityDate().equals(ld)).findFirst().orElse(null);
+    ActivityDiaryDTO dto = monthlyActivities.stream().filter(x -> x.getActivityDate().equals(ld))
+        .findFirst().orElse(null);
 
     if (dto == null) {
       return 0;
     }
     return dto.getActivityCount().intValue();
+  }
+
+  public String getDiaryDateString(Integer dayInput) {
+    int day = dayInput - this.firstDayOfWeek();
+    if (day < 0) {
+      return null;
+    }
+    LocalDate ld = activityMonth.withDayOfMonth(day + 1);
+    return ld.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
   }
 }

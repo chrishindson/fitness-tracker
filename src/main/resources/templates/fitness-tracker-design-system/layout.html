@@ -10,27 +10,27 @@
   <meta charset="UTF-8">
   <meta content="IE=edge" http-equiv="X-UA-Compatible">
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-  <meta content="Fitness tracking" name="description">
+  <meta content="Health tracking" name="description">
   <meta th:content="${@environment.getProperty('server.servlet.context-path')}"
         th:name="_context_path">
-  <title th:text="${pageTitle}">Fitness tracker</title>
+  <title th:text="${pageTitle}">Health tracker</title>
   <!--  <link rel="stylesheet" th:href="@{/webjars/nhsuk-frontend/6.2.0/dist/nhsuk-6.2.0.min.css}"-->
   <!--        type="text/css">-->
   <link rel="stylesheet" th:href="@{/css/nhsuk-7.0.0.min.css}" type="text/css">
-  <link rel="stylesheet" th:href="@{/css/calendar.css}" type="text/css">
+  <link rel="stylesheet" th:href="@{/css/diary.css}" type="text/css">
   <th:block th:if="${var}">
     <link rel="stylesheet" th:href="@{/css/accessible-autocomplete.min.css}" type="text/css">
     <script th:src="@{/js/accessible-autocomplete.min.js}"></script>
   </th:block>
 </head>
-<body class="nhsuk-body-l">
+<body>
 <a class="nhsuk-skip-link" href="#main-content">Skip to main content</a>
 <script>
   document.body.className = ((document.body.className) ? document.body.className + ' js-enabled'
       : 'js-enabled');
 </script>
 
-<header class="nhsuk-header" id="fitness-tracker-global-header" role="banner">
+<header class="nhsuk-header" id="health-tracker-global-header" role="banner">
   <th:block
       th:replace="~{fitness-tracker-design-system/header ::header(${includedNav})}"></th:block>
 </header>
@@ -55,7 +55,6 @@
     </div>
   </div>
   <script th:src="@{/webjars/jquery/3.6.4/dist/jquery.js}"></script>
-  <!--  <script th:src="@{/webjars/nhsuk-frontend/6.2.0/dist/nhsuk-6.2.0.min.js}"></script>-->
   <script th:src="@{/js/nhsuk-7.0.0.min.js}"></script>
 </footer>
 

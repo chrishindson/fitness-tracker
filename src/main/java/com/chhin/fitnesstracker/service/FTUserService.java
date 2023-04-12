@@ -39,7 +39,7 @@ public class FTUserService {
 
   }
 
-  public Optional<FTUser> findById(Integer id) {
+  public Optional<FTUser> findById(Long id) {
     return userRepository.findById(id);
   }
 }

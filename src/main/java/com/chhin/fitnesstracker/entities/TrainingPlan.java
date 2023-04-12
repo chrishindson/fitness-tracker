@@ -13,13 +13,13 @@ public class TrainingPlan {
   @SequenceGenerator(name = "training_plan_gen", sequenceName = "training_plan_pk_seq", allocationSize = 1)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "training_plan_gen")
   @Column(name = "training_plan_id")
-  private Integer trainingPlanId;
+  private Long trainingPlanId;
 
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "activity_type_id")
   private ActivityType activityType;
 
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id")
   private FTUser ftUser;
 
@@ -29,11 +29,11 @@ public class TrainingPlan {
   @Column(name = "notes", length = 500)
   private String notes;
 
-  public Integer getTrainingPlanIdId() {
+  public Long getTrainingPlanIdId() {
     return trainingPlanId;
   }
 
-  public void setTrainingPlanId(Integer trainingPlanId) {
+  public void setTrainingPlanId(Long trainingPlanId) {
     this.trainingPlanId = trainingPlanId;
   }
 

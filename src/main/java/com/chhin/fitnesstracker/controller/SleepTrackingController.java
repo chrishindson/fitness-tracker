@@ -21,12 +21,14 @@ import static com.chhin.fitnesstracker.util.Constants.SLEEP_TRACKING_MAPPING;
 @Controller
 @RequestMapping(SLEEP_TRACKING_MAPPING)
 public class SleepTrackingController extends AbstractController {
+
   private static final String SLEEP_TRACKING_DTO = "sleepTrackingDTO";
   private final LoggedInUserService loggedInUserService;
   private final SleepTrackingService sleepTrackingService;
   private final SleepTrackingValidator sleepTrackingValidator;
 
-  public SleepTrackingController(LoggedInUserService loggedInUserService, SleepTrackingService sleepTrackingService, SleepTrackingValidator sleepTrackingValidator) {
+  public SleepTrackingController(LoggedInUserService loggedInUserService,
+                                 SleepTrackingService sleepTrackingService, SleepTrackingValidator sleepTrackingValidator) {
     super();
     this.loggedInUserService = loggedInUserService;
     this.sleepTrackingService = sleepTrackingService;
@@ -42,7 +44,8 @@ public class SleepTrackingController extends AbstractController {
 
   @GetMapping("/add-sleep-details")
   public String viewAddSleepDetails(Model model, HttpServletRequest request) {
-    if (!model.containsAttribute(SLEEP_TRACKING_DTO) || !model.containsAttribute(ATTR_BINDING_RESULT + SLEEP_TRACKING_DTO)) {
+    if (!model.containsAttribute(SLEEP_TRACKING_DTO) || !model.containsAttribute(
+        ATTR_BINDING_RESULT + SLEEP_TRACKING_DTO)) {
       model.addAttribute(SLEEP_TRACKING_DTO, new SleepTrackingDTO());
     }
     titleString = "Add sleep details";
@@ -63,7 +66,6 @@ public class SleepTrackingController extends AbstractController {
       redirectAttributes.addAttribute(ATTR_BINDING_RESULT + SLEEP_TRACKING_DTO, bindingResult);
       return REDIRECT + "sleep-tracking/add-sleep-details";
     }
-
 
     sleepTrackingService.saveSleepTracking(sleepTrackingDTO, ftUser);
     return REDIRECT + getHomeMapping(SLEEP_TRACKING_MAPPING);

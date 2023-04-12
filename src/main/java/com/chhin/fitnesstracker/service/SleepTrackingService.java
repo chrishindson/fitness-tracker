@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SleepTrackingService {
+
   private final SleepTrackingRepository sleepTrackingRepository;
 
   public SleepTrackingService(SleepTrackingRepository sleepTrackingRepository) {

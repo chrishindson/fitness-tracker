@@ -6,8 +6,9 @@
     </label>
     <span
         th:replace="~{fitness-tracker-design-system/form/errors :: error-message(${field})}"></span>
-    <input class="nhsuk-input nhsuk-input--width-5"
-           th:classappend="${#fields.hasErrors(field) ? 'nhsuk-input--error' : ''}" th:field="*{__${field}__}"
+    <input class="nhsuk-input"
+           th:classappend="${#fields.hasErrors(field) ? 'nhsuk-input--error' : ''}"
+           th:field="*{__${field}__}"
            th:id="${id}"
            th:name="${field}"
            type="text">
@@ -55,7 +56,8 @@
               Month
             </label>
             <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2"
-                   inputmode="numeric" pattern="[0-9]*" th:field="*{__${field}__.month}" th:id="${id}+'.month'"
+                   inputmode="numeric" pattern="[0-9]*" th:field="*{__${field}__.month}"
+                   th:id="${id}+'.month'"
                    th:name="${id}+'.month'"
                    type="text">
           </div>
@@ -66,7 +68,8 @@
               Year
             </label>
             <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-4"
-                   inputmode="numeric" pattern="[0-9]*" th:field="*{__${field}__.year}" th:id="${id}+'.year'"
+                   inputmode="numeric" pattern="[0-9]*" th:field="*{__${field}__.year}"
+                   th:id="${id}+'.year'"
                    th:name="${id}+'.year'"
                    type="text">
           </div>
@@ -117,7 +120,8 @@
               Min
             </label>
             <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2"
-                   inputmode="numeric" pattern="[0-9]*" th:field="*{__${field}__.minutes}" th:id="${id}+'.minutes'"
+                   inputmode="numeric" pattern="[0-9]*" th:field="*{__${field}__.minutes}"
+                   th:id="${id}+'.minutes'"
                    th:name="${id}+'.minutes'"
                    type="text">
           </div>
@@ -128,7 +132,8 @@
               Secs
             </label>
             <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2"
-                   inputmode="numeric" pattern="[0-9]*" th:field="*{__${field}__.seconds}" th:id="${id}+'.seconds'"
+                   inputmode="numeric" pattern="[0-9]*" th:field="*{__${field}__.seconds}"
+                   th:id="${id}+'.seconds'"
                    th:name="${id}+'.seconds'"
                    type="text">
           </div>

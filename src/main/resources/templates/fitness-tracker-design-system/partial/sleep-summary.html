@@ -1,0 +1,28 @@
+<th:block th:fragment="sleep-summary(sleepTracking, summaryDate)">
+  <th:block th:if="${sleepTracking == null}">
+    <p>No sleep information found</p>
+    <!--    <th:block-->
+    <!--        th:insert="~{fitness-tracker-design-system/component/misc ::action-link('add-sleep-information','Add sleep information', '/sleep-tracking/add-sleep-details')}"></th:block>-->
+  </th:block>
+  <th:block th:if="${sleepTracking != null}">
+    <dl class="nhsuk-summary-list nhsuk-summary-list--no-border nhsuk-u-margin-bottom-1">
+      <th:block
+          th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='totalSleep',
+                key='Total sleep',value=${sleepTracking.getTotalSleepTime()}, numeric=true)}">
+      </th:block>
+      <!--            <th:block-->
+      <!--                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='sleepStart',-->
+      <!--                key='Sleep start',value=${sleepTracking.sleepStart}, numeric=true)}">-->
+      <!--            </th:block>-->
+      <!--            <th:block-->
+      <!--                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='sleepEnd',-->
+      <!--                key='Sleep end',value=${sleepTracking.sleepEnd}, numeric=true)}">-->
+      <!--            </th:block>-->
+      <th:block
+          th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='sleepScore',
+                key='Sleep score',value=${sleepTracking.sleepScore}, numeric=true)}">
+      </th:block>
+    </dl>
+    <!--    <a class="nhsuk-label&#45;&#45;s nhsuk-link&#45;&#45;no-visited-state nhsuk-u-text-align-centre" href="#">View all details</a>-->
+  </th:block>
+</th:block>

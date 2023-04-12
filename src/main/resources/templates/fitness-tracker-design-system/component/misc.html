@@ -1,7 +1,8 @@
-<th:block th:fragment="action-link(text, link)">
+<th:block th:fragment="action-link(id, text, link)">
   <div class="nhsuk-action-link">
     <a class="nhsuk-action-link__link nhsuk-link--no-visited-state" th:href="@{${link}}">
-      <th:block th:insert="~{fitness-tracker-design-system/component/icons ::green-arrow}"></th:block>
+      <th:block
+          th:insert="~{fitness-tracker-design-system/component/icons ::green-arrow}"></th:block>
       <span class="nhsuk-action-link__text" th:text="${text}"></span>
     </a>
   </div>
