@@ -14,6 +14,9 @@
            type="text">
   </div>
 </th:block>
+<th:block th:fragment="hidden-input(id, field)">
+  <input class="nhsuk-input" th:field="*{__${field}__}" th:id="${id}" th:name="${field}" type="hidden">
+</th:block>
 
 <th:block th:fragment="date-input(id, field)"
           th:with="label=${label?:''},showHints=${showHints?:false}">

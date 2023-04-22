@@ -49,4 +49,12 @@ public class UserGroup {
   public int hashCode() {
     return Objects.hash(userGroupId);
   }
+
+  @Override
+  public String toString() {
+    return "UserGroup{" +
+        "userGroupId=" + userGroupId +
+        ", userGroupDescription='" + userGroupDescription + '\'' +
+        '}';
+  }
 }

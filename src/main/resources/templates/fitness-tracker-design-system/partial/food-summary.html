@@ -5,6 +5,7 @@
     <!--        th:insert="~{fitness-tracker-design-system/component/misc ::action-link('add-food-information','Add food information', '/food-tracking/add-food-details')}"></th:block>-->
   </th:block>
   <th:block th:if="${foodTracking != null}">
+    <p th:text="${foodTracking.mealTrackingList.size() + ' meal(s) logged'}"></p>
     <dl class="nhsuk-summary-list nhsuk-summary-list--no-border nhsuk-u-margin-bottom-1">
     </dl>
     <a class="nhsuk-label--s nhsuk-link--no-visited-state nhsuk-u-text-align-centre" href="#">View all details</a>

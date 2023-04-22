@@ -2,6 +2,7 @@ package com.chhin.fitnesstracker.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -10,12 +11,16 @@ public class StoredMeal {
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "stored_meal_gen")
-  @SequenceGenerator(name = "stored_meal_gen", sequenceName = "stored_meal_seq", allocationSize = 1)
+  @SequenceGenerator(name = "stored_meal_gen", sequenceName = "stored_meal_pk_seq", allocationSize = 1)
   @Column(name = "stored_meal_id", nullable = false)
   private Long storedMealId;
 
   @Column(name = "stored_meal_name", nullable = false, length = 100)
   private String storedMealName;
+
+  @OneToMany(fetch = FetchType.EAGER)
+  @JoinColumn(name = "stored_meal_id")
+  private List<StoredMealIngredients> storedMealIngredientsList;
 
   public Long getStoredMealId() {
     return storedMealId;
@@ -31,6 +36,14 @@ public class StoredMeal {
 
   public void setStoredMealName(String storedMealName) {
     this.storedMealName = storedMealName;
+  }
+
+  public List<StoredMealIngredients> getStoredMealIngredientsList() {
+    return storedMealIngredientsList;
+  }
+
+  public void setStoredMealIngredientsList(List<StoredMealIngredients> storedMealIngredientsList) {
+    this.storedMealIngredientsList = storedMealIngredientsList;
   }
 
   @Override

@@ -29,8 +29,11 @@
             <div class="nhsuk-card__content">
               <h2 class="nhsuk-card__heading nhsuk-heading-m  nhsuk-u-margin-bottom-2">Food tracking
               </h2>
-              <th:block
-                  th:insert="~{fitness-tracker-design-system/partial/food-summary :: food-summary(foodTracking=${dailySummaryDTO.getFoodTracking()}, summaryDate=${dailySummaryDTO.summaryDate})}">
+              <p th:if="${dailySummaryDTO.getFoodTracking() == null}">No food tracking information found</p>
+              <th:block th:if="${dailySummaryDTO.getFoodTracking() != null}">
+                <p th:text="${dailySummaryDTO.getFoodTracking().mealTrackingList.size() + ' meal(s) logged'}"></p>
+                <a class="nhsuk-label--s nhsuk-link--no-visited-state nhsuk-u-text-align-centre" href="#">View all
+                  details</a>
               </th:block>
             </div>
           </div>
@@ -87,7 +90,6 @@
         </li>
       </ul>
     </div>
-  </div>
   </div>
 </main>
 </body>

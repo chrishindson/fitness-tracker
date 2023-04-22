@@ -3,6 +3,7 @@ package com.chhin.fitnesstracker.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Objects;
 
@@ -19,6 +20,15 @@ public class SleepTracking {
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "user_id")
   private FTUser ftUser;
+
+  @Column(name = "recorded_date", nullable = false)
+  private LocalDate recordedDate;
+
+  @Column(name = "sleep_start", nullable = false)
+  private LocalDateTime sleepStart;
+
+  @Column(name = "sleep_end", nullable = false)
+  private LocalDateTime sleepEnd;
 
   @Column(name = "light_sleep", nullable = false)
   private LocalTime lightSleep;
@@ -40,15 +50,6 @@ public class SleepTracking {
 
   @Column(name = "calories", nullable = false)
   private Integer calories;
-
-  @Column(name = "recorded_date", nullable = false)
-  private LocalDate recordedDate;
-
-  @Column(name = "sleep_start", nullable = false)
-  private LocalTime sleepStart;
-
-  @Column(name = "sleep_end", nullable = false)
-  private LocalTime sleepEnd;
 
   public Long getSleepTrackingId() {
     return sleepTrackingId;
@@ -138,28 +139,28 @@ public class SleepTracking {
     this.recordedDate = recordedDate;
   }
 
-  public LocalTime getSleepStart() {
+  public LocalDateTime getSleepStart() {
     return sleepStart;
   }
 
-  public void setSleepStart(LocalTime sleepStart) {
+  public void setSleepStart(LocalDateTime sleepStart) {
     this.sleepStart = sleepStart;
   }
 
-  public LocalTime getSleepEnd() {
+  public LocalDateTime getSleepEnd() {
     return sleepEnd;
   }
 
-  public void setSleepEnd(LocalTime sleepEnd) {
+  public void setSleepEnd(LocalDateTime sleepEnd) {
     this.sleepEnd = sleepEnd;
   }
 
   public LocalTime getTotalSleepTime() {
-    long totla =
+    long total =
         this.awakeTime.toNanoOfDay() + this.deepSleep.toNanoOfDay() + this.remSleep.toNanoOfDay()
             + this.lightSleep.toNanoOfDay();
 
-    return LocalTime.ofNanoOfDay(totla);
+    return LocalTime.ofNanoOfDay(total);
 
 
   }

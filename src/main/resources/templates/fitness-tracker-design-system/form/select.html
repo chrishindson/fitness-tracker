@@ -1,3 +1,4 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="select(id, label, list)">
   <div class="nhsuk-form-group">
     <label class="nhsuk-label" th:for="${id}">
@@ -29,39 +30,23 @@
     </select>
   </div>
   <script type="text/javascript">
-    var fieldName = "[[${field}]]";
-    var hint = "[[${hints} != null && hints != '' ? hints : label}";
+      var fieldName = "[[${field}]]";
+      var hint = "[[${hints} != null && hints != '' ? hints : label}";
 
-    accessibleAutocomplete.enhanceSelectElement({
-      defaultValue: '',
-      autoselect: true,
-      confirmOnBlur: true,
-      selectElement: document.querySelector('#' + fieldName)
-    })
+      accessibleAutocomplete.enhanceSelectElement({
+          defaultValue: '',
+          autoselect: true,
+          confirmOnBlur: true,
+          selectElement: document.querySelector('#' + fieldName)
+      })
 
-    let parentDiv = document.querySelector('#' + fieldName + '-select')
-    let newLabel = document.createElement("label");
-    newLabel.innerHTML = hint;
-    newLabel.style.display = "none";
-    newLabel.setAttribute("for", parentDiv.id);
-    parentDiv.appendChild(newLabel);
-    // accessibleAutocomplete.enhanceSelectElement({
-    //   autoselect: true,
-    //   defaultValue: selectEl.options[selectEl.options.selectedIndex].innerHTML,
-    //   minLength: 2,
-    //   selectElement: selectEl
-    // })
-    //
-    // var queryStringParameters = window.location.search
-    // var previouslySubmitted = queryStringParameters.length > 0
-    // if (previouslySubmitted) {
-    //   var submittedEl = document.querySelector('.submitted')
-    //   submittedEl.classList.remove('submitted--hidden')
-    //   var params = new URLSearchParams(document.location.search.split('?')[1])
-    //   document.querySelector('.submitted__last-location').innerHTML = params.get('last-location')
-    //   document.querySelector('.submitted__passport-location').innerHTML = params.get(
-    //       'passport-location')
-    // }
+      let parentDiv = document.querySelector('#' + fieldName + '-select')
+      let newLabel = document.createElement("label");
+      newLabel.innerHTML = hint;
+      newLabel.style.display = "none";
+      newLabel.setAttribute("for", parentDiv.id);
+      parentDiv.appendChild(newLabel);
+
   </script>
 </th:block>
 <th:block th:fragment="select-autocomplete(id, field, label, list, selected, hints)">
@@ -86,20 +71,21 @@
     </div>
   </div>
   <script>
-    var fieldName = "[[${field}]]";
-    var hint = "[[${hints != null && hints != '' ? hints: label}]]";
-    accessibleAutocomplete.enhanceSelectElement({
-      defaultValue: '',
-      autoselect: true,
-      confirmOnBlur: true,
-      selectElement: document.querySelector("#" + fieldName),
-    });
-    let parentDiv = document.querySelector('#' + fieldName + "-select").parentNode;
-    let newLabel = document.createElement("label");
-    newLabel.innerHTML = hint;
-    newLabel.style.display = "none";
-    newLabel.setAttribute("for", document.querySelector("#" + fieldName + "-select").id);
-    parentDiv.appendChild(newLabel);
+      var fieldName = "[[${field}]]";
+      var hint = "[[${hints != null && hints != '' ? hints: label}]]";
+      accessibleAutocomplete.enhanceSelectElement({
+          defaultValue: '',
+          autoselect: true,
+          confirmOnBlur: true,
+          selectElement: document.querySelector("#" + fieldName),
+      });
+      let parentDiv = document.querySelector('#' + fieldName + "-select").parentNode;
+      let newLabel = document.createElement("label");
+      newLabel.innerHTML = hint;
+      newLabel.style.display = "none";
+      newLabel.setAttribute("for", document.querySelector("#" + fieldName + "-select").id);
+      parentDiv.appendChild(newLabel);
   </script>
 </th:block>
 
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html
+    th:replace="~{fitness-tracker-design-system/layout :: layout(backLink=~{}, main=~{::main}, scripts=~{}, includedNav=true, var=true)}">
+
+<body>
+<main class="nhsuk-main-wrapper" id="main-content" role="main">
+  <form id="add-activity" method="post" novalidate
+        th:action="@{'/food-tracking/manage-food-types/edit'}" th:object="${foodTypeDTO}">
+    <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-full">
+              <span
+                  th:replace="~{fitness-tracker-design-system/form/errors :: error-summary(${foodTypeDTO},true)}"></span>
+        <h1 th:text="${pageTitleRaw}">Dashboard</h1>
+      </div>
+    </div>
+    <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-full">
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/input :: hidden-input(id='foodTypeId',field='foodTypeId')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='foodName',field='foodName',label='Food name')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='servingSize',field='servingSize',label='Serving size')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='calories',field='calories',label='Calories')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='totalCarbohydrate',field='totalCarbohydrate',label='Total carbohydrate')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='totalFat',field='totalFat',label='Total fat')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='protein',field='protein',label='Protein')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='saturatedFat',field='saturatedFat',label='Saturated fat')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='transFat',field='transFat',label='Trans fat')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='cholesterol',field='cholesterol',label='Cholesterol')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='sodium',field='sodium',label='Sodium')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='potassium',field='potassium',label='Potassium')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='dietaryFibre',field='dietaryFibre',label='Dietary fibre')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='sugars',field='sugars',label='Sugars')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='vitaminA',field='vitaminA',label='Vitamin A')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='vitaminC',field='vitaminC',label='Vitamin C')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='calcium',field='calcium',label='Calcium')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='iron',field='iron',label='Iron')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/button :: primary-button(id='submit',text='Submit')}">
+        </th:block>
+      </div>
+    </div>
+  </form>
+</main>
+
+</body>
+</html>

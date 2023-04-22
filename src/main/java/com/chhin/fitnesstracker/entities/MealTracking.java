@@ -76,13 +76,5 @@ public class MealTracking {
     return Objects.hash(mealTrackingId);
   }
 
-  @Override
-  public String toString() {
-    return "MealTracking{" +
-        "mealTypeId=" + mealTrackingId +
-        ", foodTracking=" + foodTracking +
-        ", mealType=" + mealType +
-        '}';
-  }
 
 }

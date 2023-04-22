@@ -1,9 +1,12 @@
 package com.chhin.fitnesstracker.model;
 
+import com.chhin.fitnesstracker.entities.FoodType;
+
 import java.math.BigDecimal;
 
 public class FoodTypeDTO {
 
+  private Long foodTypeId;
   private String foodName;
   private BigDecimal servingSize;
   private BigDecimal calories;
@@ -21,6 +24,38 @@ public class FoodTypeDTO {
   private BigDecimal vitaminC;
   private BigDecimal calcium;
   private BigDecimal iron;
+
+  public FoodTypeDTO() {
+  }
+
+  public FoodTypeDTO(FoodType foodType) {
+    this.foodTypeId = foodType.getFoodTypeId();
+    this.foodName = foodType.getFoodName();
+    this.servingSize = foodType.getServingSize();
+    this.calories = foodType.getCalories();
+    this.totalCarbohydrate = foodType.getTotalCarbohydrate();
+    this.totalFat = foodType.getTotalFat();
+    this.protein = foodType.getProtein();
+    this.saturatedFat = foodType.getSaturatedFat();
+    this.transFat = foodType.getTransFat();
+    this.cholesterol = foodType.getCholesterol();
+    this.sodium = foodType.getSodium();
+    this.potassium = foodType.getPotassium();
+    this.dietaryFibre = foodType.getDietaryFibre();
+    this.sugars = foodType.getSugars();
+    this.vitaminA = foodType.getVitaminA();
+    this.vitaminC = foodType.getVitaminC();
+    this.calcium = foodType.getCalcium();
+    this.iron = foodType.getIron();
+  }
+
+  public Long getFoodTypeId() {
+    return foodTypeId;
+  }
+
+  public void setFoodTypeId(Long foodTypeId) {
+    this.foodTypeId = foodTypeId;
+  }
 
   public String getFoodName() {
     return foodName;

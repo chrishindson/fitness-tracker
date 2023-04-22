@@ -9,11 +9,16 @@
     </div>
   </div>
   <div class="nhsuk-grid-row">
-    <div class="nhsuk-grid-column-full">
+    <div class="nhsuk-grid-column-one-half">
       <th:block
           th:insert="~{fitness-tracker-design-system/component/misc ::action-link('add-food-details','Add food details', '/food-tracking/add-food-details')}"></th:block>
+    </div>
+    <div class="nhsuk-grid-column-one-half">
       <th:block
-          th:insert="~{fitness-tracker-design-system/component/misc ::action-link('add-food-type','Add food type', '/food-tracking/add-food-type')}"></th:block>
+          th:insert="~{fitness-tracker-design-system/component/misc ::action-link('manage-food-type','Manage food types', '/food-tracking/manage-food-types')}"></th:block>
+      <th:block
+          th:insert="~{fitness-tracker-design-system/component/misc :: action-link(id='manage-new-meal',text='Manage stored meals', link='/food-tracking/manage-stored-meals')}">
+      </th:block>
     </div>
   </div>
 

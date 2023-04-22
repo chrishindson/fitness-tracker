@@ -80,8 +80,8 @@ public class FoodTracking {
   public String toString() {
     return "FoodTracking{" +
         "foodTrackingId=" + foodTrackingId +
-        ", ftUser=" + ftUser +
         ", foodTrackingDate=" + foodTrackingDate +
+        ", mealTrackingList=" + mealTrackingList +
         '}';
   }
 }

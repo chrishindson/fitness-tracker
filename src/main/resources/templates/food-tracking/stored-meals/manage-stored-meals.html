@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html th:replace="~{fitness-tracker-design-system/layout :: layout(~{}, ~{::main}, ~{}, true)}">
+<body>
+<main class="nhsuk-main-wrapper" id="main-content" role="main">
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+      <h1 th:text="${pageTitleRaw}">-</h1>
+    </div>
+    <div class="nhsuk-grid-column-one-third">
+      <th:block
+          th:insert="~{fitness-tracker-design-system/form/button ::primary-button(id='create-new-meal',text='Create new meal',classAppend=' nhsuk-u-float-right')}"></th:block>
+    </div>
+  </div>
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+      <table class="nhsuk-table-responsive">
+        <thead>
+        <tr>
+          <!--          <th class="nhsuk-table__header" role="columnheader" scope="col">Stored meal ID</th>-->
+          <th class="nhsuk-table__header" role="columnheader" scope="col">Stored meal name</th>
+          <th class="nhsuk-table__header" role="columnheader" scope="col">Action</th>
+        </tr>
+        </thead>
+
+        <tr th:each="sm : ${storedMeals}">
+          <!--          <td class="nhsuk-table__cell" th:text="${sm.storedMealId}"></td>-->
+          <td class="nhsuk-table__cell" th:text="${sm.storedMealName}"></td>
+          <td class="nhsuk-table__cell">
+            <a class="nhsuk-link--no-visited-state"
+               th:href="@{'manage-stored-meals/edit?storedMealId=' +  ${sm.storedMealId}}">Edit</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</main>
+</body>
+</html>

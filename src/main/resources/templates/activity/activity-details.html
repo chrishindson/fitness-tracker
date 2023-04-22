@@ -41,25 +41,23 @@
                   th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='notes',key='Notes',value=${activity.notes}, numeric=false)}">
         </th:block>
       </dl>
-      <th:block th:if="${activity.activityDetails.size() > 0 }">
-        <table>
-          <thead>
-          <tr>
-            <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">Repetitions
-            </th>
-            <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">Number of
-              sets
-            </th>
-            <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">Weight</th>
-          </tr>
-          </thead>
-          <tr th:each="detail : ${activity.activityDetails}">
-            <td class="nhsuk-table__cell--numeric" th:text="${detail.repetitions}"></td>
-            <td class="nhsuk-table__cell--numeric" th:text="${detail.numberOfSets}"></td>
-            <td class="nhsuk-table__cell--numeric" th:text="${detail.weight}"></td>
-          </tr>
-        </table>
-      </th:block>
+      <table class="nhsuk-table-responsive" th:if="${activity.activityDetails.size() > 0 }">
+        <thead>
+        <tr>
+          <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">Repetitions
+          </th>
+          <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">Number of
+            sets
+          </th>
+          <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">Weight</th>
+        </tr>
+        </thead>
+        <tr th:each="detail : ${activity.activityDetails}">
+          <td class="nhsuk-table__cell--numeric" th:text="${detail.repetitions}"></td>
+          <td class="nhsuk-table__cell--numeric" th:text="${detail.numberOfSets}"></td>
+          <td class="nhsuk-table__cell--numeric" th:text="${detail.weight}"></td>
+        </tr>
+      </table>
     </div>
   </div>
 </main>

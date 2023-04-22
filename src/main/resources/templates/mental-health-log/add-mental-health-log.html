@@ -5,19 +5,19 @@
 <body>
 <main class="nhsuk-main-wrapper" id="main-content" role="main">
   <form id="add-activity" method="post" novalidate
-        th:action="@{'/mental-health-log/future-response'}" th:object="${mentalHealthLogDTO}">
+        th:action="@{'/mental-health-log/add-mental-health-log'}" th:object="${mentalHealthLogDTO}">
+    <!--    <input type="hidden" th:object="${foodTrackingDTO.mealTypeList}" th:value="${foodTrackingDTO.mealTypeList}">-->
     <div class="nhsuk-grid-row">
       <div class="nhsuk-grid-column-full">
-              <span
-                  th:replace="~{fitness-tracker-design-system/form/errors :: error-summary(${mentalHealthLogDTO},true)}"></span>
+          <span
+              th:replace="~{fitness-tracker-design-system/form/errors :: error-summary(${mentalHealthLogDTO},true)}"></span>
         <h1 th:text="${pageTitleRaw}">Dashboard</h1>
       </div>
     </div>
     <div class="nhsuk-grid-row">
       <div class="nhsuk-grid-column-full">
         <th:block
-            th:insert="~{fitness-tracker-design-system/form/textarea :: character-count(id='futureResponse',field='futureResponse',
-            label='How would you like to respond in future?', length=5000, rows=8)}">
+            th:insert="~{fitness-tracker-design-system/form/input :: date-input(id='logDate',name='logDate',field='logDate',label='Log date')}">
         </th:block>
         <th:block
             th:insert="~{fitness-tracker-design-system/form/button :: primary-button(id='submit',text='Continue')}">

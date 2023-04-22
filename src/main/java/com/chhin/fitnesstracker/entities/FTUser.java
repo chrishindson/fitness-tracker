@@ -165,13 +165,8 @@ public class FTUser {
         ", username='" + username + '\'' +
         ", forename='" + forename + '\'' +
         ", surname='" + surname + '\'' +
-        ", password='" + password + '\'' +
         ", emailAddress='" + emailAddress + '\'' +
-        ", height=" + height +
-        ", lastUpdated=" + lastUpdated +
         ", createdDate=" + createdDate +
-        ", lastAccessedDate=" + lastAccessedDate +
-        ", dateOfBirth=" + dateOfBirth +
         ", userGroup=" + userGroup +
         '}';
   }

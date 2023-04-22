@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html
+    th:replace="~{fitness-tracker-design-system/layout :: layout(backLink=~{}, main=~{::main}, scripts=~{}, includedNav=true, var=true)}">
+
+<body>
+<main class="nhsuk-main-wrapper" id="main-content" role="main">
+  <form id="add-activity" method="post" novalidate
+        th:action="@{'/food-tracking/create-stored-meal'}" th:object="${storedMealDTO}">
+    <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-full">
+              <span
+                  th:replace="~{fitness-tracker-design-system/form/errors :: error-summary(${storedMealDTO},true)}"></span>
+        <h1 th:text="${pageTitleRaw}">Dashboard</h1>
+      </div>
+    </div>
+    <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-full">
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='mealName',field='mealName',label='Meal name')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/button :: secondary-button(id='addMealIngredients',text='Add meal ingredients')}">
+        </th:block>
+        <table class="nhsuk-table-responsive" role="table" th:if="${storedMealDTO.mealIngredientsDTOList.size() != 0}">
+          <thead class="nhsuk-table__head" role="rowgroup">
+          <tr role="row">
+            <th class="" role="columnheader" scope="col">Food name</th>
+            <th class="" role="columnheader" scope="col">Serving size</th>
+          </tr>
+          </thead>
+          <tbody class="nhsuk-table__body">
+          <tr class="nhsuk-table__row" role="row" th:each="row, i : ${storedMealDTO.mealIngredientsDTOList}">
+            <td class="nhsuk-table__cell"
+                th:text="${storedMealDTO.getMealIngredientDescription(row.foodTypeId)}"></td>
+            <td class="nhsuk-table__cell" th:text="${row.servingSize}"></td>
+          </tr>
+          </tbody>
+        </table>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/button :: primary-button(id='submit',text='Continue')}">
+        </th:block>
+      </div>
+    </div>
+  </form>
+</main>
+
+</body>
+</html>

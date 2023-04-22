@@ -8,12 +8,11 @@ import java.util.stream.Collectors;
 public class FoodTrackingDTO {
   private DateDTO foodTrackingDate;
   private String mealType;
-  private String foodType;
   private List<SelectOptionsDTO> mealTypeList;
   private List<SelectOptionsDTO> foodTypeList;
   private List<MealTrackingDTO> mealTrackingDTOList;
-
   private List<MealDetailsDTO> mealDetailsDTOList;
+  private List<MealIngredientsDTO> mealIngredientsDTOList;
 
   public List<MealDetailsDTO> getMealDetailsDTOList() {
     return mealDetailsDTOList;
@@ -37,14 +36,6 @@ public class FoodTrackingDTO {
 
   public void setMealType(String mealType) {
     this.mealType = mealType;
-  }
-
-  public String getFoodType() {
-    return foodType;
-  }
-
-  public void setFoodType(String foodType) {
-    this.foodType = foodType;
   }
 
   public List<SelectOptionsDTO> getMealTypeList() {
@@ -105,4 +96,20 @@ public class FoodTrackingDTO {
     return this.mealDetailsDTOList.stream().filter(x -> x.getMealTypeId().equals(mealTypeId)).collect(Collectors.toList());
   }
 
+  public String getMealIngredientDescription(Long foodTypeId) {
+    SelectOptionsDTO dto = this.foodTypeList.stream().filter(x -> x.getId().equals(foodTypeId)).findFirst().orElse(null);
+    if (dto == null) {
+      return null;
+    }
+    return dto.getDescription();
+
+  }
+
+  public List<MealIngredientsDTO> getMealIngredientsDTOList() {
+    return mealIngredientsDTOList;
+  }
+
+  public void setMealIngredientsDTOList(List<MealIngredientsDTO> mealIngredientsDTOList) {
+    this.mealIngredientsDTOList = mealIngredientsDTOList;
+  }
 }

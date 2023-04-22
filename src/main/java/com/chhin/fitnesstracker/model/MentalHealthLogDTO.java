@@ -1,9 +1,7 @@
 package com.chhin.fitnesstracker.model;
 
-import java.time.LocalDate;
-
 public class MentalHealthLogDTO {
-  private LocalDate logDate;
+  private DateDTO logDate;
   private String thoughtsEmotions;
   private String potentialTriggers;
   private String intensity;
@@ -11,11 +9,11 @@ public class MentalHealthLogDTO {
   private String futureResponse;
   private String additionalNotes;
 
-  public LocalDate getLogDate() {
+  public DateDTO getLogDate() {
     return logDate;
   }
 
-  public void setLogDate(LocalDate logDate) {
+  public void setLogDate(DateDTO logDate) {
     this.logDate = logDate;
   }
 

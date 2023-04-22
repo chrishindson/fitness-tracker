@@ -21,11 +21,11 @@
         <spring-cloud-azure.version>5.0.0</spring-cloud-azure.version>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>org.webjars.npm</groupId>
-            <artifactId>nhsuk-frontend</artifactId>
-            <version>${nhsuk.frontend.version}</version>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.webjars.npm</groupId>-->
+        <!--            <artifactId>nhsuk-frontend</artifactId>-->
+        <!--            <version>${nhsuk.frontend.version}</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>webjars-locator</artifactId>

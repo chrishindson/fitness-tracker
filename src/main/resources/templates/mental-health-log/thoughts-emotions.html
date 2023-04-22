@@ -15,14 +15,9 @@
     </div>
     <div class="nhsuk-grid-row">
       <div class="nhsuk-grid-column-full">
-        <input name="potentialTriggers" th:value="${mentalHealthLogDTO.potentialTriggers}" type="hidden"/>
-        <input name="actualResponse" th:value="${mentalHealthLogDTO.actualResponse}" type="hidden"/>
-        <input name="intensity" th:value="${mentalHealthLogDTO.intensity}" type="hidden"/>
-        <input name="futureResponse" th:value="${mentalHealthLogDTO.futureResponse}" type="hidden"/>
-        <input name="additionalNotes" th:value="${mentalHealthLogDTO.additionalNotes}" type="hidden"/>
         <th:block
             th:insert="~{fitness-tracker-design-system/form/textarea :: character-count(id='thoughtsEmotions',field='thoughtsEmotions',
-            label='Write down your thoughts and emotions below',length=5000, rows=10)}">
+            label='Write down your thoughts and emotions below',length=5000, rows=8)}">
         </th:block>
         <th:block
             th:insert="~{fitness-tracker-design-system/form/button :: primary-button(id='submit',text='Continue')}">

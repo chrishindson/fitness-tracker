@@ -1,5 +1,6 @@
 package com.chhin.fitnesstracker.controller;
 
+import com.chhin.fitnesstracker.entities.FTUser;
 import com.chhin.fitnesstracker.model.MentalHealthLogDTO;
 import com.chhin.fitnesstracker.service.LoggedInUserService;
 import com.chhin.fitnesstracker.service.MentalHealthLogService;
@@ -8,16 +9,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import static com.chhin.fitnesstracker.util.Constants.MENTAL_HEALTH_LOG_MAPPING;
 
 @Controller
 @RequestMapping(MENTAL_HEALTH_LOG_MAPPING)
+@SessionAttributes("mentalHealthLogDTO")
 public class MentalHealthLogController extends AbstractController {
   private static final String MENTAL_HEALTH_LOG_DTO = "mentalHealthLogDTO";
   private final LoggedInUserService loggedInUserService;
@@ -38,12 +37,31 @@ public class MentalHealthLogController extends AbstractController {
     return getHomeMapping(MENTAL_HEALTH_LOG_MAPPING);
   }
 
+  @GetMapping("/add-mental-health-log")
+  public String viewMentalHealthLog(
+      Model model,
+      HttpServletRequest request) {
+    titleString = "Log date";
+    model.addAttribute(MENTAL_HEALTH_LOG_DTO, new MentalHealthLogDTO());
+    getBreadcrumbs(titleString, model, request);
+    return "mental-health-log/add-mental-health-log";
+  }
+
+  @PostMapping("/add-mental-health-log")
+  public String viewMentalHealthLogPost(
+      @Validated @ModelAttribute(MENTAL_HEALTH_LOG_DTO) MentalHealthLogDTO mentalHealthLogDTO,
+      final BindingResult bindingResult,
+      final RedirectAttributes redirectAttributes) {
+    redirectAttributes.addFlashAttribute(MENTAL_HEALTH_LOG_DTO, mentalHealthLogDTO);
+    return REDIRECT + "/mental-health-log/thoughts-emotions";
+  }
+
   @GetMapping("/thoughts-emotions")
   public String viewThoughtsAndEmotions(
+      @ModelAttribute(MENTAL_HEALTH_LOG_DTO) MentalHealthLogDTO mentalHealthLogDTO,
       Model model,
       HttpServletRequest request) {
     titleString = "Thoughts and emotions";
-    model.addAttribute(MENTAL_HEALTH_LOG_DTO, new MentalHealthLogDTO());
     getBreadcrumbs(titleString, model, request);
     return "mental-health-log/thoughts-emotions";
   }
@@ -148,6 +166,8 @@ public class MentalHealthLogController extends AbstractController {
       @Validated @ModelAttribute(MENTAL_HEALTH_LOG_DTO) MentalHealthLogDTO mentalHealthLogDTO,
       final BindingResult bindingResult,
       final RedirectAttributes redirectAttributes) {
+    FTUser ftUser = loggedInUserService.getLoggedInUser().orElse(null);
+    mentalHealthLogService.save(mentalHealthLogDTO, ftUser);
 
     return REDIRECT + getHomeMapping(MENTAL_HEALTH_LOG_MAPPING);
   }

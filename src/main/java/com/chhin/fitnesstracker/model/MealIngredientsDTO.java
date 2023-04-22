@@ -3,15 +3,15 @@ package com.chhin.fitnesstracker.model;
 import java.math.BigDecimal;
 
 public class MealIngredientsDTO {
-  private FoodTypeDTO foodTypeDTO;
+  private String foodTypeId;
   private BigDecimal servingSize;
 
-  public FoodTypeDTO getFoodTypeDTO() {
-    return foodTypeDTO;
+  public String getFoodTypeId() {
+    return foodTypeId;
   }
 
-  public void setFoodTypeDTO(FoodTypeDTO foodTypeDTO) {
-    this.foodTypeDTO = foodTypeDTO;
+  public void setFoodTypeId(String foodTypeId) {
+    this.foodTypeId = foodTypeId;
   }
 
   public BigDecimal getServingSize() {
