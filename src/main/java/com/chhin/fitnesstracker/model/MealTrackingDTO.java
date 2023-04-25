@@ -1,6 +1,6 @@
 package com.chhin.fitnesstracker.model;
 
-import com.chhin.fitnesstracker.entities.MealIngredients;
+import com.chhin.fitnesstracker.entity.MealIngredients;
 
 import java.util.List;
 

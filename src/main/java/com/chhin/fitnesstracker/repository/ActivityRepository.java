@@ -1,7 +1,7 @@
 package com.chhin.fitnesstracker.repository;
 
-import com.chhin.fitnesstracker.entities.Activity;
-import com.chhin.fitnesstracker.entities.FTUser;
+import com.chhin.fitnesstracker.entity.Activity;
+import com.chhin.fitnesstracker.entity.FTUser;
 import com.chhin.fitnesstracker.model.ActivitySummaryDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

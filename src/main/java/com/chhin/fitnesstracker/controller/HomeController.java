@@ -1,6 +1,6 @@
 package com.chhin.fitnesstracker.controller;
 
-import com.chhin.fitnesstracker.entities.FTUser;
+import com.chhin.fitnesstracker.entity.FTUser;
 import com.chhin.fitnesstracker.model.ActivityDiaryDTO;
 import com.chhin.fitnesstracker.model.ActivityMonthlyDTO;
 import com.chhin.fitnesstracker.model.LoginFormDTO;

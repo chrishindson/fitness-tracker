@@ -1,6 +1,6 @@
 package com.chhin.fitnesstracker.model;
 
-import com.chhin.fitnesstracker.entities.*;
+import com.chhin.fitnesstracker.entity.*;
 
 import java.time.LocalDate;
 import java.util.List;

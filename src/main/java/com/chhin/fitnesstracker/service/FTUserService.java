@@ -1,6 +1,6 @@
 package com.chhin.fitnesstracker.service;
 
-import com.chhin.fitnesstracker.entities.FTUser;
+import com.chhin.fitnesstracker.entity.FTUser;
 import com.chhin.fitnesstracker.repository.FTUserRepository;
 import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.security.oauth2.core.user.OAuth2User;

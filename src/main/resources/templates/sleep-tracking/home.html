@@ -9,12 +9,41 @@
     </div>
   </div>
   <div class="nhsuk-grid-row">
-    <div class="nhsuk-grid-column-full">
+    <div class="nhsuk-grid-column-one-half">
       <th:block
           th:insert="~{fitness-tracker-design-system/component/misc ::action-link('add-sleep-information','Add sleep information', '/sleep-tracking/add-sleep-details')}"></th:block>
+      <th:block
+          th:insert="~{fitness-tracker-design-system/component/misc ::action-link('view-sleep-history','View sleep history', '/sleep-tracking/sleep-history')}"></th:block>
+    </div>
+    <div class="nhsuk-grid-column-one-half">
+      <div class="nhsuk-card">
+        <div class="nhsuk-card__content">
+          <h2 class="nhsuk-card__heading nhsuk-heading-m">All time averages
+          </h2>
+          <dl class="nhsuk-summary-list nhsuk-summary-list--no-border">
+            <th:block
+                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='sleep-time',key='Sleep time',value=${sleepHistoryDTO.totalSleep}, numeric=true)}">
+            </th:block>
+            <th:block
+                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='sleep-start',key='Sleep score',value=${sleepHistoryDTO.sleepScore}, numeric=true)}">
+            </th:block>
+            <th:block
+                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='deep-sleep',key='Deep sleep',value=${sleepHistoryDTO.deepSleep}, numeric=true)}">
+            </th:block>
+            <th:block
+                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='light-sleep',key='Light sleep',value=${sleepHistoryDTO.lightSleep}, numeric=true)}">
+            </th:block>
+            <th:block
+                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='rem-sleep',key='REM sleep',value=${sleepHistoryDTO.remSleep}, numeric=true)}">
+            </th:block>
+            <th:block
+                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='awake-time',key='Awake time',value=${sleepHistoryDTO.awakeTime}, numeric=true)}">
+            </th:block>
+          </dl>
+        </div>
+      </div>
     </div>
   </div>
-
 </main>
 </body>
 </html>

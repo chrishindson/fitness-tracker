@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html th:replace="~{fitness-tracker-design-system/layout :: layout(~{}, ~{::main}, ~{}, true)}">
+<body>
+<main class="nhsuk-main-wrapper" id="main-content" role="main">
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+      <h1 th:text="${pageTitleRaw}">-</h1>
+    </div>
+  </div>
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+      <table class="nhsuk-table-responsive">
+        <thead>
+        <tr>
+          <th class="nhsuk-table__header" role="columnheader" scope="col">Stored meal name</th>
+          <th class="nhsuk-table__header" role="columnheader" scope="col">Stored meal ingredients</th>
+          <th class="nhsuk-table__header" role="columnheader" scope="col">Action</th>
+        </tr>
+        </thead>
+
+        <tr th:each="sm, i : ${storedMeals}">
+
+          <td class="nhsuk-table__cell" th:text="${sm.storedMealName}"></td>
+          <td class="nhsuk-table__cell">
+            <ul class="nhsuk-list">
+              <li class="" th:each="mi : ${sm.storedMealIngredientsList}"
+                  th:text="${mi.foodType.foodName + ' ' + mi.servings}">
+              </li>
+            </ul>
+          </td>
+          <td class="nhsuk-table__cell">
+            <form method="post" name="storedMeal" novalidate th:action="@{'/food-tracking/add-stored-meal'}"
+                  th:object="${sm}">
+              <th:block
+                  th:insert="~{fitness-tracker-design-system/form/input :: hidden-input(id='storedMealId[' + ${i.index} + ']',field=${sm.storedMealId},name='storedMealId')}">
+              </th:block>
+              <th:block
+                  th:insert="~{fitness-tracker-design-system/form/input :: hidden-input(id='storedMealName[' + ${i.index} + ']',field=${sm.storedMealName},name='storedMealName')}">
+              </th:block>
+              <!--              <input type="hidden" name="list" th:value="${T(com.chhin.fitnesstracker.util.JsonUtils).listAsJson(sm.storedMealIngredientsList)}" />-->
+              <!--              <th:block-->
+              <!--                  th:insert="~{fitness-tracker-design-system/form/input :: hidden-input(id='storedMealIngredientsList[' + ${i.index} + ']',-->
+              <!--                  field=${T(org.springframework.util.StringUtils).collectionToCommaDelimitedString(sm.storedMealIngredientsList)},name='storedMealIngredientsList')}">-->
+              <!--              </th:block>-->
+              <!--              <input type="hidden" name="list" th:value="${T(com.fasterxml.jackson.databind.ObjectMapper).writeValueAsString(sm.storedMealIngredientsList)}" />-->
+              <!--              <input class="nhsuk-input" th:value="${#lists.toList(sm.storedMealIngredientsList)}" th:id="'storedMealIngredientsList[' + ${i.index} + ']'"-->
+              <!--                     th:name="${storedMealIngredientsList}" type="hidden">-->
+              <button class="nhsuk-button" type="submit">Select</button>
+            </form>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</main>
+</body>
+</html>

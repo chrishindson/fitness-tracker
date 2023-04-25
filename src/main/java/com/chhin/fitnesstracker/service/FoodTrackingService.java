@@ -1,6 +1,6 @@
 package com.chhin.fitnesstracker.service;
 
-import com.chhin.fitnesstracker.entities.*;
+import com.chhin.fitnesstracker.entity.*;
 import com.chhin.fitnesstracker.model.*;
 import com.chhin.fitnesstracker.repository.*;
 import org.springframework.data.domain.Page;

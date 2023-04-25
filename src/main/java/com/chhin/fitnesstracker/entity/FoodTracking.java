@@ -1,4 +1,4 @@
-package com.chhin.fitnesstracker.entities;
+package com.chhin.fitnesstracker.entity;
 
 import jakarta.persistence.*;
 

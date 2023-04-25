@@ -1,5 +1,7 @@
 package com.chhin.fitnesstracker.model;
 
+import com.chhin.fitnesstracker.model.history.ActivityHistoryDTO;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;

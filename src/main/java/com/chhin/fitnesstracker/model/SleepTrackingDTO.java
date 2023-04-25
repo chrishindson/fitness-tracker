@@ -1,6 +1,6 @@
 package com.chhin.fitnesstracker.model;
 
-import com.chhin.fitnesstracker.entities.SleepTracking;
+import com.chhin.fitnesstracker.entity.SleepTracking;
 
 public class SleepTrackingDTO {
 

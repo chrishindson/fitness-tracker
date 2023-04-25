@@ -1,7 +1,8 @@
-package com.chhin.fitnesstracker.entities;
+package com.chhin.fitnesstracker.entity;
 
 import jakarta.persistence.*;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -156,13 +157,8 @@ public class SleepTracking {
   }
 
   public LocalTime getTotalSleepTime() {
-    long total =
-        this.awakeTime.toNanoOfDay() + this.deepSleep.toNanoOfDay() + this.remSleep.toNanoOfDay()
-            + this.lightSleep.toNanoOfDay();
-
-    return LocalTime.ofNanoOfDay(total);
-
-
+    Duration between = Duration.between(this.sleepEnd, this.sleepStart);
+    return LocalTime.MIDNIGHT.plus(between);
   }
 
   @Override

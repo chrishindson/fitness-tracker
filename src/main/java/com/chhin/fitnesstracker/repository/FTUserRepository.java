@@ -1,6 +1,6 @@
 package com.chhin.fitnesstracker.repository;
 
-import com.chhin.fitnesstracker.entities.FTUser;
+import com.chhin.fitnesstracker.entity.FTUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;

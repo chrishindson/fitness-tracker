@@ -1,19 +1,21 @@
 package com.chhin.fitnesstracker.controller;
 
-import com.chhin.fitnesstracker.entities.FTUser;
+import com.chhin.fitnesstracker.entity.FTUser;
+import com.chhin.fitnesstracker.entity.SleepTracking;
 import com.chhin.fitnesstracker.model.SleepTrackingDTO;
+import com.chhin.fitnesstracker.model.history.SleepHistoryDTO;
 import com.chhin.fitnesstracker.service.LoggedInUserService;
 import com.chhin.fitnesstracker.service.SleepTrackingService;
 import com.chhin.fitnesstracker.validation.SleepTrackingValidator;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import static com.chhin.fitnesstracker.util.Constants.SLEEP_TRACKING_MAPPING;
@@ -37,7 +39,10 @@ public class SleepTrackingController extends AbstractController {
 
   @GetMapping(CONTROLLER_HOME_LANDING)
   public String viewHome(Model model, HttpServletRequest request) {
+    FTUser ftUser = loggedInUserService.getLoggedInUser().orElse(null);
     titleString = "Sleep tracking home";
+    SleepHistoryDTO sleepHistoryDTO = sleepTrackingService.getSleepTrackingHistory(ftUser);
+    model.addAttribute("sleepHistoryDTO", sleepHistoryDTO);
     getBreadcrumbs(titleString, model, request);
     return getHomeMapping(SLEEP_TRACKING_MAPPING);
   }
@@ -69,5 +74,20 @@ public class SleepTrackingController extends AbstractController {
 
     sleepTrackingService.saveSleepTracking(sleepTrackingDTO, ftUser);
     return REDIRECT + getHomeMapping(SLEEP_TRACKING_MAPPING);
+  }
+
+  @GetMapping("/sleep-history")
+  public String viewSleepHistory(
+      @RequestParam(name = "page", defaultValue = "1", required = false) Integer page,
+      @RequestParam(name = "size", defaultValue = "10", required = false) Integer size,
+      Model model, HttpServletRequest request) {
+    Pageable pageable = PageRequest.of(page - 1, size);
+    FTUser ftUser = loggedInUserService.getLoggedInUser().orElse(null);
+
+    Page<SleepTracking> sleepHistory = sleepTrackingService.getSleepTrackingPagination(ftUser, pageable);
+    model.addAttribute("sleepHistory", sleepHistory);
+    titleString = "Sleep history";
+    getBreadcrumbs(titleString, model, request);
+    return "sleep-tracking/sleep-history";
   }
 }

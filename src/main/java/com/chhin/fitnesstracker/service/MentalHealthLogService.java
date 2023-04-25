@@ -1,7 +1,7 @@
 package com.chhin.fitnesstracker.service;
 
-import com.chhin.fitnesstracker.entities.FTUser;
-import com.chhin.fitnesstracker.entities.MentalHealthLog;
+import com.chhin.fitnesstracker.entity.FTUser;
+import com.chhin.fitnesstracker.entity.MentalHealthLog;
 import com.chhin.fitnesstracker.model.MentalHealthLogDTO;
 import com.chhin.fitnesstracker.repository.MentalHealthLogRepository;
 import org.springframework.stereotype.Service;

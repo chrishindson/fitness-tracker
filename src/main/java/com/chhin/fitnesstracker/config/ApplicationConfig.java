@@ -1,6 +1,6 @@
 package com.chhin.fitnesstracker.config;
 
-import com.chhin.fitnesstracker.entities.FTUser;
+import com.chhin.fitnesstracker.entity.FTUser;
 import com.chhin.fitnesstracker.service.FTUserService;
 import com.chhin.fitnesstracker.service.LoggedInUserService;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +21,7 @@ public class ApplicationConfig implements WebMvcConfigurer {
   @SessionScope
   public LoggedInUserService loggedInUserService(FTUserService ftUserService) {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    String name = "";
+    String name;
     if (authentication instanceof OAuth2AuthenticationToken) {
       name = ((DefaultOidcUser) authentication.getPrincipal()).getAttribute("email");
     } else {

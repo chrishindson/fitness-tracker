@@ -1,6 +1,6 @@
 package com.chhin.fitnesstracker.repository;
 
-import com.chhin.fitnesstracker.entities.StoredMeal;
+import com.chhin.fitnesstracker.entity.StoredMeal;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -1,7 +1,7 @@
 package com.chhin.fitnesstracker.service;
 
-import com.chhin.fitnesstracker.entities.FTUser;
-import com.chhin.fitnesstracker.entities.WeightTracking;
+import com.chhin.fitnesstracker.entity.FTUser;
+import com.chhin.fitnesstracker.entity.WeightTracking;
 import com.chhin.fitnesstracker.model.WeightTrackingDTO;
 import com.chhin.fitnesstracker.repository.WeightTrackingRepository;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;

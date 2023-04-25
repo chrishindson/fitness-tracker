@@ -1,6 +1,6 @@
 package com.chhin.fitnesstracker.model;
 
-import com.chhin.fitnesstracker.entities.FoodType;
+import com.chhin.fitnesstracker.entity.FoodType;
 
 import java.math.BigDecimal;
 

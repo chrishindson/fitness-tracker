@@ -1,6 +1,6 @@
 package com.chhin.fitnesstracker.repository;
 
-import com.chhin.fitnesstracker.entities.ActivityType;
+import com.chhin.fitnesstracker.entity.ActivityType;
 import com.chhin.fitnesstracker.model.SelectOptionsDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

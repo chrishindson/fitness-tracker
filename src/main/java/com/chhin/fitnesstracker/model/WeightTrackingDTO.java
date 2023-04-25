@@ -1,7 +1,7 @@
 package com.chhin.fitnesstracker.model;
 
-import com.chhin.fitnesstracker.entities.FTUser;
-import com.chhin.fitnesstracker.entities.WeightTracking;
+import com.chhin.fitnesstracker.entity.FTUser;
+import com.chhin.fitnesstracker.entity.WeightTracking;
 
 import java.math.BigDecimal;
 

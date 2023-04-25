@@ -1,7 +1,7 @@
 package com.chhin.fitnesstracker.repository;
 
-import com.chhin.fitnesstracker.entities.MealIngredients;
-import com.chhin.fitnesstracker.entities.MealTracking;
+import com.chhin.fitnesstracker.entity.MealIngredients;
+import com.chhin.fitnesstracker.entity.MealTracking;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

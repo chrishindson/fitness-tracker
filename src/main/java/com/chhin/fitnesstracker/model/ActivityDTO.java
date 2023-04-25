@@ -1,6 +1,6 @@
 package com.chhin.fitnesstracker.model;
 
-import com.chhin.fitnesstracker.entities.FTUser;
+import com.chhin.fitnesstracker.entity.FTUser;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

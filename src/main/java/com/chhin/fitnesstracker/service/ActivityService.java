@@ -1,10 +1,11 @@
 package com.chhin.fitnesstracker.service;
 
-import com.chhin.fitnesstracker.entities.Activity;
-import com.chhin.fitnesstracker.entities.ActivityDetails;
-import com.chhin.fitnesstracker.entities.ActivityType;
-import com.chhin.fitnesstracker.entities.FTUser;
+import com.chhin.fitnesstracker.entity.Activity;
+import com.chhin.fitnesstracker.entity.ActivityDetails;
+import com.chhin.fitnesstracker.entity.ActivityType;
+import com.chhin.fitnesstracker.entity.FTUser;
 import com.chhin.fitnesstracker.model.*;
+import com.chhin.fitnesstracker.model.history.ActivityHistoryDTO;
 import com.chhin.fitnesstracker.repository.ActivityDetailsRepository;
 import com.chhin.fitnesstracker.repository.ActivityRepository;
 import com.chhin.fitnesstracker.repository.ActivityTypeRepository;

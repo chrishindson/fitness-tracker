@@ -1,4 +1,4 @@
-package com.chhin.fitnesstracker.model;
+package com.chhin.fitnesstracker.model.history;
 
 import java.math.BigDecimal;
 import java.time.LocalTime;

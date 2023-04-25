@@ -1,12 +1,15 @@
 package com.chhin.fitnesstracker.controller;
 
-import com.chhin.fitnesstracker.entities.FTUser;
-import com.chhin.fitnesstracker.entities.FoodType;
-import com.chhin.fitnesstracker.entities.StoredMeal;
+import com.chhin.fitnesstracker.entity.FTUser;
+import com.chhin.fitnesstracker.entity.FoodType;
+import com.chhin.fitnesstracker.entity.StoredMeal;
+import com.chhin.fitnesstracker.entity.StoredMealIngredients;
 import com.chhin.fitnesstracker.model.*;
 import com.chhin.fitnesstracker.service.FoodTrackingService;
 import com.chhin.fitnesstracker.service.LoggedInUserService;
+import com.chhin.fitnesstracker.util.JsonUtils;
 import com.chhin.fitnesstracker.validation.FoodTypeValidator;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -62,6 +65,10 @@ public class FoodTrackingController extends AbstractController {
     this.foodTypeValidator = foodTypeValidator;
   }
 
+  private static PageRequest getPageable(Integer page, Integer size) {
+    return PageRequest.of(page - 1, size);
+  }
+
   @GetMapping(FOOD_TRACKING_HOME_MAPPING)
   public String viewHome(Model model, HttpServletRequest request) {
     titleString = "Food tracking home";
@@ -88,7 +95,7 @@ public class FoodTrackingController extends AbstractController {
       Model model,
       HttpServletRequest request) {
 
-    Pageable pageable = PageRequest.of(page - 1, size);
+    Pageable pageable = getPageable(page, size);
     Page<FoodType> foodTypes = foodTrackingService.findAllFoodTypes(pageable);
     model.addAttribute("foodTypes", foodTypes);
 
@@ -153,13 +160,50 @@ public class FoodTrackingController extends AbstractController {
       Model model,
       HttpServletRequest request) {
 
-    Pageable pageable = PageRequest.of(page - 1, size);
+    Pageable pageable = getPageable(page, size);
     Page<StoredMeal> storedMeals = foodTrackingService.findAllStoredMeals(pageable);
     model.addAttribute("storedMeals", storedMeals);
 
     titleString = "Manage stored meals";
     getBreadcrumbs(titleString, model, request);
     return MANAGE_STORED_MEALS_VIEW;
+
+  }
+
+  @GetMapping("food-tracking/add-stored-meal")
+  public String viewAddStoredMeal(
+      @RequestParam(name = "page", defaultValue = "1", required = false) Integer page,
+      @RequestParam(name = "size", defaultValue = "10", required = false) Integer size,
+      @ModelAttribute(FOOD_TRACKING_DTO) FoodTrackingDTO foodTrackingDTO,
+      Model model,
+      HttpServletRequest request) throws JsonProcessingException {
+
+    Pageable pageable = getPageable(page, size);
+    Page<StoredMeal> storedMeals = foodTrackingService.findAllStoredMeals(pageable);
+    model.addAttribute("storedMeals", storedMeals);
+//    String lister = JsonUtils.listAsJson(storedMeals.get().toList().get(0).getStoredMealIngredientsList());
+
+    titleString = "Add stored meal";
+    getBreadcrumbs(titleString, model, request);
+    return "food-tracking/add-stored-meal";
+
+  }
+
+  @PostMapping("food-tracking/add-stored-meal")
+  public String viewAddStoredMealPost(
+      @RequestParam String list,
+      @ModelAttribute(FOOD_TRACKING_DTO) FoodTrackingDTO foodTrackingDTO,
+      @ModelAttribute("storedMeal") StoredMeal storedMeal,
+      final RedirectAttributes redirectAttributes) throws JsonProcessingException {
+    storedMeal.setStoredMealIngredientsList(JsonUtils.jsonToList(list));
+    for (StoredMealIngredients smi : storedMeal.getStoredMealIngredientsList()) {
+      MealIngredientsDTO dto = new MealIngredientsDTO();
+      dto.setFoodTypeId(smi.getFoodType().getFoodTypeId().toString());
+      dto.setServingSize(smi.getServings());
+      foodTrackingDTO.getMealIngredientsDTOList().add(dto);
+    }
+    redirectAttributes.addAttribute(FOOD_TRACKING_DTO, foodTrackingDTO);
+    return REDIRECT + ADD_MEAL_DETAILS_MAPPING;
 
   }
 

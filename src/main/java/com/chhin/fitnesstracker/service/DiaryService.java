@@ -1,6 +1,6 @@
 package com.chhin.fitnesstracker.service;
 
-import com.chhin.fitnesstracker.entities.*;
+import com.chhin.fitnesstracker.entity.*;
 import com.chhin.fitnesstracker.model.ActivitySummaryDTO;
 import com.chhin.fitnesstracker.model.DailySummaryDTO;
 import com.chhin.fitnesstracker.repository.*;
