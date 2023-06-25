@@ -1,0 +1,24 @@
+<th:block th:fragment="pagination(previousText, previousLink, nextText, nextLink)">
+  <nav aria-label="Pagination" class="nhsuk-pagination" role="navigation">
+    <ul class="nhsuk-list nhsuk-pagination__list">
+      <li class="nhsuk-pagination-item--previous">
+        <a class="nhsuk-pagination__link nhsuk-pagination__link--prev" th:href="${previousLink}">
+          <span class="nhsuk-pagination__title">Previous</span>
+          <span class="nhsuk-u-visually-hidden">:</span>
+          <span class="nhsuk-pagination__page" th:text="${previousText}">Previous</span>
+          <th:block
+              th:insert="~{fitness-tracker-design-system/component/icons :: arrow-left}"></th:block>
+        </a>
+      </li>
+      <li class="nhsuk-pagination-item--next">
+        <a class="nhsuk-pagination__link nhsuk-pagination__link--next" th:href="${nextLink}">
+          <span class="nhsuk-pagination__title">Next</span>
+          <span class="nhsuk-u-visually-hidden">:</span>
+          <span class="nhsuk-pagination__page" th:text="${nextText}">Next</span>
+          <th:block
+              th:insert="~{fitness-tracker-design-system/component/icons :: arrow-right}"></th:block>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</th:block>

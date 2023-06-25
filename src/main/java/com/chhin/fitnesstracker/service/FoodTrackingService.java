@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class FoodTrackingService {
@@ -34,12 +36,22 @@ public class FoodTrackingService {
     this.storedMealIngredientsRepository = storedMealIngredientsRepository;
   }
 
-  public List<SelectOptionsDTO> findAllMealTypes() {
-    return mealTypeRepository.findAllSelectOptions();
+  public List<MealType> findAllMealTypes() {
+    return mealTypeRepository.findAllSorted();
   }
 
-  public List<SelectOptionsDTO> findAllFoodTypes() {
-    return foodTypeRepository.findAllSelectOptions();
+  public Map<Long, String> findAllMealTypesMap() {
+    List<MealType> mealTypeList = findAllMealTypes();
+    return mealTypeList.stream().collect(Collectors.toMap(MealType::getMealTypeId, MealType::getMealTypeDescription));
+  }
+
+  public List<FoodType> findAllFoodTypes() {
+    return foodTypeRepository.findAllSorted();
+  }
+
+  public Map<Long, String> findAllFoodTypesMap() {
+    List<FoodType> foodTypeList = findAllFoodTypes();
+    return foodTypeList.stream().collect(Collectors.toMap(FoodType::getFoodTypeId, FoodType::getFoodName));
   }
 
   public FoodTracking findAllMealsByRecordedDate(FTUser user, LocalDate recordedDate) {
@@ -61,15 +73,15 @@ public class FoodTrackingService {
 
   public FoodTrackingDTO createFoodTrackingDTO() {
     FoodTrackingDTO foodTrackingDTO = new FoodTrackingDTO();
-    foodTrackingDTO.setMealTypeList(findAllMealTypes());
-    foodTrackingDTO.setFoodTypeList(findAllFoodTypes());
+    foodTrackingDTO.setMealTypeList(findAllMealTypesMap());
+    foodTrackingDTO.setFoodTypeList(findAllFoodTypesMap());
     foodTrackingDTO.setMealIngredientsDTOList(new ArrayList<>());
     return foodTrackingDTO;
   }
 
   public StoredMealDTO createStoredMealDTO() {
     StoredMealDTO storedMealDTO = new StoredMealDTO();
-    storedMealDTO.setFoodTypeList(findAllFoodTypes());
+    storedMealDTO.setFoodTypeList(findAllFoodTypesMap());
     storedMealDTO.setMealIngredientsDTOList(new ArrayList<>());
     return storedMealDTO;
 
@@ -116,7 +128,7 @@ public class FoodTrackingService {
       foodTrackingRepository.save(foodTracking);
     }
 
-    MealType mealType = mealTypeRepository.findByMealTypeId(Long.parseLong(foodTrackingDTO.getMealType()));
+    MealType mealType = mealTypeRepository.findByMealTypeId(foodTrackingDTO.getMealType());
 
     MealTracking mealTracking = mealTrackingRepository.findByFoodTrackingAndMealType(foodTracking, mealType);
 
@@ -181,7 +193,7 @@ public class FoodTrackingService {
       dtoList.add(ingredientsDTO);
     }
     storedMealDTO.setMealIngredientsDTOList(dtoList);
-    storedMealDTO.setFoodTypeList(findAllFoodTypes());
+    storedMealDTO.setFoodTypeList(findAllFoodTypesMap());
     return storedMealDTO;
   }
 }

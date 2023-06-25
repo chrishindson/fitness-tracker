@@ -1,12 +1,13 @@
 package com.chhin.fitnesstracker.model;
 
 import java.util.List;
+import java.util.Map;
 
 public class StoredMealDTO {
   private Long storedMealId;
   private String mealName;
   private List<MealIngredientsDTO> mealIngredientsDTOList;
-  private List<SelectOptionsDTO> foodTypeList;
+  private Map<Long, String> foodTypeList;
 
   public Long getStoredMealId() {
     return storedMealId;
@@ -32,20 +33,16 @@ public class StoredMealDTO {
     this.mealIngredientsDTOList = mealIngredientsDTOList;
   }
 
-  public List<SelectOptionsDTO> getFoodTypeList() {
+  public Map<Long, String> getFoodTypeList() {
     return foodTypeList;
   }
 
-  public void setFoodTypeList(List<SelectOptionsDTO> foodTypeList) {
+  public void setFoodTypeList(Map<Long, String> foodTypeList) {
     this.foodTypeList = foodTypeList;
   }
 
   public String getMealIngredientDescription(Long foodTypeId) {
-    SelectOptionsDTO dto = this.foodTypeList.stream().filter(x -> x.getId().equals(foodTypeId)).findFirst().orElse(null);
-    if (dto == null) {
-      return null;
-    }
-    return dto.getDescription();
 
+    return this.foodTypeList.get(foodTypeId);
   }
 }

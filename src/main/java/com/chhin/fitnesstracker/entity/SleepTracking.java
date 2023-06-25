@@ -157,7 +157,7 @@ public class SleepTracking {
   }
 
   public LocalTime getTotalSleepTime() {
-    Duration between = Duration.between(this.sleepEnd, this.sleepStart);
+    Duration between = Duration.between(this.sleepStart, this.sleepEnd);
     return LocalTime.MIDNIGHT.plus(between);
   }
 

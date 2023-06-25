@@ -2,7 +2,9 @@ package com.chhin.fitnesstracker.entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Objects;
 
 @Entity
@@ -26,15 +28,25 @@ public class TrainingPlan {
   @Column(name = "activity_date", nullable = false)
   private LocalDate activityDate;
 
+  @Column(name = "distance", precision = 2)
+  private BigDecimal distance;
+  @Column(name = "planned_time", nullable = false)
+  private LocalTime plannedTime;
+
+  @Column(name = "repetitions", nullable = false)
+  private Integer repetitions;
+
+  @Column(name = "weight", nullable = false, precision = 2)
+  private BigDecimal weight;
+
+  @Column(name = "number_of_sets", nullable = false)
+  private Integer numberOfSets;
+
   @Column(name = "notes", length = 500)
   private String notes;
 
   public Long getTrainingPlanIdId() {
     return trainingPlanId;
-  }
-
-  public void setTrainingPlanId(Long trainingPlanId) {
-    this.trainingPlanId = trainingPlanId;
   }
 
   public ActivityType getActivityType() {
@@ -53,12 +65,60 @@ public class TrainingPlan {
     this.ftUser = ftUser;
   }
 
+  public BigDecimal getDistance() {
+    return distance;
+  }
+
+  public void setDistance(BigDecimal distance) {
+    this.distance = distance;
+  }
+
   public LocalDate getActivityDate() {
     return activityDate;
   }
 
   public void setActivityDate(LocalDate activityDate) {
     this.activityDate = activityDate;
+  }
+
+  public Long getTrainingPlanId() {
+    return trainingPlanId;
+  }
+
+  public void setTrainingPlanId(Long trainingPlanId) {
+    this.trainingPlanId = trainingPlanId;
+  }
+
+  public LocalTime getPlannedTime() {
+    return plannedTime;
+  }
+
+  public void setPlannedTime(LocalTime plannedTime) {
+    this.plannedTime = plannedTime;
+  }
+
+  public Integer getRepetitions() {
+    return repetitions;
+  }
+
+  public void setRepetitions(Integer repetitions) {
+    this.repetitions = repetitions;
+  }
+
+  public BigDecimal getWeight() {
+    return weight;
+  }
+
+  public void setWeight(BigDecimal weight) {
+    this.weight = weight;
+  }
+
+  public Integer getNumberOfSets() {
+    return numberOfSets;
+  }
+
+  public void setNumberOfSets(Integer numberOfSets) {
+    this.numberOfSets = numberOfSets;
   }
 
   public String getNotes() {

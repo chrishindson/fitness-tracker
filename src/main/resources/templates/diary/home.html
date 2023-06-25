@@ -9,6 +9,7 @@
   </div>
   <div class="nhsuk-grid-row nhsuk-u-padding-bottom-0">
     <div class="nhsuk-grid-column-full">
+      <h2 th:text="${#temporals.format(#temporals.createNow(), 'MMMM yyyy')}"></h2>
       <div class="nhsuk-card nhsuk-grid-column-one-seventh nhsuk-u-margin-0 nhsuk-tag"
            th:each="weekday, i : ${activityMonthlyDTO.getDaysOfWeek()}">
         <p class="nhsuk-u-text-align-centre nhsuk-u-margin-0" th:text="${weekday}"></p>
@@ -21,7 +22,7 @@
         </th:block>
         <th:block th:if="${activityMonthlyDTO.firstDayOfWeek() <= i}"
                   th:insert="~{fitness-tracker-design-system/component/card :: diary-clickable-card(id=${i},
-                  link=${'/diary/' + activityMonthlyDTO.getDiaryDateString(i)},
+                  link=${'/diary/day?diaryDate=' + activityMonthlyDTO.getDiaryDateString(i)},
                   description=${(i - activityMonthlyDTO.firstDayOfWeek() + 1)},title='',cardClassAppend=${activityMonthlyDTO.getActivityCount(i) != 0 ? ' nhsuk-card--clickable nhsuk nhsuk-tag--pink' : ''})}">
         </th:block>
       </th:block>

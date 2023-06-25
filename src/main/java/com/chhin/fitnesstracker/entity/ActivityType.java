@@ -49,4 +49,5 @@ public class ActivityType {
   public int hashCode() {
     return Objects.hash(activityTypeId);
   }
+
 }

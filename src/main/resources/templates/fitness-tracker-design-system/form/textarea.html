@@ -11,7 +11,7 @@
       <div class="nhsuk-hint" id="more-detail-hint" th:text="${hints}">
       </div>
       <textarea aria-describedby="more-detail-hint" class="nhsuk-textarea nhsuk-js-character-count"
-                data-ms-editor="true"
+                data-ms-editor="true" th:field="*{__${field}__}"
                 th:id="${id}" th:name="${id}" th:rows="${rows}"
                 spellcheck="false"></textarea>
       <div class="nhsuk-hint nhsuk-character-count__message"

@@ -21,10 +21,4 @@ public interface SleepTrackingRepository extends JpaRepository<SleepTracking, Lo
   Optional<SleepTracking> findSleepTrackingByFtUserAndRecordedDate(@Param("user") FTUser user,
                                                                    @Param("recordedDate") LocalDate recordedDate);
 
-//  @Query(value = "SELECT avg(sleep_end-sleep_start) as totalSleep, avg(light_sleep) lightSleep, " +
-//      "avg(rem_sleep) remSleep, avg(deep_sleep) deepSleep," +
-//      "avg(awake_time) awakeTime, avg(sleep_score) sleepScore " +
-//      "FROM sleep_tracking " +
-//      "WHERE user_id = :userId", nativeQuery = true)
-//  SleepHistoryDTO findSleepTrackingHistoryByUser(@Param("userId") Long userId);
 }

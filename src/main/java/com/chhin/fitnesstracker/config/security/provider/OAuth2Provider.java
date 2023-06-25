@@ -1,4 +1,4 @@
-//package com.chhin.fitnesstracker.config.security.provider;
+package com.chhin.fitnesstracker.config.security.provider;
 //
 //import org.springframework.security.core.Authentication;
 //import org.springframework.security.core.AuthenticationException;

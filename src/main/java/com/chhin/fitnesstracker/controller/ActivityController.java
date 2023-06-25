@@ -1,6 +1,7 @@
 package com.chhin.fitnesstracker.controller;
 
 import com.chhin.fitnesstracker.entity.Activity;
+import com.chhin.fitnesstracker.entity.ActivityType;
 import com.chhin.fitnesstracker.entity.FTUser;
 import com.chhin.fitnesstracker.model.ActivityDTO;
 import com.chhin.fitnesstracker.model.ActivityDetailsDTO;
@@ -19,11 +20,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Controller
 @SessionAttributes("activityDTO")
@@ -60,22 +64,27 @@ public class ActivityController extends AbstractController {
   public String viewHome(Model model,
                          HttpServletRequest request) {
     FTUser ftUser = loggedInUserService.getLoggedInUser().orElse(null);
-    ActivityHistoryDTO historyDTO = activityService.getAllTimeActivitySummaryByFtUserListJdbc(
-        ftUser.getUsername());
+    ActivityHistoryDTO historyDTO = activityService.getAllTimeActivitySummaryByFtUserListJdbc(Objects.requireNonNull(ftUser));
     model.addAttribute("activityHistory", historyDTO);
     titleString = "Activity home";
     getBreadcrumbs(titleString, model, request);
     return ACTIVITY_HOME_VIEW;
   }
 
+  @PostMapping(ACTIVITY_HOME_MAPPING)
+  public String viewHomePost(
+      final RedirectAttributes redirectAttributes) {
+    ActivityDTO activityDTO = new ActivityDTO();
+    activityDTO.setActivityTypeList(activityService.getActivityTypeList().stream()
+        .collect(Collectors.toMap(ActivityType::getActivityTypeId, ActivityType::getActivityTypeDescription)));
+    redirectAttributes.addFlashAttribute(ACTIVITY_DTO, activityDTO);
+    return REDIRECT + ADD_ACTIVITY_MAPPING;
+  }
+
   @GetMapping(ADD_ACTIVITY_MAPPING)
-  public String viewAddActivity(Model model,
+  public String viewAddActivity(@ModelAttribute(ACTIVITY_DTO) ActivityDTO activityDTO,
+                                Model model,
                                 HttpServletRequest request) {
-    if (!model.containsAttribute(ACTIVITY_DTO)) {
-      ActivityDTO activityDTO = new ActivityDTO();
-      activityDTO.setActivityTypeList(activityService.getActivityTypeList());
-      model.addAttribute(ACTIVITY_DTO, activityDTO);
-    }
     titleString = "Add activity";
     getBreadcrumbs(titleString, model, request);
     return ADD_ACTIVITY_VIEW;
@@ -85,6 +94,7 @@ public class ActivityController extends AbstractController {
   public String viewAddActivity(
       @Validated @ModelAttribute(ACTIVITY_DTO) ActivityDTO activityDTO,
       final BindingResult bindingResult,
+      final SessionStatus sessionStatus,
       final RedirectAttributes redirectAttributes) {
 
     FTUser ftUser = loggedInUserService.getLoggedInUser().orElse(null);
@@ -96,6 +106,7 @@ public class ActivityController extends AbstractController {
       return REDIRECT + ADD_ACTIVITY_MAPPING;
     }
     activityService.saveActivity(activityDTO, ftUser);
+    sessionStatus.setComplete();
     return REDIRECT + ACTIVITY_HOME_MAPPING;
   }
 
@@ -151,28 +162,28 @@ public class ActivityController extends AbstractController {
     Pageable pageable = PageRequest.of(page - 1, size);
 
     Page<ActivitySummaryDTO> activitySummaryDTOPage = activityService.getActivitySummaryByFtUserListJdbc(
-        ftUser.getUsername(), pageable);
+        Objects.requireNonNull(ftUser), pageable);
     model.addAttribute("activitySummaryDTOPage", activitySummaryDTOPage);
     getBreadcrumbs(titleString, model, request);
     return ACTIVITY_HISTORY_VIEW;
   }
 
-  @GetMapping("/activity/activities/day/{activityDate}")
-  public String viewActivityDaily(@PathVariable("activityDate") LocalDate activityDate,
+  @GetMapping("/activity/activities/day")
+  public String viewActivityDaily(@RequestParam("activityDate") String activityDate,
                                   Model model, HttpServletRequest request) {
 
     FTUser ftUser = loggedInUserService.getLoggedInUser().orElse(null);
-    titleString = "Activity " + activityDate.format(DateTimeFormatter.ofPattern("d MMMM yyyy"));
+    LocalDate activityLocalDate = LocalDate.parse(activityDate, DateTimeFormatter.ofPattern("yyyyMMdd"));
+    titleString = "Activity " + activityLocalDate.format(DateTimeFormatter.ofPattern("d MMMM yyyy"));
 
-    List<Activity> activityList = activityService.findByActivityDateAndUser(activityDate,
-        ftUser);
+    List<Activity> activityList = activityService.findByActivityDateAndUser(activityLocalDate, ftUser);
     model.addAttribute("activityList", activityList);
     getBreadcrumbs(titleString, model, request);
     return ACTIVITY_DAILY_VIEW;
   }
 
-  @GetMapping("/activity/activities/{activityId}")
-  public String viewActivityRecord(@PathVariable("activityId") Long activityId,
+  @GetMapping("/activity/activities")
+  public String viewActivityRecord(@RequestParam("activityId") Long activityId,
                                    Model model, HttpServletRequest request) {
 
     titleString = "Activity";
@@ -180,5 +191,15 @@ public class ActivityController extends AbstractController {
     model.addAttribute("activity", activity);
     getBreadcrumbs(titleString, model, request);
     return ACTIVITY_DETAILS_VIEW;
+  }
+
+  @PostMapping(value = "/activity/activities", params = "edit")
+  public String editActivityRecord(@RequestParam("activityId") Long activityId, Model model,
+                                   RedirectAttributes redirectAttributes) {
+
+    ActivityDTO activityDTO = activityService.findByActivityDTOByActivityId(activityId);
+
+    redirectAttributes.addFlashAttribute(ACTIVITY_DTO, activityDTO);
+    return REDIRECT + ADD_ACTIVITY_MAPPING;
   }
 }

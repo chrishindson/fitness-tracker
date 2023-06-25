@@ -1,15 +1,17 @@
 package com.chhin.fitnesstracker.model;
 
+import com.chhin.fitnesstracker.entity.Activity;
 import com.chhin.fitnesstracker.entity.FTUser;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ActivityDTO {
-
+  private Long activityId;
   private String activityType;
-  private List<SelectOptionsDTO> activityTypeList;
+  private Map<Long, String> activityTypeList;
   private FTUser ftUser;
   private DateDTO activityDate;
   private TimeDTO timeTaken;
@@ -21,6 +23,25 @@ public class ActivityDTO {
 
   public ActivityDTO() {
     this.activityDetailsList = new ArrayList<>();
+  }
+
+  public ActivityDTO(Activity activity) {
+    this.activityId = activity.getActivityId();
+    this.activityDate = new DateDTO(activity.getActivityDate());
+    this.startTime = new TimeDTO(activity.getStartTime());
+    this.ftUser = activity.getFtUser();
+    this.timeTaken = new TimeDTO(activity.getTimeTaken());
+    this.distance = activity.getDistance();
+    this.calorieCount = activity.getCalorieCount();
+    this.notes = activity.getNotes();
+  }
+
+  public Long getActivityId() {
+    return activityId;
+  }
+
+  public void setActivityId(Long activityId) {
+    this.activityId = activityId;
   }
 
   public String getActivityType() {
@@ -87,12 +108,12 @@ public class ActivityDTO {
     this.startTime = startTime;
   }
 
-  public List<SelectOptionsDTO> getActivityTypeList() {
+  public Map<Long, String> getActivityTypeList() {
     return activityTypeList;
   }
 
   public void setActivityTypeList(
-      List<SelectOptionsDTO> activityTypeList) {
+      Map<Long, String> activityTypeList) {
     this.activityTypeList = activityTypeList;
   }
 

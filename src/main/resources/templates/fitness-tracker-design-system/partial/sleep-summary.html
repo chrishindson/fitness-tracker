@@ -5,22 +5,36 @@
     <!--        th:insert="~{fitness-tracker-design-system/component/misc ::action-link('add-sleep-information','Add sleep information', '/sleep-tracking/add-sleep-details')}"></th:block>-->
   </th:block>
   <th:block th:if="${sleepTracking != null}">
-    <dl class="nhsuk-summary-list nhsuk-summary-list--no-border nhsuk-u-margin-bottom-1">
+    <dl class="nhsuk-summary-list nhsuk-summary-list--no-border nhsuk-u-margin-bottom-1 nhsuk-u-one-half">
       <th:block
           th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='totalSleep',
                 key='Total sleep',value=${sleepTracking.getTotalSleepTime()}, numeric=true)}">
       </th:block>
-      <!--            <th:block-->
-      <!--                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='sleepStart',-->
-      <!--                key='Sleep start',value=${sleepTracking.sleepStart}, numeric=true)}">-->
-      <!--            </th:block>-->
-      <!--            <th:block-->
-      <!--                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='sleepEnd',-->
-      <!--                key='Sleep end',value=${sleepTracking.sleepEnd}, numeric=true)}">-->
-      <!--            </th:block>-->
+      <th:block
+          th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='sleepStart',
+                      key='Sleep start',value=${#temporals.format(sleepTracking.sleepStart,'dd/MM/yyyy hh:mm')}, numeric=true)}">
+      </th:block>
+      <th:block
+          th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='sleepEnd',
+                      key='Sleep end',value=${#temporals.format(sleepTracking.sleepEnd,'dd/MM/yyyy hh:mm')}, numeric=true)}">
+      </th:block>
       <th:block
           th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='sleepScore',
                 key='Sleep score',value=${sleepTracking.sleepScore}, numeric=true)}">
+      </th:block>
+    </dl>
+    <dl class="nhsuk-summary-list nhsuk-summary-list--no-border nhsuk-u-margin-bottom-1 nhsuk-u-one-half">
+      <th:block
+          th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='deep-sleep',key='Deep sleep',value=${sleepTracking.deepSleep}, numeric=true)}">
+      </th:block>
+      <th:block
+          th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='light-sleep',key='Light sleep',value=${sleepTracking.lightSleep}, numeric=true)}">
+      </th:block>
+      <th:block
+          th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='rem-sleep',key='REM sleep',value=${sleepTracking.remSleep}, numeric=true)}">
+      </th:block>
+      <th:block
+          th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='awake-time',key='Awake time',value=${sleepTracking.awakeTime}, numeric=true)}">
       </th:block>
     </dl>
     <!--    <a class="nhsuk-label&#45;&#45;s nhsuk-link&#45;&#45;no-visited-state nhsuk-u-text-align-centre" href="#">View all details</a>-->

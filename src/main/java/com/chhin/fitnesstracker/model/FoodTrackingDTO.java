@@ -1,15 +1,15 @@
 package com.chhin.fitnesstracker.model;
 
 import java.math.BigDecimal;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 public class FoodTrackingDTO {
   private DateDTO foodTrackingDate;
-  private String mealType;
-  private List<SelectOptionsDTO> mealTypeList;
-  private List<SelectOptionsDTO> foodTypeList;
+  private Long mealType;
+  private Map<Long, String> mealTypeList;
+  private Map<Long, String> foodTypeList;
   private List<MealTrackingDTO> mealTrackingDTOList;
   private List<MealDetailsDTO> mealDetailsDTOList;
   private List<MealIngredientsDTO> mealIngredientsDTOList;
@@ -30,27 +30,27 @@ public class FoodTrackingDTO {
     this.foodTrackingDate = foodTrackingDate;
   }
 
-  public String getMealType() {
+  public Long getMealType() {
     return mealType;
   }
 
-  public void setMealType(String mealType) {
+  public void setMealType(Long mealType) {
     this.mealType = mealType;
   }
 
-  public List<SelectOptionsDTO> getMealTypeList() {
+  public Map<Long, String> getMealTypeList() {
     return mealTypeList;
   }
 
-  public void setMealTypeList(List<SelectOptionsDTO> mealTypeList) {
+  public void setMealTypeList(Map<Long, String> mealTypeList) {
     this.mealTypeList = mealTypeList;
   }
 
-  public List<SelectOptionsDTO> getFoodTypeList() {
+  public Map<Long, String> getFoodTypeList() {
     return foodTypeList;
   }
 
-  public void setFoodTypeList(List<SelectOptionsDTO> foodTypeList) {
+  public void setFoodTypeList(Map<Long, String> foodTypeList) {
     this.foodTypeList = foodTypeList;
   }
 
@@ -62,22 +62,13 @@ public class FoodTrackingDTO {
     this.mealTrackingDTOList = mealTrackingDTOList;
   }
 
-  public List<SelectOptionsDTO> getSortedMealTypeList() {
-    return this.mealTypeList.stream().sorted(Comparator.comparing(SelectOptionsDTO::getId)).collect(Collectors.toList());
-  }
-
   public String getMealTypeDisplay() {
-    SelectOptionsDTO dto = this.mealTypeList.stream().filter(x -> x.getId().equals(Long.valueOf(this.mealType))).findFirst().orElse(null);
-
-    if (dto == null) {
-      return null;
-    }
-    return dto.getDescription();
+    return this.mealTypeList.get(this.mealType);
   }
 
   public String getMealDetails(Long mealTypeId) {
     List<MealDetailsDTO> dtoList = getMealDetailsForMealType(mealTypeId);
-    if (dtoList.size() == 0) {
+    if (dtoList.isEmpty()) {
       return null;
     }
     BigDecimal totalCalories = BigDecimal.ZERO;
@@ -91,18 +82,13 @@ public class FoodTrackingDTO {
 
   public List<MealDetailsDTO> getMealDetailsForMealType(Long mealTypeId) {
     if (this.mealDetailsDTOList == null) {
-      return null;
+      return Collections.emptyList();
     }
-    return this.mealDetailsDTOList.stream().filter(x -> x.getMealTypeId().equals(mealTypeId)).collect(Collectors.toList());
+    return this.mealDetailsDTOList.stream().filter(x -> x.getMealTypeId().equals(mealTypeId)).toList();
   }
 
   public String getMealIngredientDescription(Long foodTypeId) {
-    SelectOptionsDTO dto = this.foodTypeList.stream().filter(x -> x.getId().equals(foodTypeId)).findFirst().orElse(null);
-    if (dto == null) {
-      return null;
-    }
-    return dto.getDescription();
-
+    return this.foodTypeList.get(foodTypeId);
   }
 
   public List<MealIngredientsDTO> getMealIngredientsDTOList() {

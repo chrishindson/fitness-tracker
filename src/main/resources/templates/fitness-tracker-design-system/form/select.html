@@ -22,9 +22,9 @@
             th:label-id="${id} + '-label'" th:name="${id}">
       <option value=""></option>
       <option th:each="option : ${list}"
-              th:selected="${selected == option.description ? 'selected' : null}"
-              th:text="${option.description}"
-              th:value="${option.id}">
+              th:selected="${selected == option.key} ? 'selected' : ''"
+              th:text="${option.value}"
+              th:value="${option.key}">
 
       </option>
     </select>
@@ -62,10 +62,10 @@
               th:classappend="${(#fields.hasErrors(field)? 'nhsuk-select--error': '')+ 'row_'+field }"
               th:id="${field}" th:name="${name != null ? name: field}">
         <option value=""></option>
-        <option th:each="option: ${list}"
-                th:selected="${selected == option.description ? 'selected' : null}"
-                th:text="${option.description}"
-                th:value="${option.id}">
+        <option th:each="entry: ${list}"
+                th:selected="${selected != null and #strings.equals(entry.key.toString(), selected.toString())}"
+                th:text="${entry.value}"
+                th:value="${entry.key}">
         </option>
       </select>
     </div>

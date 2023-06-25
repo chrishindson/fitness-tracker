@@ -3,7 +3,7 @@ package com.chhin.fitnesstracker.model;
 import java.math.BigDecimal;
 
 public class ActivityDetailsDTO {
-
+  private Long activityDetailsId;
   private Integer repetitions;
   private BigDecimal weight;
   private Integer numberOfSets;
@@ -11,13 +11,21 @@ public class ActivityDetailsDTO {
   public ActivityDetailsDTO() {
   }
 
-  public ActivityDetailsDTO(Integer repetitions,
+  public ActivityDetailsDTO(Long activityDetailsId, Integer repetitions,
                             BigDecimal weight, Integer numberOfSets) {
+    this.activityDetailsId = activityDetailsId;
     this.repetitions = repetitions;
     this.weight = weight;
     this.numberOfSets = numberOfSets;
   }
 
+  public Long getActivityDetailsId() {
+    return activityDetailsId;
+  }
+
+  public void setActivityDetailsId(Long activityDetailsId) {
+    this.activityDetailsId = activityDetailsId;
+  }
 
   public Integer getRepetitions() {
     return repetitions;

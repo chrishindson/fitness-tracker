@@ -31,20 +31,20 @@
   <div
       class="nhsuk-card nhsuk-card--clickable nhsuk-grid-column-one-seventh nhsuk-u-margin-0 nhsuk-card-border-bottom-1"
       th:classappend="${cardClassAppend}" th:id="${'diary-card-' + id}">
-    <h2 class="nhsuk-card__heading nhsuk-u-text-align-right">
-      <span th:text="${description}"></span>
-      <a class="nhsuk-card__link nhsuk-link--no-visited-state nhsuk-u-text-align-right"
-         th:href="@{${link}}"></a>
-    </h2>
+    <p class="nhsuk-card__heading nhsuk-u-text-align-right">
+
+      <a class="nhsuk-card__link nhsuk-link--no-visited-state nhsuk-u-text-align-right nhsuk-diary-link"
+         th:href="@{${link}}"><span th:text="${description}"></span></a>
+    </p>
     <p class="nhsuk-card__description">&nbsp;</p>
   </div>
 </th:block>
 <th:block th:fragment="diary-card"
           th:with="id=${id}">
   <div
-      class="nhsuk-card nhsuk-card__no-content nhsuk-grid-column-one-seventh nhsuk-u-margin-0 nhsuk-card-border-bottom-1 nhsuk-logo__background"
+      class="nhsuk-card nhsuk-card__no-content nhsuk-grid-column-one-seventh nhsuk-u-margin-0 nhsuk-card-border-bottom-1"
       th:classappend="${cardClassAppend}" th:id="${'diary-card-' + id}">
-    <h2 class="nhsuk-card__heading">&nbsp;</h2>
+    <p class="nhsuk-card__heading nhsuk-u-text-align-right">&nbsp;</p>
     <p class="nhsuk-card__description">&nbsp;</p>
   </div>
 </th:block>

@@ -12,9 +12,7 @@ public class JsonUtils {
   public static String listAsJson(List<StoredMealIngredients> listToJson) throws JsonProcessingException {
     ObjectMapper mapper = new ObjectMapper();
 
-    String s = mapper.writeValueAsString(listToJson);
-    System.out.println(s);
-    return s;
+    return mapper.writeValueAsString(listToJson);
   }
 
   public static List<StoredMealIngredients> jsonToList(String jsonString) throws JsonProcessingException {

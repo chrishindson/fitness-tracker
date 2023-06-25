@@ -4,7 +4,10 @@ import com.chhin.fitnesstracker.entity.Activity;
 import com.chhin.fitnesstracker.entity.ActivityDetails;
 import com.chhin.fitnesstracker.entity.ActivityType;
 import com.chhin.fitnesstracker.entity.FTUser;
-import com.chhin.fitnesstracker.model.*;
+import com.chhin.fitnesstracker.model.ActivityDTO;
+import com.chhin.fitnesstracker.model.ActivityDetailsDTO;
+import com.chhin.fitnesstracker.model.ActivityDiaryDTO;
+import com.chhin.fitnesstracker.model.ActivitySummaryDTO;
 import com.chhin.fitnesstracker.model.history.ActivityHistoryDTO;
 import com.chhin.fitnesstracker.repository.ActivityDetailsRepository;
 import com.chhin.fitnesstracker.repository.ActivityRepository;
@@ -22,10 +25,12 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class ActivityService {
 
+  public static final String USERNAME = "username";
   @Autowired
   private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
   private final ActivityRepository activityRepository;
@@ -49,20 +54,20 @@ public class ActivityService {
     activity.setActivityDate(dto.getActivityDate().toLocalDate());
     activity.setDistance(dto.getDistance() != null ? dto.getDistance() : null);
     activity.setStartTime(dto.getStartTime().toLocalTime());
-    activity.setNotes(dto.getNotes() != null ? dto.getNotes() : null);
+    activity.setNotes(dto.getNotes().isEmpty() ? null : dto.getNotes());
     activity.setCalorieCount(dto.getCalorieCount());
     activity.setTimeTaken(dto.getTimeTaken().toLocalTime());
     activity.setFtUser(user);
     Activity savedActivity = activityRepository.save(activity);
 
-    if (dto.getActivityDetailsList().size() > 0) {
+    if (!dto.getActivityDetailsList().isEmpty()) {
       for (ActivityDetailsDTO detailsDTO : dto.getActivityDetailsList()) {
         ActivityDetails details = new ActivityDetails();
         details.setActivity(savedActivity);
         details.setRepetitions(detailsDTO.getRepetitions());
         details.setNumberOfSets(detailsDTO.getNumberOfSets());
         if (detailsDTO.getWeight() != null
-            && detailsDTO.getWeight().compareTo(BigDecimal.ZERO) == 0) {
+            && detailsDTO.getWeight().compareTo(BigDecimal.ZERO) != 0) {
           details.setWeight(detailsDTO.getWeight());
         }
         activityDetailsRepository.save(details);
@@ -76,7 +81,7 @@ public class ActivityService {
     return activityRepository.findByActivityDateAndUser(activityDate, user);
   }
 
-  public List<SelectOptionsDTO> getActivityTypeList() {
+  public List<ActivityType> getActivityTypeList() {
     return activityTypeRepository.getActivityTypeList();
   }
 
@@ -88,16 +93,10 @@ public class ActivityService {
     return activityRepository.getActivitySummaryByFtUser(username, pageable);
   }
 
-//  public List<ActivitySummaryDTO> getActivitySummaryByFtUserList(String username) {
-//    return activityRepository.getActivitySummaryByFtUserList(username);
-//  }
-
-  public Page<ActivitySummaryDTO> getActivitySummaryByFtUserListJdbc(String username,
+  public Page<ActivitySummaryDTO> getActivitySummaryByFtUserListJdbc(FTUser user,
                                                                      Pageable pageable) {
     String sql =
-        "SELECT u.username, a.activity_date as activityDate, "
-            + "count(1) as activityCount, "
-            + "sum(coalesce(a.distance,0)) as totalDistance, "
+        "SELECT u.username, a.activity_date as activityDate, count(1) as activityCount, sum(coalesce(a.distance,0)) as totalDistance, "
             + "sum(a.calorie_count) as totalCalories, "
             + "sum(a.time_taken) as totalTime "
             + "FROM activity a, users u "
@@ -105,7 +104,7 @@ public class ActivityService {
             + "group by u.username, a.activity_date "
             + "ORDER BY a.activity_date desc ";
     Map<String, Object> params = new HashMap<>();
-    params.put("username", username);
+    params.put(USERNAME, user.getUsername());
     List<ActivitySummaryDTO> list = namedParameterJdbcTemplate.query(sql, params,
         new BeanPropertyRowMapper<>(ActivitySummaryDTO.class));
     final int start = (int) pageable.getOffset();
@@ -127,13 +126,13 @@ public class ActivityService {
             + "and date_trunc('month',:diaryMonth + INTERVAL '1 MONTH - 1 day') "
             + "group by u.username, a.activity_date";
     Map<String, Object> params = new HashMap<>();
-    params.put("username", username);
+    params.put(USERNAME, username);
     params.put("diaryMonth", diaryMonth);
     return namedParameterJdbcTemplate.query(sql, params,
         new BeanPropertyRowMapper<>(ActivityDiaryDTO.class));
   }
 
-  public ActivityHistoryDTO getAllTimeActivitySummaryByFtUserListJdbc(String username) {
+  public ActivityHistoryDTO getAllTimeActivitySummaryByFtUserListJdbc(FTUser user) {
     String sql =
         "SELECT u.username, "
             + "count(1) as activityCount, "
@@ -144,7 +143,7 @@ public class ActivityService {
             + "WHERE lower(u.username) = lower(:username) "
             + "group by u.username";
     Map<String, Object> params = new HashMap<>();
-    params.put("username", username);
+    params.put(USERNAME, user.getUsername());
     List<ActivityHistoryDTO> list = namedParameterJdbcTemplate.query(sql, params,
         new BeanPropertyRowMapper<>(ActivityHistoryDTO.class));
     return list.get(0);
@@ -153,5 +152,24 @@ public class ActivityService {
 
   public Activity findByActivityId(Long activityId) {
     return activityRepository.findById(activityId).orElse(null);
+  }
+
+  public ActivityDTO findByActivityDTOByActivityId(Long activityId) {
+    Activity activity = activityRepository.findById(activityId).orElse(null);
+    if (activity == null) {
+      return null;
+    }
+    ActivityDTO activityDTO = new ActivityDTO(activity);
+    activityDTO.setActivityTypeList(getActivityTypeList().stream()
+        .collect(Collectors.toMap(ActivityType::getActivityTypeId, ActivityType::getActivityTypeDescription)));
+    activityDTO.setActivityType(String.valueOf(activity.getActivityType().getActivityTypeId()));
+    activityDTO.setActivityDetailsList(activity.getActivityDetails().stream()
+        .map(activityDetails -> new ActivityDetailsDTO(
+            activityDetails.getActivityDetailsId(),
+            activityDetails.getRepetitions(),
+            activityDetails.getWeight(),
+            activityDetails.getNumberOfSets()))
+        .collect(Collectors.toList()));
+    return activityDTO;
   }
 }

@@ -75,10 +75,14 @@ public class AbstractController {
   private void retrieveBreadcrumbs(String pageTitle, HttpServletRequest request) {
     boolean found = false;
     List<Breadcrumb> breadcrumbs = new ArrayList<>();
+    String requestString = request.getContextPath() + request.getServletPath();
+    if (request.getQueryString() != null) {
+      requestString += "?" + request.getQueryString();
+    }
     if (getBreadcrumbs() != null) {
       for (Breadcrumb bc : breadcrumbList) {
         breadcrumbs.add(bc);
-        if (bc.getUrl().equals(request.getRequestURI())) {
+        if (bc.getUrl().equals(requestString)) {
           found = true;
           break;
         }
@@ -87,8 +91,8 @@ public class AbstractController {
       breadcrumbs.add(new Breadcrumb("Dashboard", "/fitness-tracking/dashboard"));
     }
     if (!found) {
-      breadcrumbs.add(
-          new Breadcrumb(pageTitle, request.getContextPath() + request.getServletPath()));
+
+      breadcrumbs.add(new Breadcrumb(pageTitle, requestString));
     }
     setBreadcrumbList(breadcrumbs);
   }

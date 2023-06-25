@@ -59,7 +59,7 @@
           <td class="nhsuk-table__cell " role="cell">
             <span class="nhsuk-table-responsive__heading">Action</span>
             <a class="nhsuk-link--no-visited-state"
-               th:href="@{'activities/day/' + ${#temporals.format(activity.activityDate,'yyyy-MM-dd')}}">View
+               th:href="@{'activities/day?activityDate=' + ${#temporals.format(activity.activityDate,'yyyyMMdd')}}">View
               activities</a>
           </td>
         </tr>

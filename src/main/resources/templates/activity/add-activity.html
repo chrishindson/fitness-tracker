@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html
-    th:replace="~{fitness-tracker-design-system/layout :: layout(backLink=~{}, main=~{::main}, scripts=~{}, includedNav=true, var=true)}">
+    th:replace="~{fitness-tracker-design-system/layout :: layout(backLink=~{}, main=~{::main}, scripts=~{}, includedNav=true, accessible=true)}">
 
 <body>
 <main class="nhsuk-main-wrapper" id="main-content" role="main">
@@ -37,22 +37,30 @@
         <th:block
             th:insert="~{fitness-tracker-design-system/form/button :: secondary-button(id='addActivityDetails',text='Add activity details')}">
         </th:block>
-        <th:block th:if="${activityDTO.activityDetailsList.size() > 0}">
+        <th:block th:if="${activityDTO.activityDetailsList != null && !activityDTO.activityDetailsList.isEmpty()}">
           <table>
             <thead>
             <tr>
-              <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">Repetitions
-              </th>
+              <th class="nhsuk-table__header" role="columnheader" scope="col">Record</th>
               <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">Number of
                 sets
               </th>
+              <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">Repetitions
+              </th>
               <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">Weight</th>
+              <th class="nhsuk-table__header" role="columnheader" scope="col">Action</th>
             </tr>
             </thead>
-            <tr th:each="detail : ${activityDTO.activityDetailsList}">
-              <td class="nhsuk-table__cell--numeric" th:text="${detail.repetitions}"></td>
+            <tr th:each="detail, i : ${activityDTO.activityDetailsList}">
+              <td class="nhsuk-table__cell" th:text="${i.index}"></td>
               <td class="nhsuk-table__cell--numeric" th:text="${detail.numberOfSets}"></td>
+              <td class="nhsuk-table__cell--numeric" th:text="${detail.repetitions}"></td>
               <td class="nhsuk-table__cell--numeric" th:text="${detail.weight}"></td>
+              <td class="nhsuk-table__cell">
+                <button class="nhsuk-button-looks-like-link nhsuk-link--no-visited-state">Edit</button>
+                or
+                <button class="nhsuk-button-looks-like-link nhsuk-link--no-visited-state">Remove</button>
+              </td>
             </tr>
           </table>
         </th:block>

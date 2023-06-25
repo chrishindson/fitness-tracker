@@ -11,8 +11,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -50,19 +50,20 @@ public class DiaryController extends AbstractController {
     return getHomeMapping(DIARY_MAPPING);
   }
 
-  @GetMapping("/{diaryDate}")
+  @GetMapping("/day")
   public String viewDailyOverview(
-      @PathVariable("diaryDate") LocalDate diaryDate,
+      @RequestParam("diaryDate") String diaryDate,
       Model model,
       HttpServletRequest request) {
+    LocalDate diaryLocalDate = LocalDate.parse(diaryDate, DateTimeFormatter.ofPattern("yyyyMMdd"));
     FTUser ftUser = loggedInUserService.getLoggedInUser().orElse(null);
-    DailySummaryDTO dailySummaryDTO = diaryService.getDailySummary(ftUser, diaryDate);
+    DailySummaryDTO dailySummaryDTO = diaryService.getDailySummary(ftUser, diaryLocalDate);
     model.addAttribute(DAILY_SUMMARY_DTO, dailySummaryDTO);
 
     titleString =
-        "Diary - " + diaryDate.format(DateTimeFormatter.ofPattern("d MMMM yyyy"));
+        "Diary - " + diaryLocalDate.format(DateTimeFormatter.ofPattern("d MMMM yyyy"));
     getBreadcrumbs(titleString, model, request);
-    return "diary/diary-daily";
+    return "diary/diary-daily-new";
   }
 
 }

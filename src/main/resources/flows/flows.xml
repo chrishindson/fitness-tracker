@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://www.springframework.org/schema/webflow"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+    <var name="formData" class="com.example.FormData"/>
+
+    <view-state id="page1" view="page1" model="formData">
+        <transition on="next" to="page2"/>
+    </view-state>
+
+    <view-state id="page2" view="page2" model="formData">
+        <transition on="next" to="page3"/>
+        <transition on="back" to="page1"/>
+    </view-state>
+
+    <view-state id="page3" view="page3" model="formData">
+        <transition on="next" to="page4"/>
+        <transition on="back" to="page2"/>
+    </view-state>
+
+    <view-state id="page4" view="page4" model="formData">
+        <transition on="next" to="page5"/>
+        <transition on="back" to="page3"/>
+    </view-state>
+
+    <view-state id="page5" view="page5" model="formData">
+        <transition on="submit" to="endState"/>
+        <transition on="back" to="page4"/>
+    </view-state>
+
+    <end-state id="endState"/>
+
+</flow>

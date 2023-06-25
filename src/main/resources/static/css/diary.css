@@ -56,3 +56,8 @@
 .nhsuk-button-looks-like-link--no-visited-state:focus {
     color: #212b32;
 }
+
+.nhsuk-diary-link {
+    text-decoration: none;
+    color: inherit !important;
+}

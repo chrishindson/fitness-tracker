@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" th:fragment="layout (backLink, main, scripts, includedNav)"
-      th:with="accessible=${accessible}">
+<html lang="en" th:fragment="layout(backLink, main, scripts, includedNav)">
 <!--[if lt IE 9]>
 <html class="lte-ie8" xlmns="http://www.w3.org/1999/html"
       xmlns:th="http://www.thymeleaf.org"></html>
@@ -14,11 +13,10 @@
   <meta th:content="${@environment.getProperty('server.servlet.context-path')}"
         th:name="_context_path">
   <title th:text="${pageTitle}">Health tracker</title>
-  <!--  <link rel="stylesheet" th:href="@{/webjars/nhsuk-frontend/6.2.0/dist/nhsuk-6.2.0.min.css}"-->
   <!--        type="text/css">-->
   <link rel="stylesheet" th:href="@{/css/nhsuk-7.0.0.min.css}" type="text/css">
   <link rel="stylesheet" th:href="@{/css/diary.css}" type="text/css">
-  <th:block th:if="${var}">
+  <th:block th:if="${accessible}">
     <link rel="stylesheet" th:href="@{/css/accessible-autocomplete.min.css}" type="text/css">
     <script th:src="@{/js/accessible-autocomplete.min.js}"></script>
   </th:block>

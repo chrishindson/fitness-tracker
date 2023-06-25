@@ -11,16 +11,16 @@
   </div>
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
-      <th:block
-          th:insert="~{fitness-tracker-design-system/exercises/treadmill :: treadmill(75,75)}"></th:block>
-      <th:block
-          th:insert="~{fitness-tracker-design-system/exercises/running :: running(75,75)}"></th:block>
-      <th:block
-          th:insert="~{fitness-tracker-design-system/exercises/cycling :: cycling(75,75)}"></th:block>
-      <th:block
-          th:insert="~{fitness-tracker-design-system/exercises/walking :: walking(75,75)}"></th:block>
-      <th:block
-          th:insert="~{fitness-tracker-design-system/exercises/exercise-bike :: exercise-bike(75,75)}"></th:block>
+      <!--      <th:block-->
+      <!--          th:insert="~{fitness-tracker-design-system/exercises/treadmill :: treadmill(75,75)}"></th:block>-->
+      <!--      <th:block-->
+      <!--          th:insert="~{fitness-tracker-design-system/exercises/running :: running(75,75)}"></th:block>-->
+      <!--      <th:block-->
+      <!--          th:insert="~{fitness-tracker-design-system/exercises/cycling :: cycling(75,75)}"></th:block>-->
+      <!--      <th:block-->
+      <!--          th:insert="~{fitness-tracker-design-system/exercises/walking :: walking(75,75)}"></th:block>-->
+      <!--      <th:block-->
+      <!--          th:insert="~{fitness-tracker-design-system/exercises/exercise-bike :: exercise-bike(75,75)}"></th:block>-->
       <dl class="nhsuk-summary-list">
         <th:block
             th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='activity-id',key='Activity ID',value=${activity.activityId}, numeric=false)}">
@@ -31,8 +31,8 @@
         <th:block
             th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='start-time',key='Start time',value=${activity.startTime}, numeric=false)}">
         </th:block>
-        <th:block
-            th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='distance',key='Distance (km)',value=${activity.distance}, numeric=false)}">
+        <th:block th:if="${activity.distance != null}"
+                  th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='distance',key='Distance (km)',value=${activity.distance}, numeric=false)}">
         </th:block>
         <th:block
             th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='colories',key='Calories (kCal)',value=${activity.calorieCount}, numeric=false)}">
@@ -41,7 +41,7 @@
                   th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='notes',key='Notes',value=${activity.notes}, numeric=false)}">
         </th:block>
       </dl>
-      <table class="nhsuk-table-responsive" th:if="${activity.activityDetails.size() > 0 }">
+      <table class="nhsuk-table-responsive" th:if="${!activity.activityDetails.isEmpty()}">
         <thead>
         <tr>
           <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">Repetitions
@@ -58,6 +58,21 @@
           <td class="nhsuk-table__cell--numeric" th:text="${detail.weight}"></td>
         </tr>
       </table>
+    </div>
+    <div class="nhsuk-grid-column-one-third">
+      <form class="nhsuk-form-group" method="post" th:action="@{'/activity/activities'}" type="submit">
+
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/input :: hidden-input(id='activityId', field=${activity.activityId},name='activityId')}">
+        </th:block>
+
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/button :: primary-button(id='edit', text='Edit activity')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/button :: secondary-button(id='delete', text='Delete activity')}">
+        </th:block>
+      </form>
     </div>
   </div>
 </main>

@@ -68,6 +68,6 @@ public class ActivityMonthlyDTO {
       return null;
     }
     LocalDate ld = activityMonth.withDayOfMonth(day + 1);
-    return ld.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    return ld.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
   }
 }

@@ -10,8 +10,10 @@
   </div>
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-one-half">
-      <th:block
-          th:insert="~{fitness-tracker-design-system/component/misc ::action-link('add-activity','Add activity', '/activity/add-activity')}"></th:block>
+      <form method="post" name="add" novalidate th:action="@{'/activity/home'}">
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/button :: primary-button(id='add-activity',text='Add activity')}"></th:block>
+      </form>
       <th:block
           th:insert="~{fitness-tracker-design-system/component/misc ::action-link('view-activity-history','View activity history', '/activity/activity-history')}"></th:block>
     </div>

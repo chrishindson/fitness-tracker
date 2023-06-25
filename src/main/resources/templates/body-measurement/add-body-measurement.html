@@ -16,13 +16,14 @@
     <div class="nhsuk-grid-row">
       <div class="nhsuk-grid-column-full">
         <th:block
-            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='repetitions',field='repetitions',label='Repetitions')}">
+            th:insert="~{fitness-tracker-design-system/form/input :: date-input(id='activityDate',name=*{activityDate},field='activityDate',label='Activity date')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/select :: select-autocomplete(id='activityType',field='activityType',label='Activity type',
+            list=*{activityTypeList},selected=*{activityType},hints='Hints')}">
         </th:block>
         <th:block
             th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='numberOfSets',field='numberOfSets',label='Number of sets')}">
-        </th:block>
-        <th:block
-            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='weight',field='weight',label='Weight (optional)')}">
         </th:block>
         <th:block
             th:insert="~{fitness-tracker-design-system/form/button :: primary-button(id='submit',text='Submit')}">

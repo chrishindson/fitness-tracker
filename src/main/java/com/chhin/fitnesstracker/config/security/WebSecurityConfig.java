@@ -44,12 +44,12 @@ public class WebSecurityConfig {
                                          AuthenticationManager authenticationManager) throws Exception {
 
     httpSecurity.authorizeHttpRequests(
-        (auth) -> auth.requestMatchers("/**").permitAll().requestMatchers("/webjars/**")
+        auth -> auth.requestMatchers("/**").permitAll().requestMatchers("/webjars/**")
             .permitAll().and()
             .authenticationManager(authenticationManager));
 
     httpSecurity.authorizeHttpRequests(
-        (auth) -> {
+        auth -> {
           try {
             auth.anyRequest().authenticated().and().formLogin().loginPage(LOGIN)
                 .loginProcessingUrl(LOGIN).successHandler(webSecurityLoginSuccessHandler())

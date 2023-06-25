@@ -4,18 +4,14 @@ import com.chhin.fitnesstracker.entity.FTUser;
 import com.chhin.fitnesstracker.entity.WeightTracking;
 import com.chhin.fitnesstracker.model.WeightTrackingDTO;
 import com.chhin.fitnesstracker.repository.WeightTrackingRepository;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
 public class WeightTrackingService {
 
-  private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
   private final WeightTrackingRepository weightTrackingRepository;
 
-  public WeightTrackingService(NamedParameterJdbcTemplate namedParameterJdbcTemplate,
-                               WeightTrackingRepository weightTrackingRepository) {
-    this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+  public WeightTrackingService(WeightTrackingRepository weightTrackingRepository) {
     this.weightTrackingRepository = weightTrackingRepository;
   }
 

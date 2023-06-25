@@ -28,7 +28,7 @@
       <div class="nhsuk-grid-column-full">
         <!--        <p th:text="${foodTrackingDTO.foodTracking}"></p>-->
         <div class="nhsuk-card-group">
-          <th:block th:each="meal : ${foodTrackingDTO.getSortedMealTypeList()}">
+          <th:block th:each="meal : ${foodTrackingDTO.mealTypeList}">
             <th:block
                 th:insert="~{fitness-tracker-design-system/component/card :: card(id=${meal.id},
                   title=${meal.description},description=${foodTrackingDTO.getMealDetails(meal.id)},cardClassAppend=' nhsuk-u-one-half nhsuk-margin-3')}">

@@ -98,7 +98,7 @@ public class DiaryService {
     params.put("activityDate", activityDate);
     List<ActivitySummaryDTO> list = namedParameterJdbcTemplate.query(sql, params,
         new BeanPropertyRowMapper<>(ActivitySummaryDTO.class));
-    if (list.size() == 0) {
+    if (list.isEmpty()) {
       return null;
     }
     return list.get(0);

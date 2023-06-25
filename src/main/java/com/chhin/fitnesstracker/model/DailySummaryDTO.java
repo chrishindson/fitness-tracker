@@ -3,6 +3,7 @@ package com.chhin.fitnesstracker.model;
 import com.chhin.fitnesstracker.entity.*;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class DailySummaryDTO {
@@ -79,5 +80,13 @@ public class DailySummaryDTO {
 
   public void setWaterTracking(WaterTracking waterTracking) {
     this.waterTracking = waterTracking;
+  }
+
+  public String getDateStringLink(long diff) {
+    return this.summaryDate.plusDays(diff).format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+  }
+
+  public String getDateString(long diff) {
+    return this.summaryDate.plusDays(diff).format(DateTimeFormatter.ofPattern("d MMMM yyyy"));
   }
 }

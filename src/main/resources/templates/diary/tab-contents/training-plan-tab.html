@@ -1,0 +1,60 @@
+<th:block th:fragment="training-plan-tab(dailySummaryDTO)">
+  <th:block th:if="${dailySummaryDTO.trainingPlanList.isEmpty()}">
+    <p>No training plan found</p>
+  </th:block>
+  <th:block th:unless="${dailySummaryDTO.trainingPlanList.isEmpty()}">
+    <table class="nhsuk-table-responsive" role="table">
+      <caption class="nhsuk-table__caption">Training plan</caption>
+      <thead class="nhsuk-table__head" role="rowgroup">
+      <tr role="row">
+        <th class="" role="columnheader" scope="col">
+          Activity
+        </th>
+        <th class="" role="columnheader" scope="col">
+          Time
+        </th>
+        <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">
+          Distance
+        </th>
+        <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">
+          Sets
+        </th>
+        <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">
+          Repetitions
+        </th>
+        <th class="nhsuk-table__header--numeric" role="columnheader" scope="col">
+          Weight
+        </th>
+      </tr>
+      </thead>
+      <tbody class="nhsuk-table__body">
+      <tr class="nhsuk-table__row" role="row" th:each="item : ${dailySummaryDTO.trainingPlanList}">
+        <td class="nhsuk-table__cell" role="cell">
+          <span class="nhsuk-table-responsive__heading">Activity</span>
+          <span th:text="${item.activityType.activityTypeDescription}"></span>
+        </td>
+        <td class="nhsuk-table__cell" role="cell">
+          <span class="nhsuk-table-responsive__heading">Time</span>
+          <span th:text="${item.plannedTime}"></span>
+        </td>
+        <td class="nhsuk-table__cell nhsuk-table__cell--numeric" role="cell">
+          <span class="nhsuk-table-responsive__heading">Distance</span>
+          <span th:text="${item.distance}"></span>
+        </td>
+        <td class="nhsuk-table__cell nhsuk-table__cell--numeric" role="cell">
+          <span class="nhsuk-table-responsive__heading">Sets</span>
+          <span th:text="${item.numberOfSets}"></span>
+        </td>
+        <td class="nhsuk-table__cell nhsuk-table__cell--numeric" role="cell">
+          <span class="nhsuk-table-responsive__heading">Repetitions</span>
+          <span th:text="${item.repetitions}"></span>
+        </td>
+        <td class="nhsuk-table__cell nhsuk-table__cell--numeric" role="cell">
+          <span class="nhsuk-table-responsive__heading">Weight</span>
+          <span th:text="${item.weight}"></span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </th:block>
+</th:block>

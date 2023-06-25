@@ -38,13 +38,6 @@ public interface ActivityRepository extends JpaRepository<Activity, Long> {
   ActivitySummaryDTO getActivitySummaryByFtUserAndActivityDate(@Param("user") FTUser user,
                                                                @Param("activityDate") LocalDate activityDate);
 
-//  @Query(
-//      "SELECT new com.chhin.fitnesstracker.model.ActivitySummaryDTO(u.username, a.activityDate, count(1) as activityCount, "
-//          + "sum(a.calorieCount) as totalCalories, coalesce(sum(a.timeTaken),0) as totalTime) "
-//          + "FROM Activity a, FTUser u "
-//          + "WHERE lower(u.username) = lower(:username) "
-//          + "group by u.username, a.activityDate ")
-//  List<ActivitySummaryDTO> getActivitySummaryByFtUserList(@Param("username") String username);
 
   @Query("SELECT a FROM Activity a "
       + "WHERE lower(a.ftUser.username) = lower(:username) ")
@@ -52,7 +45,7 @@ public interface ActivityRepository extends JpaRepository<Activity, Long> {
                                        @Param("pageable") Pageable pageable);
 
   @Query("SELECT a from Activity a WHERE a.activityDate = :activityDate AND a.ftUser = :user " +
-      "ORDER BY a.activityType.activityTypeDescription")
+      "ORDER BY a.startTime, a.activityType.activityTypeDescription")
   List<Activity> findByActivityDateAndUser(@Param("activityDate") LocalDate activityDate,
                                            @Param("user") FTUser user);
 

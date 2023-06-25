@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface TrainingPlanRepository extends JpaRepository<TrainingPlan, Long> {
 
-  @Query("SELECT a FROM TrainingPlan a WHERE a.ftUser =:user AND a.activityDate = :recordedDate")
+  @Query("SELECT a FROM TrainingPlan a WHERE a.ftUser =:user AND a.activityDate = :recordedDate ORDER BY a.activityType.activityTypeDescription")
   List<TrainingPlan> findTrainingPlanByFtUserAndActivityDate(@Param("user") FTUser user,
                                                              @Param("recordedDate") LocalDate recordedDate);
 }
