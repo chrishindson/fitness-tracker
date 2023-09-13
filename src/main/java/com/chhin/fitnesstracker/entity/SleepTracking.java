@@ -1,6 +1,7 @@
 package com.chhin.fitnesstracker.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -8,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Objects;
 
+@Getter
 @Entity
 @Table(name = "sleep_tracking")
 public class SleepTracking {
@@ -52,104 +54,52 @@ public class SleepTracking {
   @Column(name = "calories", nullable = false)
   private Integer calories;
 
-  public Long getSleepTrackingId() {
-    return sleepTrackingId;
-  }
-
   public void setSleepTrackingId(Long sleepTrackingId) {
     this.sleepTrackingId = sleepTrackingId;
-  }
-
-  public FTUser getFtUser() {
-    return ftUser;
   }
 
   public void setFtUser(FTUser ftUser) {
     this.ftUser = ftUser;
   }
 
-  public LocalTime getLightSleep() {
-    return lightSleep;
-  }
-
   public void setLightSleep(LocalTime lightSleep) {
     this.lightSleep = lightSleep;
-  }
-
-  public LocalTime getRemSleep() {
-    return remSleep;
   }
 
   public void setRemSleep(LocalTime remSleep) {
     this.remSleep = remSleep;
   }
 
-  public LocalTime getDeepSleep() {
-    return deepSleep;
-  }
-
   public void setDeepSleep(LocalTime deepSleep) {
     this.deepSleep = deepSleep;
-  }
-
-  public LocalTime getAwakeTime() {
-    return awakeTime;
   }
 
   public void setAwakeTime(LocalTime awakeTime) {
     this.awakeTime = awakeTime;
   }
 
-  public LocalTime getOxygenUnderNinety() {
-    return oxygenUnderNinety;
-  }
-
   public void setOxygenUnderNinety(LocalTime oxygenUnderNinety) {
     this.oxygenUnderNinety = oxygenUnderNinety;
-  }
-
-  public LocalTime getSnoringTime() {
-    return snoringTime;
   }
 
   public void setSnoringTime(LocalTime snoringTime) {
     this.snoringTime = snoringTime;
   }
 
-  public Integer getSleepScore() {
-    return sleepScore;
-  }
-
   public void setSleepScore(Integer sleepScore) {
     this.sleepScore = sleepScore;
-  }
-
-  public Integer getCalories() {
-    return calories;
   }
 
   public void setCalories(Integer calories) {
     this.calories = calories;
   }
 
-  public LocalDate getRecordedDate() {
-    return recordedDate;
-  }
-
   public void setRecordedDate(LocalDate recordedDate) {
     this.recordedDate = recordedDate;
   }
 
-  public LocalDateTime getSleepStart() {
-    return sleepStart;
-  }
-
   public void setSleepStart(LocalDateTime sleepStart) {
     this.sleepStart = sleepStart;
-  }
-
-  public LocalDateTime getSleepEnd() {
-    return sleepEnd;
   }
 
   public void setSleepEnd(LocalDateTime sleepEnd) {

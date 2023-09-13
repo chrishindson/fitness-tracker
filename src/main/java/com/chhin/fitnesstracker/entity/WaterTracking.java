@@ -1,10 +1,12 @@
 package com.chhin.fitnesstracker.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
+@Getter
 @Entity
 @Table(name = "water_tracking")
 public class WaterTracking {
@@ -25,32 +27,16 @@ public class WaterTracking {
   @Column(name = "recorded_date", nullable = false)
   private LocalDate recordedDate;
 
-  public Long getWaterTrackingId() {
-    return waterTrackingId;
-  }
-
   public void setWaterTrackingId(Long waterTrackingId) {
     this.waterTrackingId = waterTrackingId;
-  }
-
-  public FTUser getFtUser() {
-    return ftUser;
   }
 
   public void setFtUser(FTUser ftUser) {
     this.ftUser = ftUser;
   }
 
-  public Integer getWater() {
-    return water;
-  }
-
   public void setWater(Integer water) {
     this.water = water;
-  }
-
-  public LocalDate getRecordedDate() {
-    return recordedDate;
   }
 
   public void setRecordedDate(LocalDate recordedDate) {

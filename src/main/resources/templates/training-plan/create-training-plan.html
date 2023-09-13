@@ -1,38 +1,62 @@
 <!DOCTYPE html>
 <html
-    th:replace="~{fitness-tracker-design-system/layout :: layout(backLink=~{}, main=~{::main}, scripts=~{}, includedNav=true, var=true)}">
+    th:replace="~{fitness-tracker-design-system/layout :: layout(backLink=~{}, main=~{::main}, scripts=~{}, includedNav=true, var=true, accessible=true)}">
 
 <body>
 <main class="nhsuk-main-wrapper" id="main-content" role="main">
   <form id="add-activity" method="post" novalidate
-        th:action="@{'/add-activity/add-activity'}" th:object="${activityDTO}">
+        th:action="@{'/training-plan/create-training-plan'}" th:object="${trainingPlanDTO}">
     <div class="nhsuk-grid-row">
       <div class="nhsuk-grid-column-full">
               <span
-                  th:replace="~{fitness-tracker-design-system/form/errors :: error-summary(${activityDetails},true)}"></span>
+                  th:replace="~{fitness-tracker-design-system/form/errors :: error-summary(${trainingPlanDTO},true)}"></span>
         <h1 th:text="${pageTitleRaw}">Dashboard</h1>
       </div>
     </div>
     <div class="nhsuk-grid-row">
       <div class="nhsuk-grid-column-full">
         <th:block
-            th:insert="~{fitness-tracker-design-system/form/input :: date-input(id='activityDate',name=*{activityDetails.activityDate},field='activityDate',label='Activity date')}">
+            th:insert="~{fitness-tracker-design-system/form/input :: date-input(id='startDate',name=*{startDate},field='startDate',label='Start date')}">
         </th:block>
         <th:block
-            th:insert="~{fitness-tracker-design-system/form/input :: time-input(id='startTime',field='startTime',label='Start time')}">
+            th:insert="~{fitness-tracker-design-system/form/input :: date-input(id='endDate',name=*{endDate},field='endDate',label='End date')}">
         </th:block>
         <th:block
             th:insert="~{fitness-tracker-design-system/form/select :: select-autocomplete(id='activityType',field='activityType',label='Activity type',
-            list=*{activityDetails.activityTypeList},selected='',hints='Hints')}">
+            list=*{getSortedMap()},selected='',hints='')}">
         </th:block>
         <th:block
-            th:insert="~{fitness-tracker-design-system/form/input :: time-input(id='timeTaken',field='timeTaken',label='Time taken')}">
+            th:insert="~{fitness-tracker-design-system/form/checkbox :: checkbox(id='logMonday',field='logMonday',label='Monday',hints='')}">
         </th:block>
         <th:block
-            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='calorieCount',field='calorieCount',label='Calorie count')}">
+            th:insert="~{fitness-tracker-design-system/form/checkbox :: checkbox(id='logTuesday',field='logTuesday',label='Tuesday',hints='')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/checkbox :: checkbox(id='logWednesday',field='logWednesday',label='Wednesday',hints='')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/checkbox :: checkbox(id='logThursday',field='logThursday',label='Thursday',hints='')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/checkbox :: checkbox(id='logFriday',field='logFriday',label='Friday',hints='')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/checkbox :: checkbox(id='logSaturday',field='logSaturday',label='Saturday',hints='')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/checkbox :: checkbox(id='logSunday',field='logSunday',label='Sunday',hints='')}">
         </th:block>
         <th:block
             th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='distance',field='distance',label='Distance (optional)')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/input :: time-input(id='plannedTime',field='plannedTime',label='Planned time')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='numberOfSets',field='numberOfSets',label='Number of sets (optional)')}">
+        </th:block>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='repetitions',field='repetitions',label='Repetitions (optional)')}">
         </th:block>
         <th:block
             th:insert="~{fitness-tracker-design-system/form/textarea :: character-count(id='notes',field='notes',label='Notes (optional)',length=500, rows=5)}">

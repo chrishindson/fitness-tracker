@@ -1,9 +1,11 @@
 package com.chhin.fitnesstracker.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.util.Objects;
 
+@Getter
 @Entity
 @Table(name = "meal_type")
 public class MealType {
@@ -17,16 +19,8 @@ public class MealType {
   @Column(name = "meal_type_description", nullable = false, unique = true, length = 100)
   private String mealTypeDescription;
 
-  public Long getMealTypeId() {
-    return mealTypeId;
-  }
-
   public void setMealTypeId(Long mealTypeId) {
     this.mealTypeId = mealTypeId;
-  }
-
-  public String getMealTypeDescription() {
-    return mealTypeDescription;
   }
 
   public void setMealTypeDescription(String mealTypeDescription) {

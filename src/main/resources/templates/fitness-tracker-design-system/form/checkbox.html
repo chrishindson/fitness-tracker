@@ -4,14 +4,13 @@
         th:replace="~{fitness-tracker-design-system/form/errors :: error-message(${field})}"></span>
     <input class="nhsuk-checkboxes__input"
            th:classappend="${#fields.hasErrors(field)} ? 'nhsuk-form-group--error' : ''"
-           th:field="${field}" th:id="${id}" th:name="${id}"
-           th:value="email"
+           th:ffield="${field}" th:id="${id}" th:name="${id}"
            type="checkbox">
-    <label class="nhsuk-label nhsuk-checkboxes__label" th:for="${id}">
-      Email
+    <label class="nhsuk-label nhsuk-checkboxes__label" th:text="${label}" th:for="${id}">
+      -
     </label>
-    <div class="nhsuk-hint nhsuk-checkboxes__hint" th:id="${id} + '-hint'" th:if="${hints != null}">
-      including English, Scottish, Welsh and Northern Irish
+    <div class="nhsuk-hint nhsuk-checkboxes__hint" th:id="${id} + '-hint'" th:if="${hints != null}"
+         th:text="${hints}">
     </div>
   </div>
 </th:block>

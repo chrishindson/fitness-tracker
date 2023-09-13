@@ -1,5 +1,8 @@
 package com.chhin.fitnesstracker.controller;
 
+import static com.chhin.fitnesstracker.util.Constants.FOOD_TRACKING_MAPPING;
+
+import com.chhin.fitnesstracker.config.exception.FitnessTrackerRuntimeException;
 import com.chhin.fitnesstracker.entity.FTUser;
 import com.chhin.fitnesstracker.entity.FoodType;
 import com.chhin.fitnesstracker.entity.StoredMeal;
@@ -11,6 +14,7 @@ import com.chhin.fitnesstracker.util.JsonUtils;
 import com.chhin.fitnesstracker.validation.FoodTypeValidator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.servlet.http.HttpServletRequest;
+import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -20,10 +24,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.List;
-
-import static com.chhin.fitnesstracker.util.Constants.FOOD_TRACKING_MAPPING;
 
 @Controller
 @SessionAttributes({"foodTrackingDTO", "storedMealDTO"})
@@ -224,7 +224,7 @@ public class FoodTrackingController extends AbstractController {
       @ModelAttribute(FOOD_TRACKING_DTO) FoodTrackingDTO foodTrackingDTO,
       Model model,
       HttpServletRequest request) {
-    FTUser ftUser = loggedInUserService.getLoggedInUser().orElse(null);
+    FTUser ftUser = loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);
     List<MealDetailsDTO> mealDetailsDTOList = foodTrackingService.findMealDetailsByUserAndRecordedDate(ftUser, foodTrackingDTO.getFoodTrackingDate().toLocalDate());
     foodTrackingDTO.setMealDetailsDTOList(mealDetailsDTOList);
     model.addAttribute(FOOD_TRACKING_DTO, foodTrackingDTO);
@@ -313,7 +313,7 @@ public class FoodTrackingController extends AbstractController {
       @Validated @ModelAttribute(FOOD_TRACKING_DTO) FoodTrackingDTO foodTrackingDTO,
       BindingResult bindingResult,
       RedirectAttributes redirectAttributes) {
-    FTUser ftUser = loggedInUserService.getLoggedInUser().orElse(null);
+    FTUser ftUser = loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);
     foodTrackingService.saveMeal(foodTrackingDTO, ftUser);
     redirectAttributes.addFlashAttribute(FOOD_TRACKING_DTO, foodTrackingDTO);
     return REDIRECT + FOOD_TRACKING_HOME_MAPPING;

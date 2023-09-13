@@ -1,5 +1,6 @@
 package com.chhin.fitnesstracker.controller;
 
+import com.chhin.fitnesstracker.config.exception.FitnessTrackerRuntimeException;
 import com.chhin.fitnesstracker.entity.FTUser;
 import com.chhin.fitnesstracker.model.ActivityDiaryDTO;
 import com.chhin.fitnesstracker.model.ActivityMonthlyDTO;
@@ -7,13 +8,12 @@ import com.chhin.fitnesstracker.model.LoginFormDTO;
 import com.chhin.fitnesstracker.service.ActivityService;
 import com.chhin.fitnesstracker.service.LoggedInUserService;
 import jakarta.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
+import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
-import java.time.LocalDate;
-import java.util.List;
 
 @Controller
 @SessionAttributes("loginForm")
@@ -42,7 +42,7 @@ public class HomeController extends AbstractController {
 
   @GetMapping("/dashboard")
   public String viewDashboard(Model model, HttpServletRequest request) {
-    FTUser ftUser = loggedInUserService.getLoggedInUser().orElse(null);
+    FTUser ftUser = loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);
     ActivityMonthlyDTO activityMonthlyDTO = new ActivityMonthlyDTO(LocalDate.now());
     List<ActivityDiaryDTO> diaryDTOList = activityService.getDiaryFtUserListJdbc(
         ftUser.getUsername(), activityMonthlyDTO.getActivityMonth());

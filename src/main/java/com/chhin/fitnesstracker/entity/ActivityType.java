@@ -1,9 +1,11 @@
 package com.chhin.fitnesstracker.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.util.Objects;
 
+@Getter
 @Entity
 @Table(name = "activity_type")
 public class ActivityType {
@@ -17,16 +19,8 @@ public class ActivityType {
   @Column(name = "activity_type_description", nullable = false, unique = true, length = 100)
   private String activityTypeDescription;
 
-  public Long getActivityTypeId() {
-    return activityTypeId;
-  }
-
   public void setActivityTypeId(Long activityTypeId) {
     this.activityTypeId = activityTypeId;
-  }
-
-  public String getActivityTypeDescription() {
-    return activityTypeDescription;
   }
 
   public void setActivityTypeDescription(String activityTypeDescription) {

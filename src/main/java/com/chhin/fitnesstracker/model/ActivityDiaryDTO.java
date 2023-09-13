@@ -1,21 +1,21 @@
 package com.chhin.fitnesstracker.model;
 
 import com.chhin.fitnesstracker.model.history.ActivityHistoryDTO;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import lombok.*;
 
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class ActivityDiaryDTO extends ActivityHistoryDTO {
 
   private LocalDate activityDate;
 
-  public ActivityDiaryDTO() {
-  }
-
-  public ActivityDiaryDTO(LocalDate activityDate) {
-    this.activityDate = activityDate;
-  }
 
   public ActivityDiaryDTO(String username, LocalDate activityDate, Long activityCount,
                           BigDecimal totalDistance, Integer totalCalories, LocalTime totalTime) {
@@ -23,18 +23,4 @@ public class ActivityDiaryDTO extends ActivityHistoryDTO {
     this.activityDate = activityDate;
   }
 
-  public LocalDate getActivityDate() {
-    return activityDate;
-  }
-
-  public void setActivityDate(LocalDate activityDate) {
-    this.activityDate = activityDate;
-  }
-
-  @Override
-  public String toString() {
-    return "ActivityDiaryDTO{" +
-        "activityDate=" + activityDate +
-        "', " + super.toString() + "'}'";
-  }
 }

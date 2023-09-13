@@ -1,12 +1,14 @@
 package com.chhin.fitnesstracker.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 
+@Getter
 @Entity
 @Table(name = "training_plan")
 public class TrainingPlan {
@@ -49,80 +51,40 @@ public class TrainingPlan {
     return trainingPlanId;
   }
 
-  public ActivityType getActivityType() {
-    return activityType;
-  }
-
   public void setActivityType(ActivityType activityType) {
     this.activityType = activityType;
-  }
-
-  public FTUser getFtUser() {
-    return ftUser;
   }
 
   public void setFtUser(FTUser ftUser) {
     this.ftUser = ftUser;
   }
 
-  public BigDecimal getDistance() {
-    return distance;
-  }
-
   public void setDistance(BigDecimal distance) {
     this.distance = distance;
-  }
-
-  public LocalDate getActivityDate() {
-    return activityDate;
   }
 
   public void setActivityDate(LocalDate activityDate) {
     this.activityDate = activityDate;
   }
 
-  public Long getTrainingPlanId() {
-    return trainingPlanId;
-  }
-
   public void setTrainingPlanId(Long trainingPlanId) {
     this.trainingPlanId = trainingPlanId;
-  }
-
-  public LocalTime getPlannedTime() {
-    return plannedTime;
   }
 
   public void setPlannedTime(LocalTime plannedTime) {
     this.plannedTime = plannedTime;
   }
 
-  public Integer getRepetitions() {
-    return repetitions;
-  }
-
   public void setRepetitions(Integer repetitions) {
     this.repetitions = repetitions;
-  }
-
-  public BigDecimal getWeight() {
-    return weight;
   }
 
   public void setWeight(BigDecimal weight) {
     this.weight = weight;
   }
 
-  public Integer getNumberOfSets() {
-    return numberOfSets;
-  }
-
   public void setNumberOfSets(Integer numberOfSets) {
     this.numberOfSets = numberOfSets;
-  }
-
-  public String getNotes() {
-    return notes;
   }
 
   public void setNotes(String notes) {

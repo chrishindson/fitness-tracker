@@ -1,11 +1,13 @@
 package com.chhin.fitnesstracker.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+@Getter
 @Entity
 @Table(name = "food_tracking")
 public class FoodTracking {
@@ -27,24 +29,12 @@ public class FoodTracking {
   @JoinColumn(name = "food_tracking_id", referencedColumnName = "food_tracking_id")
   private List<MealTracking> mealTrackingList;
 
-  public Long getFoodTrackingId() {
-    return foodTrackingId;
-  }
-
   public void setFoodTrackingId(Long foodTrackingId) {
     this.foodTrackingId = foodTrackingId;
   }
 
-  public FTUser getFtUser() {
-    return ftUser;
-  }
-
   public void setFtUser(FTUser ftUser) {
     this.ftUser = ftUser;
-  }
-
-  public LocalDate getFoodTrackingDate() {
-    return foodTrackingDate;
   }
 
   public void setFoodTrackingDate(LocalDate foodTrackingDate) {
@@ -61,10 +51,6 @@ public class FoodTracking {
     }
     FoodTracking that = (FoodTracking) o;
     return Objects.equals(foodTrackingId, that.foodTrackingId);
-  }
-
-  public List<MealTracking> getMealTrackingList() {
-    return mealTrackingList;
   }
 
   public void setMealTrackingList(List<MealTracking> mealTrackingList) {

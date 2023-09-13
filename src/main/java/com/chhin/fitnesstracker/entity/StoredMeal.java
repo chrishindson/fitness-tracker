@@ -1,10 +1,12 @@
 package com.chhin.fitnesstracker.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.util.List;
 import java.util.Objects;
 
+@Getter
 @Entity
 @Table(name = "stored_meal")
 public class StoredMeal {
@@ -22,24 +24,12 @@ public class StoredMeal {
   @JoinColumn(name = "stored_meal_id")
   private List<StoredMealIngredients> storedMealIngredientsList;
 
-  public Long getStoredMealId() {
-    return storedMealId;
-  }
-
   public void setStoredMealId(Long storedMealId) {
     this.storedMealId = storedMealId;
   }
 
-  public String getStoredMealName() {
-    return storedMealName;
-  }
-
   public void setStoredMealName(String storedMealName) {
     this.storedMealName = storedMealName;
-  }
-
-  public List<StoredMealIngredients> getStoredMealIngredientsList() {
-    return storedMealIngredientsList;
   }
 
   public void setStoredMealIngredientsList(List<StoredMealIngredients> storedMealIngredientsList) {

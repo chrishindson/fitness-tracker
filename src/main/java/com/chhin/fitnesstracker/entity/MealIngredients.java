@@ -1,10 +1,12 @@
 package com.chhin.fitnesstracker.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 
+@Getter
 @Entity
 @Table(name = "meal_ingredients")
 public class MealIngredients {
@@ -26,32 +28,16 @@ public class MealIngredients {
   @Column(name = "servings")
   private BigDecimal servings;
 
-  public Long getMealIngredientsId() {
-    return mealIngredientsId;
-  }
-
   public void setMealIngredientsId(Long mealIngredientsId) {
     this.mealIngredientsId = mealIngredientsId;
-  }
-
-  public MealTracking getMealTracking() {
-    return mealTracking;
   }
 
   public void setMealTracking(MealTracking mealTracking) {
     this.mealTracking = mealTracking;
   }
 
-  public FoodType getFoodType() {
-    return foodType;
-  }
-
   public void setFoodType(FoodType foodType) {
     this.foodType = foodType;
-  }
-
-  public BigDecimal getServings() {
-    return servings;
   }
 
   public void setServings(BigDecimal servings) {

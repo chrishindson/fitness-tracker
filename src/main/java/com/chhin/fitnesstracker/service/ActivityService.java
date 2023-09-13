@@ -12,6 +12,12 @@ import com.chhin.fitnesstracker.model.history.ActivityHistoryDTO;
 import com.chhin.fitnesstracker.repository.ActivityDetailsRepository;
 import com.chhin.fitnesstracker.repository.ActivityRepository;
 import com.chhin.fitnesstracker.repository.ActivityTypeRepository;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -19,13 +25,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 public class ActivityService {
@@ -138,7 +137,7 @@ public class ActivityService {
             + "count(1) as activityCount, "
             + "sum(coalesce(a.distance,0)) as totalDistance, "
             + "sum(a.calorie_count) as totalCalories, "
-            + "sum(a.time_taken) as totalTime "
+            + "sum(a.time_taken)::text  as totalTime "
             + "FROM activity a, users u "
             + "WHERE lower(u.username) = lower(:username) "
             + "group by u.username";

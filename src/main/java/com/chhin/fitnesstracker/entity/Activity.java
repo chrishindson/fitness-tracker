@@ -1,6 +1,7 @@
 package com.chhin.fitnesstracker.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -8,6 +9,10 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
 
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
 @Table(name = "activity")
 public class Activity {
@@ -45,88 +50,8 @@ public class Activity {
 
   @OneToMany
   @JoinColumn(name = "activity_id", referencedColumnName = "activity_id")
+  @ToString.Exclude
   private List<ActivityDetails> activityDetails;
-
-
-  public Long getActivityId() {
-    return activityId;
-  }
-
-  public void setActivityId(Long activityId) {
-    this.activityId = activityId;
-  }
-
-  public ActivityType getActivityType() {
-    return activityType;
-  }
-
-  public void setActivityType(ActivityType activityType) {
-    this.activityType = activityType;
-  }
-
-  public FTUser getFtUser() {
-    return ftUser;
-  }
-
-  public void setFtUser(FTUser ftUser) {
-    this.ftUser = ftUser;
-  }
-
-  public LocalDate getActivityDate() {
-    return activityDate;
-  }
-
-  public void setActivityDate(LocalDate activityDate) {
-    this.activityDate = activityDate;
-  }
-
-  public LocalTime getTimeTaken() {
-    return timeTaken;
-  }
-
-  public void setTimeTaken(LocalTime timeTaken) {
-    this.timeTaken = timeTaken;
-  }
-
-  public BigDecimal getDistance() {
-    return distance;
-  }
-
-  public void setDistance(BigDecimal distance) {
-    this.distance = distance;
-  }
-
-  public Integer getCalorieCount() {
-    return calorieCount;
-  }
-
-  public void setCalorieCount(Integer calorieCount) {
-    this.calorieCount = calorieCount;
-  }
-
-  public String getNotes() {
-    return notes;
-  }
-
-  public void setNotes(String notes) {
-    this.notes = notes;
-  }
-
-  public LocalTime getStartTime() {
-    return startTime;
-  }
-
-  public void setStartTime(LocalTime startTime) {
-    this.startTime = startTime;
-  }
-
-  public List<ActivityDetails> getActivityDetails() {
-    return activityDetails;
-  }
-
-  public void setActivityDetailsList(List<ActivityDetails> activityDetails) {
-    this.activityDetails = activityDetails;
-  }
 
   @Override
   public boolean equals(Object o) {

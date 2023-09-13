@@ -1,5 +1,6 @@
 package com.chhin.fitnesstracker.controller;
 
+import com.chhin.fitnesstracker.config.exception.FitnessTrackerRuntimeException;
 import com.chhin.fitnesstracker.entity.Activity;
 import com.chhin.fitnesstracker.entity.ActivityType;
 import com.chhin.fitnesstracker.entity.FTUser;
@@ -12,6 +13,11 @@ import com.chhin.fitnesstracker.service.LoggedInUserService;
 import com.chhin.fitnesstracker.validation.ActivityDetailsValidator;
 import com.chhin.fitnesstracker.validation.ActivityValidator;
 import jakarta.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,12 +28,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Controller
 @SessionAttributes("activityDTO")
@@ -63,7 +63,7 @@ public class ActivityController extends AbstractController {
   @GetMapping(ACTIVITY_HOME_MAPPING)
   public String viewHome(Model model,
                          HttpServletRequest request) {
-    FTUser ftUser = loggedInUserService.getLoggedInUser().orElse(null);
+    FTUser ftUser = loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);
     ActivityHistoryDTO historyDTO = activityService.getAllTimeActivitySummaryByFtUserListJdbc(Objects.requireNonNull(ftUser));
     model.addAttribute("activityHistory", historyDTO);
     titleString = "Activity home";
@@ -97,7 +97,7 @@ public class ActivityController extends AbstractController {
       final SessionStatus sessionStatus,
       final RedirectAttributes redirectAttributes) {
 
-    FTUser ftUser = loggedInUserService.getLoggedInUser().orElse(null);
+    FTUser ftUser = loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);
     activityValidator.validate(activityDTO, bindingResult);
     redirectAttributes.addFlashAttribute(ACTIVITY_DTO, activityDTO);
 
@@ -156,7 +156,7 @@ public class ActivityController extends AbstractController {
       @RequestParam(name = "size", defaultValue = "10", required = false) Integer size,
       Model model, HttpServletRequest request) {
 
-    FTUser ftUser = loggedInUserService.getLoggedInUser().orElse(null);
+    FTUser ftUser = loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);
     titleString = "Activity history";
 
     Pageable pageable = PageRequest.of(page - 1, size);
@@ -172,7 +172,7 @@ public class ActivityController extends AbstractController {
   public String viewActivityDaily(@RequestParam("activityDate") String activityDate,
                                   Model model, HttpServletRequest request) {
 
-    FTUser ftUser = loggedInUserService.getLoggedInUser().orElse(null);
+    FTUser ftUser = loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);
     LocalDate activityLocalDate = LocalDate.parse(activityDate, DateTimeFormatter.ofPattern("yyyyMMdd"));
     titleString = "Activity " + activityLocalDate.format(DateTimeFormatter.ofPattern("d MMMM yyyy"));
 

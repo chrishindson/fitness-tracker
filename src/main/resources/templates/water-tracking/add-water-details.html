@@ -23,7 +23,7 @@
         </th:block>
         <th:block
             th:insert="~{fitness-tracker-design-system/form/select :: select-autocomplete(id='activityType',field='activityType',label='Activity type',
-            list=*{activityDetails.activityTypeList},selected='',hints='Hints')}">
+            list=*{activityDetails.activityTypeList},selected='',hints='')}">
         </th:block>
         <th:block
             th:insert="~{fitness-tracker-design-system/form/input :: time-input(id='timeTaken',field='timeTaken',label='Time taken')}">

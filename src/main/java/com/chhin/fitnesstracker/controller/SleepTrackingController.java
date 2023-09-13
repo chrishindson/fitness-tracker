@@ -1,5 +1,8 @@
 package com.chhin.fitnesstracker.controller;
 
+import static com.chhin.fitnesstracker.util.Constants.SLEEP_TRACKING_MAPPING;
+
+import com.chhin.fitnesstracker.config.exception.FitnessTrackerRuntimeException;
 import com.chhin.fitnesstracker.entity.FTUser;
 import com.chhin.fitnesstracker.entity.SleepTracking;
 import com.chhin.fitnesstracker.model.SleepTrackingDTO;
@@ -17,8 +20,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import static com.chhin.fitnesstracker.util.Constants.SLEEP_TRACKING_MAPPING;
 
 @Controller
 @RequestMapping(SLEEP_TRACKING_MAPPING)
@@ -39,7 +40,7 @@ public class SleepTrackingController extends AbstractController {
 
   @GetMapping(CONTROLLER_HOME_LANDING)
   public String viewHome(Model model, HttpServletRequest request) {
-    FTUser ftUser = loggedInUserService.getLoggedInUser().orElse(null);
+    FTUser ftUser = loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);
     titleString = "Sleep tracking home";
     SleepHistoryDTO sleepHistoryDTO = sleepTrackingService.getSleepTrackingHistory(ftUser);
     model.addAttribute("sleepHistoryDTO", sleepHistoryDTO);
@@ -63,7 +64,7 @@ public class SleepTrackingController extends AbstractController {
       @Validated @ModelAttribute(SLEEP_TRACKING_DTO) SleepTrackingDTO sleepTrackingDTO,
       final BindingResult bindingResult,
       final RedirectAttributes redirectAttributes) {
-    FTUser ftUser = loggedInUserService.getLoggedInUser().orElse(null);
+    FTUser ftUser = loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);
 
     sleepTrackingValidator.validate(sleepTrackingDTO, bindingResult);
 
@@ -82,7 +83,7 @@ public class SleepTrackingController extends AbstractController {
       @RequestParam(name = "size", defaultValue = "10", required = false) Integer size,
       Model model, HttpServletRequest request) {
     Pageable pageable = PageRequest.of(page - 1, size);
-    FTUser ftUser = loggedInUserService.getLoggedInUser().orElse(null);
+    FTUser ftUser = loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);
 
     Page<SleepTracking> sleepHistory = sleepTrackingService.getSleepTrackingPagination(ftUser, pageable);
     model.addAttribute("sleepHistory", sleepHistory);

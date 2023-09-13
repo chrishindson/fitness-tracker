@@ -13,6 +13,23 @@
     </div>
   </div>
 </th:block>
+<th:block th:fragment="clickable-card-arrow"
+          th:with="id=${id},title=${title?:''},link=${link?:'#'},description=${description?:''}">
+    <div class="nhsuk-card nhsuk-card--clickable" th:classappend="${cardClassAppend}">
+        <div class="nhsuk-card__content nhsuk-card__content--primary">
+            <h2 class="nhsuk-card__heading nhsuk-heading-m">
+                <a class="nhsuk-card__link nhsuk-link--no-visited-state" th:href="@{${link}}"
+                   th:text="${title}">Introduction to
+                    care and
+                    support</a>
+            </h2>
+            <p class="nhsuk-card__description" th:text="${description}">A quick guide for people who have
+                care and support needs and their carers</p>
+            <th:block
+                    th:insert="~{fitness-tracker-design-system/component/icons ::chevron-right-circle}"></th:block>
+        </div>
+    </div>
+</th:block>
 <th:block th:fragment="card"
           th:with="id=${id},title=${title?:''},description=${description?:''}">
   <div class="nhsuk-card" th:classappend="${cardClassAppend}">

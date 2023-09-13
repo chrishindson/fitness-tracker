@@ -13,11 +13,8 @@
   <meta th:content="${@environment.getProperty('server.servlet.context-path')}"
         th:name="_context_path">
   <title th:text="${pageTitle}">Health tracker</title>
-  <!--        type="text/css">-->
-  <link rel="stylesheet" th:href="@{/css/nhsuk-7.0.0.min.css}" type="text/css">
-  <link rel="stylesheet" th:href="@{/css/diary.css}" type="text/css">
+  <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
   <th:block th:if="${accessible}">
-    <link rel="stylesheet" th:href="@{/css/accessible-autocomplete.min.css}" type="text/css">
     <script th:src="@{/js/accessible-autocomplete.min.js}"></script>
   </th:block>
 </head>
@@ -52,8 +49,10 @@
       </ul>
     </div>
   </div>
-  <script th:src="@{/webjars/jquery/3.6.4/dist/jquery.js}"></script>
-  <script th:src="@{/js/nhsuk-7.0.0.min.js}"></script>
+  <script th:src="@{/js/jquery.js}"></script>
+  <script th:src="@{/js/nhs.js}"></script>
+  <script th:src="@{/js/moj.js}"></script>
+  <script th:src="@{/js/gov.js}"></script>
 </footer>
 
 </body>

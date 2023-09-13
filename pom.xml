@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.5</version>
+        <version>3.1.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.chhin</groupId>
@@ -15,17 +15,19 @@
     <description>health-tracker</description>
     <properties>
         <java.version>17</java.version>
-        <jquery.version>3.6.4</jquery.version>
-        <nhsuk.frontend.version>6.2.0</nhsuk.frontend.version>
-        <webjars.locator.version>0.45</webjars.locator.version>
-        <spring-cloud-azure.version>5.0.0</spring-cloud-azure.version>
+        <jquery.version>3.7.1</jquery.version>
+        <nhsuk.frontend.version>7.0.0</nhsuk.frontend.version>
+        <webjars.locator.version>0.47</webjars.locator.version>
+        <spring-cloud-azure.version>5.3.0</spring-cloud-azure.version>
+        <spring.version>3.1.2</spring.version>
     </properties>
     <dependencies>
-        <!--        <dependency>-->
-        <!--            <groupId>org.webjars.npm</groupId>-->
-        <!--            <artifactId>nhsuk-frontend</artifactId>-->
-        <!--            <version>${nhsuk.frontend.version}</version>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.28</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>webjars-locator</artifactId>
@@ -34,7 +36,7 @@
         <dependency>
             <groupId>org.webjars.npm</groupId>
             <artifactId>jquery</artifactId>
-            <version>3.6.4</version>
+            <version>${jquery.version}</version>
         </dependency>
         <dependency>
             <groupId>com.azure.spring</groupId>
@@ -106,6 +108,10 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
     </dependencies>
 

@@ -1,11 +1,13 @@
 package com.chhin.fitnesstracker.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
+@Getter
 @Entity
 @Table(name = "body_measurement")
 public class BodyMeasurement {
@@ -28,16 +30,8 @@ public class BodyMeasurement {
   @Column(name = "measurement_size", nullable = false, precision = 2)
   private BigDecimal measurementSize;
 
-  public Long getBodyMeasurementId() {
-    return bodyMeasurementId;
-  }
-
   public void setBodyMeasurementId(Long bodyMeasurementId) {
     this.bodyMeasurementId = bodyMeasurementId;
-  }
-
-  public BodyMeasurementArea getBodyMeasurementArea() {
-    return bodyMeasurementArea;
   }
 
   public void setBodyMeasurementArea(
@@ -45,24 +39,12 @@ public class BodyMeasurement {
     this.bodyMeasurementArea = bodyMeasurementArea;
   }
 
-  public FTUser getFtUser() {
-    return ftUser;
-  }
-
   public void setFtUser(FTUser ftUser) {
     this.ftUser = ftUser;
   }
 
-  public LocalDate getMeasurementDate() {
-    return measurementDate;
-  }
-
   public void setMeasurementDate(LocalDate measurementDate) {
     this.measurementDate = measurementDate;
-  }
-
-  public BigDecimal getMeasurementSize() {
-    return measurementSize;
   }
 
   public void setMeasurementSize(BigDecimal measurementSize) {

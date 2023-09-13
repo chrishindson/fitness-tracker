@@ -19,7 +19,6 @@ public class ActivityValidator implements Validator {
 
   @Override
   public void validate(Object target, Errors errors) {
-    if (!(target instanceof ActivityDTO dto)) {
-    }
+    if (!(target instanceof ActivityDTO dto)) {}
   }
 }

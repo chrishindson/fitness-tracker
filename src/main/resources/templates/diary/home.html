@@ -23,7 +23,7 @@
         <th:block th:if="${activityMonthlyDTO.firstDayOfWeek() <= i}"
                   th:insert="~{fitness-tracker-design-system/component/card :: diary-clickable-card(id=${i},
                   link=${'/diary/day?diaryDate=' + activityMonthlyDTO.getDiaryDateString(i)},
-                  description=${(i - activityMonthlyDTO.firstDayOfWeek() + 1)},title='',cardClassAppend=${activityMonthlyDTO.getActivityCount(i) != 0 ? ' nhsuk-card--clickable nhsuk nhsuk-tag--pink' : ''})}">
+                  description=${(i - activityMonthlyDTO.firstDayOfWeek() + 1)},title='',cardClassAppend=${activityMonthlyDTO.getActivityCount(i) != 0 ? ' nhsuk-card--clickable nhsuk nhsuk-tag--orange' : ''})}">
         </th:block>
       </th:block>
     </div>

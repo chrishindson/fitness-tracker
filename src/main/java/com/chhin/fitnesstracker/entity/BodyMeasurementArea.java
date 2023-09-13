@@ -1,9 +1,11 @@
 package com.chhin.fitnesstracker.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.util.Objects;
 
+@Getter
 @Entity
 @Table(name = "body_measurement_area")
 public class BodyMeasurementArea {
@@ -17,16 +19,8 @@ public class BodyMeasurementArea {
   @Column(name = "body_measurement_area_description", nullable = false, unique = true, length = 100)
   private String bodyMeasurementAreaDescription;
 
-  public Long getBodyMeasurementAreaId() {
-    return bodyMeasurementAreaId;
-  }
-
   public void setBodyMeasurementAreaId(Long bodyMeasurementAreaId) {
     this.bodyMeasurementAreaId = bodyMeasurementAreaId;
-  }
-
-  public String getBodyMeasurementAreaDescription() {
-    return bodyMeasurementAreaDescription;
   }
 
   public void setBodyMeasurementAreaDescription(String bodyMeasurementAreaDescription) {

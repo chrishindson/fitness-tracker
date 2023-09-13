@@ -3,15 +3,14 @@ package com.chhin.fitnesstracker.service;
 import com.chhin.fitnesstracker.entity.*;
 import com.chhin.fitnesstracker.model.*;
 import com.chhin.fitnesstracker.repository.*;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 @Service
 public class FoodTrackingService {

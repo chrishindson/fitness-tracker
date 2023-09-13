@@ -1,11 +1,13 @@
 package com.chhin.fitnesstracker.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
+@Getter
 @Entity
 @Table(name = "weight_tracking")
 public class WeightTracking {
@@ -34,64 +36,32 @@ public class WeightTracking {
   @Column(name = "recorded_date", nullable = false)
   private LocalDate recordedDate;
 
-  public Long getWeightTrackingId() {
-    return weightTrackingId;
-  }
-
   public void setWeightTrackingId(Long weightTrackingId) {
     this.weightTrackingId = weightTrackingId;
-  }
-
-  public FTUser getFtUser() {
-    return ftUser;
   }
 
   public void setFtUser(FTUser ftUser) {
     this.ftUser = ftUser;
   }
 
-  public BigDecimal getWeight() {
-    return weight;
-  }
-
   public void setWeight(BigDecimal weight) {
     this.weight = weight;
-  }
-
-  public BigDecimal getSkeletalMuscle() {
-    return skeletalMuscle;
   }
 
   public void setSkeletalMuscle(BigDecimal skeletalMuscle) {
     this.skeletalMuscle = skeletalMuscle;
   }
 
-  public BigDecimal getFatMass() {
-    return fatMass;
-  }
-
   public void setFatMass(BigDecimal fatMass) {
     this.fatMass = fatMass;
-  }
-
-  public BigDecimal getBodyFat() {
-    return bodyFat;
   }
 
   public void setBodyFat(BigDecimal bodyFat) {
     this.bodyFat = bodyFat;
   }
 
-  public BigDecimal getBodyWater() {
-    return bodyWater;
-  }
-
   public void setBodyWater(BigDecimal bodyWater) {
     this.bodyWater = bodyWater;
-  }
-
-  public LocalDate getRecordedDate() {
-    return recordedDate;
   }
 
   public void setRecordedDate(LocalDate recordedDate) {

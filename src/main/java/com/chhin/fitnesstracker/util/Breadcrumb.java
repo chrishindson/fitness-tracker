@@ -2,11 +2,13 @@ package com.chhin.fitnesstracker.util;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
+@Getter
 public class Breadcrumb implements Serializable {
 
   @JsonProperty("pageTitle")
@@ -23,24 +25,12 @@ public class Breadcrumb implements Serializable {
     this.url = url;
   }
 
-  public String getPageTitle() {
-    return pageTitle;
-  }
-
   public void setPageTitle(String pageTitle) {
     this.pageTitle = pageTitle;
   }
 
-  public String getUrl() {
-    return url;
-  }
-
   public void setUrl(String url) {
     this.url = url;
-  }
-
-  public List<Breadcrumb> getHistory() {
-    return history;
   }
 
   public void setHistory(List<Breadcrumb> history) {

@@ -1,5 +1,8 @@
 package com.chhin.fitnesstracker.controller;
 
+import static com.chhin.fitnesstracker.util.Constants.DIARY_MAPPING;
+
+import com.chhin.fitnesstracker.config.exception.FitnessTrackerRuntimeException;
 import com.chhin.fitnesstracker.entity.FTUser;
 import com.chhin.fitnesstracker.model.ActivityDiaryDTO;
 import com.chhin.fitnesstracker.model.ActivityMonthlyDTO;
@@ -8,17 +11,14 @@ import com.chhin.fitnesstracker.service.ActivityService;
 import com.chhin.fitnesstracker.service.DiaryService;
 import com.chhin.fitnesstracker.service.LoggedInUserService;
 import jakarta.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-
-import static com.chhin.fitnesstracker.util.Constants.DIARY_MAPPING;
 
 @Controller
 @RequestMapping(DIARY_MAPPING)
@@ -39,7 +39,7 @@ public class DiaryController extends AbstractController {
 
   @GetMapping(CONTROLLER_HOME_LANDING)
   public String viewHome(Model model, HttpServletRequest request) {
-    FTUser ftUser = loggedInUserService.getLoggedInUser().orElse(null);
+    FTUser ftUser = loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);
     ActivityMonthlyDTO activityMonthlyDTO = new ActivityMonthlyDTO(LocalDate.now());
     List<ActivityDiaryDTO> diaryDTOList = activityService.getDiaryFtUserListJdbc(
         ftUser.getUsername(), activityMonthlyDTO.getActivityMonth());
@@ -56,7 +56,7 @@ public class DiaryController extends AbstractController {
       Model model,
       HttpServletRequest request) {
     LocalDate diaryLocalDate = LocalDate.parse(diaryDate, DateTimeFormatter.ofPattern("yyyyMMdd"));
-    FTUser ftUser = loggedInUserService.getLoggedInUser().orElse(null);
+    FTUser ftUser = loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);
     DailySummaryDTO dailySummaryDTO = diaryService.getDailySummary(ftUser, diaryLocalDate);
     model.addAttribute(DAILY_SUMMARY_DTO, dailySummaryDTO);
 

@@ -1,5 +1,8 @@
 package com.chhin.fitnesstracker.controller;
 
+import static com.chhin.fitnesstracker.util.Constants.USERS_MAPPING;
+
+import com.chhin.fitnesstracker.config.exception.FitnessTrackerRuntimeException;
 import com.chhin.fitnesstracker.entity.FTUser;
 import com.chhin.fitnesstracker.service.LoggedInUserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -7,8 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import static com.chhin.fitnesstracker.util.Constants.USERS_MAPPING;
 
 @Controller
 @RequestMapping(USERS_MAPPING)
@@ -23,7 +24,7 @@ public class UserController extends AbstractController {
 
   @GetMapping(CONTROLLER_HOME_LANDING)
   public String viewHome(Model model, HttpServletRequest request) {
-    FTUser user = loggedInUserService.getLoggedInUser().orElse(null);
+    FTUser user = loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);
     titleString = "User management home";
     model.addAttribute("user", user);
     getBreadcrumbs(titleString, model, request);
@@ -32,7 +33,7 @@ public class UserController extends AbstractController {
 
   @GetMapping("/users/amend/{userId}")
   public String viewUserDetails(Model model, HttpServletRequest request) {
-    FTUser user = loggedInUserService.getLoggedInUser().orElse(null);
+    FTUser user = loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);
     if (user == null) {
       return REDIRECT + "/home";
     }

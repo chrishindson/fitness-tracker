@@ -1,10 +1,12 @@
 package com.chhin.fitnesstracker.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 
+@Getter
 @Entity
 @Table(name = "activity_details")
 public class ActivityDetails {
@@ -29,40 +31,20 @@ public class ActivityDetails {
   private Integer numberOfSets;
 
 
-  public Long getActivityDetailsId() {
-    return activityDetailsId;
-  }
-
   public void setActivityDetailsId(Long activityDetailsId) {
     this.activityDetailsId = activityDetailsId;
-  }
-
-  public Activity getActivity() {
-    return activity;
   }
 
   public void setActivity(Activity activity) {
     this.activity = activity;
   }
 
-  public Integer getRepetitions() {
-    return repetitions;
-  }
-
   public void setRepetitions(Integer repetitions) {
     this.repetitions = repetitions;
   }
 
-  public BigDecimal getWeight() {
-    return weight;
-  }
-
   public void setWeight(BigDecimal weight) {
     this.weight = weight;
-  }
-
-  public Integer getNumberOfSets() {
-    return numberOfSets;
   }
 
   public void setNumberOfSets(Integer numberOfSets) {

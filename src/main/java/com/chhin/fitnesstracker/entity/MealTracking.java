@@ -1,10 +1,12 @@
 package com.chhin.fitnesstracker.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.util.List;
 import java.util.Objects;
 
+@Getter
 @Entity
 @Table(name = "meal_tracking")
 public class MealTracking {
@@ -27,32 +29,16 @@ public class MealTracking {
   @JoinColumn(name = "meal_tracking_id", referencedColumnName = "meal_tracking_id")
   private List<MealIngredients> mealIngredientsList;
 
-  public Long getMealTrackingId() {
-    return mealTrackingId;
-  }
-
   public void setMealTrackingId(Long mealTrackingId) {
     this.mealTrackingId = mealTrackingId;
-  }
-
-  public FoodTracking getFoodTracking() {
-    return foodTracking;
   }
 
   public void setFoodTracking(FoodTracking foodTracking) {
     this.foodTracking = foodTracking;
   }
 
-  public MealType getMealType() {
-    return mealType;
-  }
-
   public void setMealType(MealType mealType) {
     this.mealType = mealType;
-  }
-
-  public List<MealIngredients> getMealIngredientsList() {
-    return mealIngredientsList;
   }
 
   public void setMealIngredientsList(List<MealIngredients> mealIngredientsList) {

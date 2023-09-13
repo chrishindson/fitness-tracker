@@ -1,11 +1,13 @@
 package com.chhin.fitnesstracker.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Getter
 @Entity
 @Table(name = "mental_health_log")
 public class MentalHealthLog {
@@ -38,80 +40,40 @@ public class MentalHealthLog {
   @Column(name = "created_date", nullable = false)
   private LocalDateTime createdDate;
 
-  public Long getMentalHealthLogId() {
-    return mentalHealthLogId;
-  }
-
   public void setMentalHealthLogId(Long mentalHealthLogId) {
     this.mentalHealthLogId = mentalHealthLogId;
-  }
-
-  public FTUser getFtUser() {
-    return ftUser;
   }
 
   public void setFtUser(FTUser ftUser) {
     this.ftUser = ftUser;
   }
 
-  public LocalDate getLogDate() {
-    return logDate;
-  }
-
   public void setLogDate(LocalDate logDate) {
     this.logDate = logDate;
-  }
-
-  public String getThoughtsEmotions() {
-    return thoughtsEmotions;
   }
 
   public void setThoughtsEmotions(String thoughtsEmotions) {
     this.thoughtsEmotions = thoughtsEmotions;
   }
 
-  public String getPotentialTriggers() {
-    return potentialTriggers;
-  }
-
   public void setPotentialTriggers(String potentialTriggers) {
     this.potentialTriggers = potentialTriggers;
-  }
-
-  public String getIntensity() {
-    return intensity;
   }
 
   public void setIntensity(String intensity) {
     this.intensity = intensity;
   }
 
-  public String getActualResponse() {
-    return actualResponse;
-  }
-
   public void setActualResponse(String actualResponse) {
     this.actualResponse = actualResponse;
-  }
-
-  public String getFutureResponse() {
-    return futureResponse;
   }
 
   public void setFutureResponse(String futureResponse) {
     this.futureResponse = futureResponse;
   }
 
-  public String getAdditionalNotes() {
-    return additionalNotes;
-  }
-
   public void setAdditionalNotes(String additionalNotes) {
     this.additionalNotes = additionalNotes;
-  }
-
-  public LocalDateTime getCreatedDate() {
-    return createdDate;
   }
 
   public void setCreatedDate(LocalDateTime createdDate) {

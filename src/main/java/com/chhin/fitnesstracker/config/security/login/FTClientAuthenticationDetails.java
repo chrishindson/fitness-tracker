@@ -1,10 +1,12 @@
 package com.chhin.fitnesstracker.config.security.login;
 
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.security.web.authentication.WebAuthenticationDetails;
-
 import java.util.Objects;
 
+import lombok.Getter;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
+
+@Getter
 public class FTClientAuthenticationDetails extends WebAuthenticationDetails {
 
   private final String authCode;
@@ -12,10 +14,6 @@ public class FTClientAuthenticationDetails extends WebAuthenticationDetails {
   public FTClientAuthenticationDetails(HttpServletRequest httpServletRequest) {
     super(httpServletRequest);
     this.authCode = httpServletRequest.getParameter("authCode");
-  }
-
-  public String getAuthCode() {
-    return authCode;
   }
 
   @Override

@@ -1,5 +1,8 @@
 package com.chhin.fitnesstracker.controller;
 
+import static com.chhin.fitnesstracker.util.Constants.MENTAL_HEALTH_LOG_MAPPING;
+
+import com.chhin.fitnesstracker.config.exception.FitnessTrackerRuntimeException;
 import com.chhin.fitnesstracker.entity.FTUser;
 import com.chhin.fitnesstracker.model.MentalHealthLogDTO;
 import com.chhin.fitnesstracker.service.LoggedInUserService;
@@ -11,8 +14,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import static com.chhin.fitnesstracker.util.Constants.MENTAL_HEALTH_LOG_MAPPING;
 
 @Controller
 @RequestMapping(MENTAL_HEALTH_LOG_MAPPING)
@@ -166,7 +167,7 @@ public class MentalHealthLogController extends AbstractController {
       @Validated @ModelAttribute(MENTAL_HEALTH_LOG_DTO) MentalHealthLogDTO mentalHealthLogDTO,
       final BindingResult bindingResult,
       final RedirectAttributes redirectAttributes) {
-    FTUser ftUser = loggedInUserService.getLoggedInUser().orElse(null);
+    FTUser ftUser = loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);
     mentalHealthLogService.save(mentalHealthLogDTO, ftUser);
 
     return REDIRECT + getHomeMapping(MENTAL_HEALTH_LOG_MAPPING);

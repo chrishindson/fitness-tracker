@@ -1,11 +1,13 @@
 package com.chhin.fitnesstracker.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Getter
 @Entity
 @Table(name = "users")
 public class FTUser {
@@ -41,88 +43,44 @@ public class FTUser {
   @JoinColumn(name = "user_group_id", nullable = false)
   private UserGroup userGroup;
 
-  public Long getUserId() {
-    return userId;
-  }
-
   public void setUserId(Long userId) {
     this.userId = userId;
-  }
-
-  public String getUsername() {
-    return username;
   }
 
   public void setUsername(String username) {
     this.username = username;
   }
 
-  public String getForename() {
-    return forename;
-  }
-
   public void setForename(String forename) {
     this.forename = forename;
-  }
-
-  public String getSurname() {
-    return surname;
   }
 
   public void setSurname(String surname) {
     this.surname = surname;
   }
 
-  public String getPassword() {
-    return password;
-  }
-
   public void setPassword(String password) {
     this.password = password;
-  }
-
-  public String getEmailAddress() {
-    return emailAddress;
   }
 
   public void setEmailAddress(String emailAddress) {
     this.emailAddress = emailAddress;
   }
 
-  public Integer getHeight() {
-    return height;
-  }
-
   public void setHeight(Integer height) {
     this.height = height;
-  }
-
-  public LocalDateTime getLastUpdated() {
-    return lastUpdated;
   }
 
   public void setLastUpdated(LocalDateTime lastUpdated) {
     this.lastUpdated = lastUpdated;
   }
 
-  public LocalDateTime getCreatedDate() {
-    return createdDate;
-  }
-
   public void setCreatedDate(LocalDateTime createdDate) {
     this.createdDate = createdDate;
   }
 
-  public LocalDateTime getLastAccessedDate() {
-    return lastAccessedDate;
-  }
-
   public void setLastAccessedDate(LocalDateTime lastAccessedDate) {
     this.lastAccessedDate = lastAccessedDate;
-  }
-
-  public UserGroup getUserGroup() {
-    return userGroup;
   }
 
   public void setUserGroup(UserGroup userGroup) {
@@ -139,10 +97,6 @@ public class FTUser {
     }
     FTUser ftUser = (FTUser) o;
     return Objects.equals(userId, ftUser.userId);
-  }
-
-  public LocalDate getDateOfBirth() {
-    return dateOfBirth;
   }
 
   public void setDateOfBirth(LocalDate dateOfBirth) {

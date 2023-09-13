@@ -66,7 +66,6 @@
           <div class="nhsuk-grid-row">
             <div class="nhsuk-grid-column-one-half">
               <h2 class="nhsuk-card__heading nhsuk-heading-m nhsuk-u-margin-bottom-2">Daily activities
-                <a th:href="@{'/activity/activities/day/' + ${#temporals.format(dailySummaryDTO.summaryDate,'yyyy-MM-dd')}}"></a>
               </h2>
               <th:block
                   th:insert="~{fitness-tracker-design-system/partial/activity-summary :: activity-summary(activitySummaryDTO=${dailySummaryDTO.getActivitySummaryDTO()}, summaryDate=${dailySummaryDTO.summaryDate})}">

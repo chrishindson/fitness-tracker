@@ -1,7 +1,6 @@
 package com.chhin.fitnesstracker.service;
 
 import com.chhin.fitnesstracker.entity.FTUser;
-
 import java.util.Optional;
 
 public class LoggedInUserService {

@@ -4,9 +4,8 @@ import com.chhin.fitnesstracker.entity.FTUser;
 import com.chhin.fitnesstracker.entity.MentalHealthLog;
 import com.chhin.fitnesstracker.model.MentalHealthLogDTO;
 import com.chhin.fitnesstracker.repository.MentalHealthLogRepository;
-import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
+import org.springframework.stereotype.Service;
 
 @Service
 public class MentalHealthLogService {

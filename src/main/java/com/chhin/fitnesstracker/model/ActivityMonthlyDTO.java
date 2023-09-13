@@ -3,28 +3,22 @@ package com.chhin.fitnesstracker.model;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import lombok.*;
 
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class ActivityMonthlyDTO {
 
   private LocalDate activityMonth;
   private List<ActivityDiaryDTO> monthlyActivities;
-
-  public ActivityMonthlyDTO(LocalDate activityMonth) {
-    this.activityMonth = activityMonth;
+  
+  public ActivityMonthlyDTO(LocalDate localDate){
+    this.activityMonth = localDate;
   }
-
-  public Integer daysInMonth() {
-    return activityMonth.lengthOfMonth();
-  }
-
-  public LocalDate getActivityMonth() {
-    return activityMonth;
-  }
-
-  public void setActivityMonth(LocalDate activityMonth) {
-    this.activityMonth = activityMonth;
-  }
-
   public Integer firstDayOfWeek() {
     return activityMonth.withDayOfMonth(1).getDayOfWeek().getValue();
   }
@@ -36,10 +30,6 @@ public class ActivityMonthlyDTO {
   public Integer getLastDiaryPlace() {
     return activityMonth.withDayOfMonth(1).getDayOfWeek().getValue() + activityMonth.lengthOfMonth()
         - 1;
-  }
-
-  public List<ActivityDiaryDTO> getMonthlyActivities() {
-    return monthlyActivities;
   }
 
   public void setMonthlyActivities(List<ActivityDiaryDTO> monthlyActivities) {

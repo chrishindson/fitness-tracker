@@ -1,43 +1,25 @@
 package com.chhin.fitnesstracker.model;
 
+import com.chhin.fitnesstracker.util.HelperUtils;
 import java.math.BigDecimal;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import lombok.*;
 
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class BodyMeasurementDTO {
 
   private String bodyMeasurementArea;
   private DateDTO measurementDate;
   private BigDecimal measurementSize;
+  private Map<Long, String> bodyMeasurementAreaList;
 
-  public String getBodyMeasurementArea() {
-    return bodyMeasurementArea;
-  }
-
-  public void setBodyMeasurementArea(String bodyMeasurementArea) {
-    this.bodyMeasurementArea = bodyMeasurementArea;
-  }
-
-  public DateDTO getMeasurementDate() {
-    return measurementDate;
-  }
-
-  public void setMeasurementDate(DateDTO measurementDate) {
-    this.measurementDate = measurementDate;
-  }
-
-  public BigDecimal getMeasurementSize() {
-    return measurementSize;
-  }
-
-  public void setMeasurementSize(BigDecimal measurementSize) {
-    this.measurementSize = measurementSize;
-  }
-
-  @Override
-  public String toString() {
-    return "BodyMeasurementDTO{" +
-        "bodyMeasurementArea='" + bodyMeasurementArea + '\'' +
-        ", measurementDate=" + measurementDate +
-        ", measurementSize=" + measurementSize +
-        '}';
+  public LinkedHashMap<Long, String> getSortedMap() {
+    return HelperUtils.getSortedMap(this.bodyMeasurementAreaList);
   }
 }

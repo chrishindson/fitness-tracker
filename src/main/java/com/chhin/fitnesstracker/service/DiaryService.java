@@ -4,16 +4,15 @@ import com.chhin.fitnesstracker.entity.*;
 import com.chhin.fitnesstracker.model.ActivitySummaryDTO;
 import com.chhin.fitnesstracker.model.DailySummaryDTO;
 import com.chhin.fitnesstracker.repository.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Service;
 
 @Service
 public class DiaryService {

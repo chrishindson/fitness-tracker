@@ -11,5 +11,4 @@ public class FitnessTrackerApplication {
   public static void main(String[] args) {
     SpringApplication.run(FitnessTrackerApplication.class, args);
   }
-
 }

@@ -1,9 +1,11 @@
 package com.chhin.fitnesstracker.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.util.Objects;
 
+@Getter
 @Entity
 @Table(name = "user_group")
 public class UserGroup {
@@ -17,16 +19,8 @@ public class UserGroup {
   @Column(name = "user_group_description", nullable = false, length = 50)
   private String userGroupDescription;
 
-  public Long getUserGroupId() {
-    return userGroupId;
-  }
-
   public void setUserGroupId(Long userGroupId) {
     this.userGroupId = userGroupId;
-  }
-
-  public String getUserGroupDescription() {
-    return userGroupDescription;
   }
 
   public void setUserGroupDescription(String userGroupDescription) {

@@ -3,15 +3,18 @@
 <body>
 <main class="nhsuk-main-wrapper" id="main-content" role="main">
 
-  <div class="nhsuk-grid-row">
-    <div class="nhsuk-grid-column-full">
-      <h1 th:text="${pageTitleRaw}">Dashboard</h1>
+    <div class="nhsuk-grid-row">
+        <div class="nhsuk-grid-column-full">
+            <h1 th:text="${pageTitleRaw}">Dashboard</h1>
+        </div>
     </div>
-  </div>
-  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-row">
+        <div class="nhsuk-grid-column-full">
 
-  </div>
-
+            <th:block
+                    th:insert="~{fitness-tracker-design-system/component/misc ::action-link('add-body-measurement','Add body measurement', '/body-measurement/add-body-measurement')}"></th:block>
+        </div>
+    </div>
 </main>
 </body>
 </html>

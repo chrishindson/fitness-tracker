@@ -1,5 +1,8 @@
 package com.chhin.fitnesstracker.controller;
 
+import static com.chhin.fitnesstracker.util.Constants.WEIGHT_TRACKING_MAPPING;
+
+import com.chhin.fitnesstracker.config.exception.FitnessTrackerRuntimeException;
 import com.chhin.fitnesstracker.entity.FTUser;
 import com.chhin.fitnesstracker.model.WeightTrackingDTO;
 import com.chhin.fitnesstracker.service.LoggedInUserService;
@@ -16,8 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import static com.chhin.fitnesstracker.util.Constants.WEIGHT_TRACKING_MAPPING;
-
 @Controller
 @RequestMapping(WEIGHT_TRACKING_MAPPING)
 public class WeightTrackingController extends AbstractController {
@@ -27,9 +28,10 @@ public class WeightTrackingController extends AbstractController {
   private final WeightTrackingService weightTrackingService;
   private final WeightTrackingValidator weightTrackingValidator;
 
-  public WeightTrackingController(LoggedInUserService loggedInUserService,
-                                  WeightTrackingService weightTrackingService,
-                                  WeightTrackingValidator weightTrackingValidator) {
+  public WeightTrackingController(
+      LoggedInUserService loggedInUserService,
+      WeightTrackingService weightTrackingService,
+      WeightTrackingValidator weightTrackingValidator) {
     super();
     this.loggedInUserService = loggedInUserService;
     this.weightTrackingService = weightTrackingService;
@@ -44,8 +46,7 @@ public class WeightTrackingController extends AbstractController {
   }
 
   @GetMapping("/add-weight-details")
-  public String viewAddActivity(Model model,
-                                HttpServletRequest request) {
+  public String viewAddActivity(Model model, HttpServletRequest request) {
     if (!model.containsAttribute(WEIGHT_TRACKING_DTO)) {
       WeightTrackingDTO weightTrackingDTO = new WeightTrackingDTO();
       model.addAttribute(WEIGHT_TRACKING_DTO, weightTrackingDTO);
@@ -61,13 +62,14 @@ public class WeightTrackingController extends AbstractController {
       final BindingResult bindingResult,
       final RedirectAttributes redirectAttributes) {
 
-    FTUser ftUser = loggedInUserService.getLoggedInUser().orElse(null);
+    FTUser ftUser =
+        loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);
     weightTrackingValidator.validate(weightTrackingDTO, bindingResult);
     redirectAttributes.addFlashAttribute(WEIGHT_TRACKING_DTO, weightTrackingDTO);
 
     if (bindingResult.hasErrors()) {
-      redirectAttributes.addFlashAttribute(ATTR_BINDING_RESULT + WEIGHT_TRACKING_DTO,
-          bindingResult);
+      redirectAttributes.addFlashAttribute(
+          ATTR_BINDING_RESULT + WEIGHT_TRACKING_DTO, bindingResult);
       return REDIRECT + "/weight-tracking/add-weight-details";
     }
     weightTrackingService.saveWeightDetails(weightTrackingDTO, ftUser);
