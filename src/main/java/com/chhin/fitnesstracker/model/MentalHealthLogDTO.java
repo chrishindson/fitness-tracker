@@ -4,10 +4,10 @@ import lombok.*;
 
 @Getter
 @Setter
+@ToString(onlyExplicitlyIncluded = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class MentalHealthLogDTO {
   private DateDTO logDate;
   private String thoughtsEmotions;
@@ -16,5 +16,4 @@ public class MentalHealthLogDTO {
   private String actualResponse;
   private String futureResponse;
   private String additionalNotes;
-
 }

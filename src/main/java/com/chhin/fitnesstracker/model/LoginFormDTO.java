@@ -4,10 +4,10 @@ import lombok.*;
 
 @Getter
 @Setter
+@ToString(onlyExplicitlyIncluded = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class LoginFormDTO {
 
   private String username;

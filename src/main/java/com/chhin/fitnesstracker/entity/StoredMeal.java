@@ -1,26 +1,33 @@
 package com.chhin.fitnesstracker.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-
 import java.util.List;
 import java.util.Objects;
+import lombok.*;
 
 @Getter
+@Setter
+@ToString(onlyExplicitlyIncluded = true)
+@Builder
+@RequiredArgsConstructor
 @Entity
+@AllArgsConstructor
 @Table(name = "stored_meal")
 public class StoredMeal {
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "stored_meal_gen")
-  @SequenceGenerator(name = "stored_meal_gen", sequenceName = "stored_meal_pk_seq", allocationSize = 1)
+  @SequenceGenerator(
+      name = "stored_meal_gen",
+      sequenceName = "stored_meal_pk_seq",
+      allocationSize = 1)
   @Column(name = "stored_meal_id", nullable = false)
   private Long storedMealId;
 
   @Column(name = "stored_meal_name", nullable = false, length = 100)
   private String storedMealName;
 
-  @OneToMany(fetch = FetchType.EAGER)
+  @OneToMany(fetch = FetchType.LAZY)
   @JoinColumn(name = "stored_meal_id")
   private List<StoredMealIngredients> storedMealIngredientsList;
 

@@ -1,15 +1,14 @@
 package com.chhin.fitnesstracker.model;
 
-import lombok.*;
-
 import java.math.BigDecimal;
+import lombok.*;
 
 @Getter
 @Setter
+@ToString(onlyExplicitlyIncluded = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class MealIngredientsDTO {
   private String foodTypeId;
   private BigDecimal servingSize;

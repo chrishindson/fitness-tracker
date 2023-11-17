@@ -6,10 +6,10 @@ import lombok.*;
 
 @Getter
 @Setter
+@ToString(onlyExplicitlyIncluded = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class TimeDTO {
 
   @Pattern(regexp = "^(?:|0[1-9]|1[0-9]|[1-9])$", message = "Enter a valid time")

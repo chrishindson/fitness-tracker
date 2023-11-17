@@ -6,10 +6,10 @@ import lombok.*;
 
 @Getter
 @Setter
+@ToString(onlyExplicitlyIncluded = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class StoredMealDTO {
   private Long storedMealId;
   private String mealName;

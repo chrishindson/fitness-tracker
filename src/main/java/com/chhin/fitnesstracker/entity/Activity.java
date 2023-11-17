@@ -1,19 +1,20 @@
 package com.chhin.fitnesstracker.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
+import lombok.*;
 
 @Getter
 @Setter
-@ToString
+@ToString(onlyExplicitlyIncluded = true)
+@Builder
 @RequiredArgsConstructor
 @Entity
+@AllArgsConstructor
 @Table(name = "activity")
 public class Activity {
 
@@ -23,11 +24,11 @@ public class Activity {
   @Column(name = "activity_id")
   private Long activityId;
 
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "activity_type_id")
   private ActivityType activityType;
 
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id")
   private FTUser ftUser;
 
@@ -45,12 +46,12 @@ public class Activity {
 
   @Column(name = "notes", length = 500)
   private String notes;
+
   @Column(name = "start_time", nullable = false)
   private LocalTime startTime;
 
   @OneToMany
   @JoinColumn(name = "activity_id", referencedColumnName = "activity_id")
-  @ToString.Exclude
   private List<ActivityDetails> activityDetails;
 
   @Override

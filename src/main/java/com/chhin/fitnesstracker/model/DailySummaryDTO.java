@@ -8,10 +8,10 @@ import lombok.*;
 
 @Getter
 @Setter
+@ToString(onlyExplicitlyIncluded = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class DailySummaryDTO {
 
   private LocalDate summaryDate;
@@ -23,7 +23,7 @@ public class DailySummaryDTO {
   private FoodTracking foodTracking;
   private WaterTracking waterTracking;
   private List<TrainingPlan> trainingPlanList;
-  
+
   public String getDateStringLink(long diff) {
     return this.summaryDate.plusDays(diff).format(DateTimeFormatter.ofPattern("yyyyMMdd"));
   }

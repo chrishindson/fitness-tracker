@@ -5,14 +5,13 @@ import lombok.*;
 
 @Getter
 @Setter
+@ToString(onlyExplicitlyIncluded = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class ActivityDetailsDTO {
   private Long activityDetailsId;
   private Integer repetitions;
   private BigDecimal weight;
   private Integer numberOfSets;
-
 }

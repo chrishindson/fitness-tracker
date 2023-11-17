@@ -6,10 +6,10 @@ import lombok.*;
 
 @Getter
 @Setter
+@ToString(onlyExplicitlyIncluded = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class FoodTypeDTO {
 
   private Long foodTypeId;
@@ -30,7 +30,7 @@ public class FoodTypeDTO {
   private BigDecimal vitaminC;
   private BigDecimal calcium;
   private BigDecimal iron;
-  
+
   public FoodTypeDTO(FoodType foodType) {
     this.foodTypeId = foodType.getFoodTypeId();
     this.foodName = foodType.getFoodName();
@@ -51,5 +51,4 @@ public class FoodTypeDTO {
     this.calcium = foodType.getCalcium();
     this.iron = foodType.getIron();
   }
-
 }

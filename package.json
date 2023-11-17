@@ -23,8 +23,8 @@
     "gulp-uglify": "^3.0.2",
     "gulp-uglifycss": "^1.1.0",
     "jquery": "^3.7.0",
-    "nhsuk-frontend": "^7.1.0",
-    "sass": "^1.66.1",
+    "nhsuk-frontend": "^8.0.2",
+    "sass": "^1.69.5",
     "webpack": "^5.88.2"
   }
 }

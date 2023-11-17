@@ -8,10 +8,10 @@ import lombok.*;
 
 @Getter
 @Setter
+@ToString(onlyExplicitlyIncluded = true)
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@NoArgsConstructor
 public class BodyMeasurementDTO {
 
   private String bodyMeasurementArea;

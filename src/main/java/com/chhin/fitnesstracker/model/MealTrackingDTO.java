@@ -6,10 +6,10 @@ import lombok.*;
 
 @Getter
 @Setter
+@ToString(onlyExplicitlyIncluded = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class MealTrackingDTO {
   private String mealType;
   private List<MealIngredients> mealIngredients;

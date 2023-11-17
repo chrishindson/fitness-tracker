@@ -12,10 +12,10 @@ import lombok.*;
 
 @Getter
 @Setter
+@ToString(onlyExplicitlyIncluded = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class ActivityDTO {
   private Long activityId;
   private String activityType;
@@ -27,7 +27,7 @@ public class ActivityDTO {
   private Integer calorieCount;
   private String notes;
   private TimeDTO startTime;
-  private List<ActivityDetailsDTO> activityDetailsList = new ArrayList<>();
+  @Builder.Default private List<ActivityDetailsDTO> activityDetailsList = new ArrayList<>();
 
   public ActivityDTO(Activity activity) {
     this.activityId = activity.getActivityId();
@@ -39,6 +39,7 @@ public class ActivityDTO {
     this.calorieCount = activity.getCalorieCount();
     this.notes = activity.getNotes();
   }
+
   public LinkedHashMap<Long, String> getSortedMap() {
     return HelperUtils.getSortedMap(this.activityTypeList);
   }

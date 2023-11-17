@@ -7,10 +7,10 @@ import lombok.*;
 
 @Getter
 @Setter
+@ToString(onlyExplicitlyIncluded = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class ActivitySummaryDTO {
 
   private String username;
@@ -19,5 +19,4 @@ public class ActivitySummaryDTO {
   private BigDecimal totalDistance;
   private LocalTime totalTime;
   private Long totalCalories;
-
 }

@@ -2,16 +2,15 @@ package com.chhin.fitnesstracker.model;
 
 import com.chhin.fitnesstracker.entity.FTUser;
 import com.chhin.fitnesstracker.entity.WeightTracking;
-import lombok.*;
-
 import java.math.BigDecimal;
+import lombok.*;
 
 @Getter
 @Setter
+@ToString(onlyExplicitlyIncluded = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class WeightTrackingDTO {
 
   private Long weightTrackingId;
@@ -23,7 +22,6 @@ public class WeightTrackingDTO {
   private BigDecimal bodyWater;
   private DateDTO recordedDate;
 
-
   public WeightTrackingDTO(WeightTracking weightTracking) {
     this.weightTrackingId = weightTracking.getWeightTrackingId();
     this.ftUser = weightTracking.getFtUser();
@@ -34,5 +32,4 @@ public class WeightTrackingDTO {
     this.bodyWater = weightTracking.getBodyWater();
     this.recordedDate = new DateDTO(weightTracking.getRecordedDate());
   }
-
 }

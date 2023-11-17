@@ -6,10 +6,10 @@ import lombok.*;
 
 @Getter
 @Setter
+@ToString(onlyExplicitlyIncluded = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class MealDetailsDTO {
 
   private Long foodTrackingId;
@@ -21,5 +21,4 @@ public class MealDetailsDTO {
   private String foodName;
   private BigDecimal foodServingSize;
   private BigDecimal foodCalories;
-
 }

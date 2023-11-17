@@ -7,16 +7,18 @@ import lombok.*;
 
 @Getter
 @Setter
+@ToString(onlyExplicitlyIncluded = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class DateDTO {
 
   @Pattern(regexp = "^(?:|0[1-9]|1[0-2]|[1-9])$", message = "Enter a valid date")
   protected String day;
+
   @Pattern(regexp = "^(?:|0[1-9]|1[0-2]|[1-9])$", message = "Enter a valid date")
   protected String month;
+
   @Pattern(regexp = "^(?:|\\d{4})$", message = "Enter a valid date")
   protected String year;
 
@@ -27,7 +29,9 @@ public class DateDTO {
   }
 
   public LocalDate toLocalDate() {
-    return LocalDate.of(Integer.parseInt(this.getYear()), Integer.parseInt(this.getMonth()),
+    return LocalDate.of(
+        Integer.parseInt(this.getYear()),
+        Integer.parseInt(this.getMonth()),
         Integer.parseInt(this.getDay()));
   }
 

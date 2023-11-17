@@ -1,18 +1,17 @@
 package com.chhin.fitnesstracker.model;
 
-import lombok.*;
-
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import lombok.*;
 
 @Getter
 @Setter
+@ToString(onlyExplicitlyIncluded = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class FoodTrackingDTO {
   private DateDTO foodTrackingDate;
   private Long mealType;
@@ -20,9 +19,7 @@ public class FoodTrackingDTO {
   private Map<Long, String> foodTypeList;
   private List<MealTrackingDTO> mealTrackingDTOList;
   private List<MealDetailsDTO> mealDetailsDTOList;
-  @Getter
-  private List<MealIngredientsDTO> mealIngredientsDTOList;
-
+  @Getter private List<MealIngredientsDTO> mealIngredientsDTOList;
 
   public String getMealTypeDisplay() {
     return this.mealTypeList.get(this.mealType);
@@ -46,7 +43,9 @@ public class FoodTrackingDTO {
     if (this.mealDetailsDTOList == null) {
       return Collections.emptyList();
     }
-    return this.mealDetailsDTOList.stream().filter(x -> x.getMealTypeId().equals(mealTypeId)).toList();
+    return this.mealDetailsDTOList.stream()
+        .filter(x -> x.getMealTypeId().equals(mealTypeId))
+        .toList();
   }
 
   public String getMealIngredientDescription(Long foodTypeId) {

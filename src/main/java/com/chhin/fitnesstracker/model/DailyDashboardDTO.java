@@ -6,10 +6,10 @@ import lombok.*;
 
 @Getter
 @Setter
+@ToString(onlyExplicitlyIncluded = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class DailyDashboardDTO {
 
   private LocalDate dashboardDate;
@@ -18,5 +18,4 @@ public class DailyDashboardDTO {
   private List<WeightTrackingDTO> weightTrackingDTOList;
   private ActivitySummaryDTO activitySummaryDTO;
   private SleepTrackingDTO sleepTrackingDTO;
-
 }

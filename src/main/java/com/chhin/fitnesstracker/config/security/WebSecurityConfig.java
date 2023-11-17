@@ -60,15 +60,6 @@ public class WebSecurityConfig {
   public SecurityFilterChain filterChain(
       HttpSecurity httpSecurity, AuthenticationManager authenticationManager) throws Exception {
 
-    //    httpSecurity.authorizeHttpRequests(
-    //        auth ->
-    //            auth.requestMatchers("/**")
-    //                .permitAll()
-    //                .requestMatchers("/webjars/**")
-    //                .permitAll()
-    //                .and()
-    //                .authenticationManager(authenticationManager));
-
     return httpSecurity
         .csrf(AbstractHttpConfigurer::disable)
         .cors(cors -> corsConfigurationSource())

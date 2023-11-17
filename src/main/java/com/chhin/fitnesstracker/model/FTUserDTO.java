@@ -1,17 +1,17 @@
 package com.chhin.fitnesstracker.model;
 
-import lombok.*;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import lombok.*;
 
 /** DTO for {@link com.chhin.fitnesstracker.entity.FTUser} */
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-@ToString
+@ToString(onlyExplicitlyIncluded = true)
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class FTUserDTO implements Serializable {
   private Long userId;
   private String username;

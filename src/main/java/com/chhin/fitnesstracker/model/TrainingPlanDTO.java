@@ -8,10 +8,10 @@ import lombok.*;
 
 @Getter
 @Setter
+@ToString(onlyExplicitlyIncluded = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class TrainingPlanDTO {
   private DateDTO startDate;
   private DateDTO endDate;
@@ -30,6 +30,7 @@ public class TrainingPlanDTO {
   private Integer repetitions;
   private String notes;
   private Map<Long, String> activityTypeList;
+
   public LinkedHashMap<Long, String> getSortedMap() {
     return HelperUtils.getSortedMap(this.activityTypeList);
   }

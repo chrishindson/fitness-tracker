@@ -64,13 +64,13 @@ function serve() {
     gulp.watch('./*.html').on('change', browserSync.reload);
 }
 
-// gulp.task('sass', function () {
-//     return gulp.src('./sass/**/*.scss')
-//         .pipe(sass({
-//             includePaths: 'node_modules'
-//         }))
-//         .pipe(gulp.dest('./css'));
-// });
+gulp.task('sass', function () {
+    return gulp.src('./sass/**/*.scss')
+        .pipe(sass({
+            includePaths: 'node_modules'
+        }))
+        .pipe(gulp.dest('./css'));
+});
 gulp.task('install-jquery', () => {
     return gulp.src('node_modules/jquery/dist/jquery.js').pipe(gulp.dest(paths.scripts.es))
 });

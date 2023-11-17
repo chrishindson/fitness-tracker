@@ -7,18 +7,19 @@ import lombok.*;
 
 @Getter
 @Setter
+@ToString(onlyExplicitlyIncluded = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class ActivityMonthlyDTO {
 
   private LocalDate activityMonth;
   private List<ActivityDiaryDTO> monthlyActivities;
-  
-  public ActivityMonthlyDTO(LocalDate localDate){
+
+  public ActivityMonthlyDTO(LocalDate localDate) {
     this.activityMonth = localDate;
   }
+
   public Integer firstDayOfWeek() {
     return activityMonth.withDayOfMonth(1).getDayOfWeek().getValue();
   }
@@ -28,7 +29,8 @@ public class ActivityMonthlyDTO {
   }
 
   public Integer getLastDiaryPlace() {
-    return activityMonth.withDayOfMonth(1).getDayOfWeek().getValue() + activityMonth.lengthOfMonth()
+    return activityMonth.withDayOfMonth(1).getDayOfWeek().getValue()
+        + activityMonth.lengthOfMonth()
         - 1;
   }
 
@@ -43,8 +45,11 @@ public class ActivityMonthlyDTO {
     }
     LocalDate ld = activityMonth.withDayOfMonth(day + 1);
 
-    ActivityDiaryDTO dto = monthlyActivities.stream().filter(x -> x.getActivityDate().equals(ld))
-        .findFirst().orElse(null);
+    ActivityDiaryDTO dto =
+        monthlyActivities.stream()
+            .filter(x -> x.getActivityDate().equals(ld))
+            .findFirst()
+            .orElse(null);
 
     if (dto == null) {
       return 0;
