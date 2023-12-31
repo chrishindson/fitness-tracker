@@ -2,9 +2,11 @@
 @import 'node_modules/nhsuk-frontend/packages/nhsuk';
 @import 'node_modules/accessible-autocomplete/src/autocomplete';
 
-@import 'node_modules/govuk-frontend/govuk/base';
+@import 'node_modules/govuk-frontend/dist/govuk/base';
 
 @import 'node_modules/@ministryofjustice/frontend/moj/components/multi-select/multi-select';
 @import 'node_modules/@ministryofjustice/frontend/moj/components/sortable-table/sortable-table';
 @import 'enhance/nhsuk-modifications';
-@import 'enhance/diary';
+@import 'components/diary';
+@import 'components/header-sub-link';
+@import 'components/pagination';

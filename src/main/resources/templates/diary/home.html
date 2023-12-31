@@ -7,9 +7,9 @@
       <h1 th:text="${pageTitleRaw}">Dashboard</h1>
     </div>
   </div>
-  <div class="nhsuk-grid-row nhsuk-u-padding-bottom-0">
+  <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-full">
-      <h2 th:text="${#temporals.format(#temporals.createNow(), 'MMMM yyyy')}"></h2>
+      <h2 th:text="${#temporals.format(activityMonthlyDTO.activityMonth, 'MMMM yyyy')}"></h2>
       <div class="nhsuk-card nhsuk-grid-column-one-seventh nhsuk-u-margin-0 nhsuk-tag"
            th:each="weekday, i : ${activityMonthlyDTO.getDaysOfWeek()}">
         <p class="nhsuk-u-text-align-centre nhsuk-u-margin-0" th:text="${weekday}"></p>
@@ -27,7 +27,11 @@
         </th:block>
       </th:block>
     </div>
+
   </div>
+  <th:block
+      th:insert="~{fitness-tracker-design-system/component/pagination :: pagination(previousText=${activityMonthlyDTO.getPreviousDiaryDatePath()}, previousLink=${'?diaryMonth=' + activityMonthlyDTO.getPreviousDiaryDateString()}, nextText=${activityMonthlyDTO.getNextDiaryDateString()}, nextLink=${'?diaryMonth=' + activityMonthlyDTO.getNextDiaryDatePath()})}"></th:block>
+
 </main>
 </body>
 </html>

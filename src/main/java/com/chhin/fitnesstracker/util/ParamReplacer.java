@@ -17,9 +17,14 @@ public class ParamReplacer {
   public String getUpdatedUri(String name, Object... values) {
     UriComponentsBuilder uriComponentsBuilder;
     if (httpServletRequest.getQueryString() == null) {
-      uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(httpServletRequest.getRequestURL().toString());
+      uriComponentsBuilder =
+          UriComponentsBuilder.fromHttpUrl(httpServletRequest.getRequestURL().toString());
     } else {
-      uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(httpServletRequest.getRequestURL().toString() + "?" + httpServletRequest.getQueryString());
+      uriComponentsBuilder =
+          UriComponentsBuilder.fromHttpUrl(
+              httpServletRequest.getRequestURL().toString()
+                  + "?"
+                  + httpServletRequest.getQueryString());
     }
     return uriComponentsBuilder.replaceQueryParam(name, values).build().toUriString();
   }

@@ -30,9 +30,7 @@ public class DateDTO {
 
   public LocalDate toLocalDate() {
     return LocalDate.of(
-        Integer.parseInt(this.getYear()),
-        Integer.parseInt(this.getMonth()),
-        Integer.parseInt(this.getDay()));
+        Integer.parseInt(this.year), Integer.parseInt(this.month), Integer.parseInt(this.day));
   }
 
   public String toDisplayDate() {

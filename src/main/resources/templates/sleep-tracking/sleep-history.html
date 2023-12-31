@@ -12,6 +12,9 @@
     <div class="nhsuk-grid-column-full">
       <table class="nhsuk-table-responsive" role="table">
         <caption class="nhsuk-table__caption">Sleep tracking</caption>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/component/page-size-controls.html :: page-size-controls(${sleepHistory})}"></th:block>
+
         <thead class="nhsuk-table__head" role="rowgroup">
         <tr role="row">
           <th class="" role="columnheader" scope="col">
@@ -66,6 +69,8 @@
       </table>
     </div>
   </div>
+  <th:block
+      th:insert="~{fitness-tracker-design-system/component/pagination :: page-pagination(${sleepHistory})}"></th:block>
 
 </main>
 </body>

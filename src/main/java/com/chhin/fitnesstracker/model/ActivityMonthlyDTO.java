@@ -14,7 +14,7 @@ import lombok.*;
 public class ActivityMonthlyDTO {
 
   private LocalDate activityMonth;
-  private List<ActivityDiaryDTO> monthlyActivities;
+  @Setter private List<ActivityDiaryDTO> monthlyActivities;
 
   public ActivityMonthlyDTO(LocalDate localDate) {
     this.activityMonth = localDate;
@@ -32,10 +32,6 @@ public class ActivityMonthlyDTO {
     return activityMonth.withDayOfMonth(1).getDayOfWeek().getValue()
         + activityMonth.lengthOfMonth()
         - 1;
-  }
-
-  public void setMonthlyActivities(List<ActivityDiaryDTO> monthlyActivities) {
-    this.monthlyActivities = monthlyActivities;
   }
 
   public Integer getActivityCount(Integer dayInput) {
@@ -63,6 +59,26 @@ public class ActivityMonthlyDTO {
       return null;
     }
     LocalDate ld = activityMonth.withDayOfMonth(day + 1);
+    return ld.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+  }
+
+  public String getPreviousDiaryDateString() {
+    LocalDate ld = activityMonth.minusMonths(1);
+    return ld.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+  }
+
+  public String getPreviousDiaryDatePath() {
+    LocalDate ld = activityMonth.minusMonths(1);
+    return ld.format(DateTimeFormatter.ofPattern("MMMM yyyy"));
+  }
+
+  public String getNextDiaryDateString() {
+    LocalDate ld = activityMonth.plusMonths(1);
+    return ld.format(DateTimeFormatter.ofPattern("MMMM yyyy"));
+  }
+
+  public String getNextDiaryDatePath() {
+    LocalDate ld = activityMonth.plusMonths(1);
     return ld.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
   }
 }

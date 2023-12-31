@@ -10,6 +10,7 @@ import com.chhin.fitnesstracker.model.DailySummaryDTO;
 import com.chhin.fitnesstracker.service.ActivityService;
 import com.chhin.fitnesstracker.service.DiaryService;
 import com.chhin.fitnesstracker.service.LoggedInUserService;
+import com.chhin.fitnesstracker.util.HelperUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -29,8 +30,10 @@ public class DiaryController extends AbstractController {
   private final ActivityService activityService;
   private final DiaryService diaryService;
 
-  public DiaryController(LoggedInUserService loggedInUserService,
-                         ActivityService activityService, DiaryService diaryService) {
+  public DiaryController(
+      LoggedInUserService loggedInUserService,
+      ActivityService activityService,
+      DiaryService diaryService) {
     super();
     this.loggedInUserService = loggedInUserService;
     this.activityService = activityService;
@@ -38,11 +41,17 @@ public class DiaryController extends AbstractController {
   }
 
   @GetMapping(CONTROLLER_HOME_LANDING)
-  public String viewHome(Model model, HttpServletRequest request) {
-    FTUser ftUser = loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);
-    ActivityMonthlyDTO activityMonthlyDTO = new ActivityMonthlyDTO(LocalDate.now());
-    List<ActivityDiaryDTO> diaryDTOList = activityService.getDiaryFtUserListJdbc(
-        ftUser.getUsername(), activityMonthlyDTO.getActivityMonth());
+  public String viewHome(
+      Model model,
+      HttpServletRequest request,
+      @RequestParam(value = "diaryMonth", required = false) String diaryDate) {
+    FTUser ftUser =
+        loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);
+    ActivityMonthlyDTO activityMonthlyDTO =
+        new ActivityMonthlyDTO(HelperUtils.getLocalDate(diaryDate));
+    List<ActivityDiaryDTO> diaryDTOList =
+        activityService.getDiaryFtUserListJdbc(
+            ftUser.getUsername(), activityMonthlyDTO.getActivityMonth());
     activityMonthlyDTO.setMonthlyActivities(diaryDTOList);
     model.addAttribute("activityMonthlyDTO", activityMonthlyDTO);
     titleString = "Diary";
@@ -52,18 +61,15 @@ public class DiaryController extends AbstractController {
 
   @GetMapping("/day")
   public String viewDailyOverview(
-      @RequestParam("diaryDate") String diaryDate,
-      Model model,
-      HttpServletRequest request) {
+      @RequestParam("diaryDate") String diaryDate, Model model, HttpServletRequest request) {
     LocalDate diaryLocalDate = LocalDate.parse(diaryDate, DateTimeFormatter.ofPattern("yyyyMMdd"));
-    FTUser ftUser = loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);
+    FTUser ftUser =
+        loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);
     DailySummaryDTO dailySummaryDTO = diaryService.getDailySummary(ftUser, diaryLocalDate);
     model.addAttribute(DAILY_SUMMARY_DTO, dailySummaryDTO);
 
-    titleString =
-        "Diary - " + diaryLocalDate.format(DateTimeFormatter.ofPattern("d MMMM yyyy"));
+    titleString = "Diary - " + diaryLocalDate.format(DateTimeFormatter.ofPattern("d MMMM yyyy"));
     getBreadcrumbs(titleString, model, request);
     return "diary/diary-daily-new";
   }
-
 }

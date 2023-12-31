@@ -14,16 +14,13 @@
         th:name="_context_path">
   <title th:text="${pageTitle}">Health tracker</title>
   <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
-  <th:block th:if="${accessible}">
-    <script th:src="@{/js/accessible-autocomplete.min.js}"></script>
-  </th:block>
+  <!--  <th:block th:if="${accessible}">-->
+  <!--    <script th:src="@{/js/accessible-autocomplete.min.js}"></script>-->
+  <!--  </th:block>-->
 </head>
 <body>
 <a class="nhsuk-skip-link" href="#main-content">Skip to main content</a>
-<script>
-    document.body.className = ((document.body.className) ? document.body.className + ' js-enabled'
-        : 'js-enabled');
-</script>
+<script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
 
 <header class="nhsuk-header" id="health-tracker-global-header" role="banner">
   <th:block
@@ -39,20 +36,24 @@
 </div>
 
 <footer role="contentinfo">
-  <div class="nhsuk-footer" id="footer">
+  <div class="nhsuk-footer-container">
     <div class="nhsuk-width-container">
       <h2 class="nhsuk-u-visually-hidden">Support links</h2>
       <ul class="nhsuk-footer__list">
-        <li class="nhsuk-footer__list-item">
+        <li class="nhsuk-footer__list-item nhsuk-footer-default__list-item">
           <a class="nhsuk-footer__list-item-link" href="#">Link</a>
         </li>
       </ul>
     </div>
   </div>
   <!--  <script th:src="@{/js/jquery.js}"></script>-->
-  <script th:src="@{/js/nhs.js}"></script>
-  <script th:src="@{/js/moj.js}"></script>
-  <script th:src="@{/js/gov.js}"></script>
+
+  <!--  <script th:src="@{/js/moj.js}"></script>-->
+  <script th:src="@{/js/application-min.js}"></script>
+  <script th:src="@{/js/gov-min.js}"></script>
+  <script>
+    window.GOVUKFrontend.initAll();
+  </script>
 </footer>
 
 </body>

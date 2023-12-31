@@ -12,6 +12,8 @@
     <div class="nhsuk-grid-column-full">
       <table class="nhsuk-table-responsive" role="table">
         <caption class="nhsuk-table__caption">Activities</caption>
+        <th:block
+            th:insert="~{fitness-tracker-design-system/component/page-size-controls.html :: page-size-controls(${activitySummaryDTOPage})}"></th:block>
         <thead class="nhsuk-table__head" role="rowgroup">
         <tr role="row">
           <th class="" role="columnheader" scope="col">
@@ -67,6 +69,8 @@
       </table>
     </div>
   </div>
+  <th:block
+      th:insert="~{fitness-tracker-design-system/component/pagination :: page-pagination(${activitySummaryDTOPage})}"></th:block>
 
 </main>
 </body>

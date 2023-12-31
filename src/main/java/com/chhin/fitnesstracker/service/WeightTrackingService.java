@@ -15,17 +15,17 @@ public class WeightTrackingService {
     this.weightTrackingRepository = weightTrackingRepository;
   }
 
-
   public void saveWeightDetails(WeightTrackingDTO dto, FTUser user) {
-    WeightTracking weightTracking = new WeightTracking();
-    weightTracking.setWeight(dto.getWeight());
-    weightTracking.setBodyFat(dto.getBodyFat());
-    weightTracking.setBodyWater(dto.getBodyWater());
-    weightTracking.setRecordedDate(dto.getRecordedDate().toLocalDate());
-    weightTracking.setFatMass(dto.getFatMass());
-    weightTracking.setSkeletalMuscle(dto.getSkeletalMuscle());
-    weightTracking.setFtUser(user);
+    WeightTracking weightTracking =
+        WeightTracking.builder()
+            .weight(dto.getWeight())
+            .bodyFat(dto.getBodyFat())
+            .bodyWater(dto.getBodyWater())
+            .recordedDate(dto.getRecordedDate().toLocalDate())
+            .fatMass(dto.getFatMass())
+            .skeletalMuscle(dto.getSkeletalMuscle())
+            .ftUser(user)
+            .build();
     weightTrackingRepository.save(weightTracking);
-
   }
 }

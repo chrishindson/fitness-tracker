@@ -4,6 +4,7 @@ import com.chhin.fitnesstracker.entity.Activity;
 import com.chhin.fitnesstracker.entity.ActivityDetails;
 import com.chhin.fitnesstracker.entity.ActivityType;
 import com.chhin.fitnesstracker.entity.FTUser;
+// import com.chhin.fitnesstracker.mapping.ActivityMapper;
 import com.chhin.fitnesstracker.model.ActivityDTO;
 import com.chhin.fitnesstracker.model.ActivityDetailsDTO;
 import com.chhin.fitnesstracker.model.ActivityDiaryDTO;
@@ -18,7 +19,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -30,25 +30,31 @@ import org.springframework.stereotype.Service;
 public class ActivityService {
 
   public static final String USERNAME = "username";
-  @Autowired private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+  private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
   private final ActivityRepository activityRepository;
   private final ActivityTypeRepository activityTypeRepository;
-  @Autowired private ActivityDetailsRepository activityDetailsRepository;
+  //  private final ActivityMapper activityMapper;
+  private final ActivityDetailsRepository activityDetailsRepository;
 
   public ActivityService(
       NamedParameterJdbcTemplate namedParameterJdbcTemplate,
       ActivityRepository activityRepository,
-      ActivityTypeRepository activityTypeRepository) {
+      ActivityTypeRepository activityTypeRepository,
+      ActivityDetailsRepository activityDetailsRepository
+      //      ActivityMapper activityMapper
+      ) {
     this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     this.activityRepository = activityRepository;
     this.activityTypeRepository = activityTypeRepository;
+    //    this.activityMapper = activityMapper;
+    this.activityDetailsRepository = activityDetailsRepository;
   }
 
   public void saveActivity(ActivityDTO dto, FTUser user) {
     ActivityType activityType =
         activityTypeRepository.findById(Long.valueOf(dto.getActivityType())).orElse(null);
-    new Activity();
-    Activity activity =
+
+    Activity activity = // activityMapper.toActivity(dto);
         Activity.builder()
             .activityType(activityType)
             .activityDate(dto.getActivityDate().toLocalDate())
@@ -149,7 +155,7 @@ public class ActivityService {
     List<ActivityHistoryDTO> list =
         namedParameterJdbcTemplate.query(
             sql, params, new BeanPropertyRowMapper<>(ActivityHistoryDTO.class));
-    return list.get(0);
+    return list.getFirst();
   }
 
   public Activity findByActivityId(Long activityId) {

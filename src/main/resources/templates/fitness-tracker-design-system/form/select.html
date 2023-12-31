@@ -1,8 +1,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<th:block th:fragment="select(id, label, list)">
-  <div class="nhsuk-form-group">
+<th:block th:fragment="select(id, field, label, list)">
+  <div class="nhsuk-form-group"
+       th:classappend="${#fields.hasErrors(field)} ? 'nhsuk-form-group--error' : ''">
     <label class="nhsuk-label" th:for="${id}">
     </label>
+    <span
+        th:replace="~{fitness-tracker-design-system/form/errors :: error-message(${field})}"></span>
     <select class="nhsuk-select" th:id="${id}" th:name="${id}">
       <option th:foreach="${list}" th:text="${id.description}" th:value="${list.id}">
 
@@ -15,6 +18,8 @@
        th:classappend="${#fields.hasErrors(field)} ? 'nhsuk-form-group--error' : ''">
     <label class="nhsuk-label" th:for="${field}" th:id="${id} + '-label'" th:text="${label}">
     </label>
+    <span
+        th:replace="~{fitness-tracker-design-system/form/errors :: error-message(${field})}"></span>
     <select class="nhsuk-select autocomplete-wrapper" data-module="accessible-select"
             th:classappend="${#fields.hasErrors(field)} ? 'nhsuk-select--error' : ''"
             th:field="*{__${field}__}"
@@ -29,63 +34,60 @@
       </option>
     </select>
   </div>
-  <script type="text/javascript">
-      var fieldName = "[[${field}]]";
-      var hint = "[[${hints} != null && hints != '' ? hints : label}";
+  <!--  <script type="text/javascript">-->
+  <!--      var fieldName = "[[${field}]]";-->
+  <!--      var hint = "[[${hints} != null && hints != '' ? hints : label}";-->
 
-      accessibleAutocomplete.enhanceSelectElement({
-          defaultValue: '',
-          autoselect: true,
-          confirmOnBlur: true,
-          selectElement: document.querySelector('#' + fieldName)
-      })
+  <!--      accessibleAutocomplete.enhanceSelectElement({-->
+  <!--          defaultValue: '',-->
+  <!--          autoselect: true,-->
+  <!--          confirmOnBlur: true,-->
+  <!--          selectElement: document.querySelector('#' + fieldName)-->
+  <!--      })-->
 
-      let parentDiv = document.querySelector('#' + fieldName + '-select')
-      let newLabel = document.createElement("label");
-      newLabel.innerHTML = hint;
-      newLabel.style.display = "none";
-      newLabel.setAttribute("for", parentDiv.id);
-      parentDiv.appendChild(newLabel);
+  <!--      let parentDiv = document.querySelector('#' + fieldName + '-select')-->
+  <!--      let newLabel = document.createElement("label");-->
+  <!--      newLabel.innerHTML = hint;-->
+  <!--      newLabel.style.display = "none";-->
+  <!--      newLabel.setAttribute("for", parentDiv.id);-->
+  <!--      parentDiv.appendChild(newLabel);-->
 
-  </script>
+  <!--  </script>-->
 </th:block>
 <th:block th:fragment="select-autocomplete(id, field, label, list, selected, hints)">
-  <div class="nhsuk-form-group">
-    <div th:classappend="${#fields.hasErrors (field)? 'nhsuk-form-group--error' : ''}">
-      <label class="nhsuk-label" th:for="${field}">
-        <span th:text="${label}"></span>
-      </label>
-      <div class="nhsuk-hint" th:if="${hints != null}" th:text="${hints}"></div>
-      <span
-          th:replace="~{fitness-tracker-design-system/form/errors :: error-message(${field})}"></span>
-      <select class="nhsuk-select"
-              th:classappend="${(#fields.hasErrors(field)? 'nhsuk-select--error': '')+ 'row_'+field }"
-              th:id="${field}" th:name="${name != null ? name: field}">
-        <option value=""></option>
-        <option th:each="entry: ${list}"
-                th:selected="${selected != null and #strings.equals(entry.key.toString(), selected.toString())}"
-                th:text="${entry.value}"
-                th:value="${entry.key}">
-        </option>
-      </select>
-    </div>
+  <div class="nhsuk-form-group" th:classappend="${#fields.hasErrors (field)? 'nhsuk-form-group--error' : ''}">
+    <label class="nhsuk-label" th:id="${id} + '-label'" th:for="${field}" th:text="${label}">
+    </label>
+    <div class="nhsuk-hint" th:if="${hints != null}" th:text="${hints}"></div>
+    <span
+        th:replace="~{fitness-tracker-design-system/form/errors :: error-message(${field})}"></span>
+    <select class="nhsuk-select" data-module="accessible-select"
+            th:classappend="${(#fields.hasErrors(field)? 'nhsuk-select--error': '')}"
+            th:id="${field}" th:name="${name != null ? name: field}">
+      <option value=""></option>
+      <option th:each="entry: ${list}"
+              th:selected="${selected != null and #strings.equals(entry.key.toString(), selected.toString())}"
+              th:text="${entry.value}"
+              th:value="${entry.key}">
+      </option>
+    </select>
   </div>
-  <script>
-      var fieldName = "[[${field}]]";
-      var hint = "[[${hints != null && hints != '' ? hints: label}]]";
-      accessibleAutocomplete.enhanceSelectElement({
-          defaultValue: '',
-          autoselect: true,
-          confirmOnBlur: true,
-          selectElement: document.querySelector("#" + fieldName),
-      });
-      let parentDiv = document.querySelector('#' + fieldName + "-select").parentNode;
-      let newLabel = document.createElement("label");
-      newLabel.innerHTML = hint;
-      newLabel.style.display = "none";
-      newLabel.setAttribute("for", document.querySelector("#" + fieldName + "-select").id);
-      parentDiv.appendChild(newLabel);
-  </script>
+  <!--  <script>-->
+  <!--      var fieldName = "[[${field}]]";-->
+  <!--      var hint = "[[${hints != null && hints != '' ? hints: label}]]";-->
+  <!--      accessibleAutocomplete.enhanceSelectElement({-->
+  <!--          defaultValue: '',-->
+  <!--          autoselect: true,-->
+  <!--          confirmOnBlur: true,-->
+  <!--          selectElement: document.querySelector("#" + fieldName),-->
+  <!--      });-->
+  <!--      let parentDiv = document.querySelector('#' + fieldName + "-select").parentNode;-->
+  <!--      let newLabel = document.createElement("label");-->
+  <!--      newLabel.innerHTML = hint;-->
+  <!--      newLabel.style.display = "none";-->
+  <!--      newLabel.setAttribute("for", document.querySelector("#" + fieldName + "-select").id);-->
+  <!--      parentDiv.appendChild(newLabel);-->
+  <!--  </script>-->
 </th:block>
 
 </html>

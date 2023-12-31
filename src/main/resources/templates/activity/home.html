@@ -17,28 +17,26 @@
       <th:block
           th:insert="~{fitness-tracker-design-system/component/misc ::action-link('view-activity-history','View activity history', '/activity/activity-history')}"></th:block>
     </div>
-    <div class="nhsuk-grid-row">
-      <div class="nhsuk-grid-column-one-half">
-        <div class="nhsuk-card">
-          <div class="nhsuk-card__content">
-            <h2 class="nhsuk-card__heading nhsuk-heading-m">All time totals
-            </h2>
+    <div class="nhsuk-grid-column-one-half">
+      <div class="nhsuk-card">
+        <div class="nhsuk-card__content">
+          <h2 class="nhsuk-card__heading nhsuk-heading-m">All time totals
+          </h2>
 
-            <dl class="nhsuk-summary-list nhsuk-summary-list--no-border">
-              <th:block
-                  th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='activityCount',key='Activity count',value=${activityHistory.activityCount}, numeric=true)}">
-              </th:block>
-              <th:block
-                  th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='totalCalories',key='Total calories',value=${activityHistory.totalCalories}, numeric=true)}">
-              </th:block>
-              <th:block
-                  th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='totalDistance',key='Total distance',value=${activityHistory.totalDistance}, numeric=true)}">
-              </th:block>
-              <th:block
-                  th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='totalTime',key='Total time',value=${activityHistory.totalTime}, numeric=true)}">
-              </th:block>
-            </dl>
-          </div>
+          <dl class="nhsuk-summary-list nhsuk-summary-list--no-border">
+            <th:block
+                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='activityCount',key='Activity count',value=${#numbers.formatInteger(activityHistory.activityCount,0,'COMMA')}, numeric=true)}">
+            </th:block>
+            <th:block
+                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='totalCalories',key='Total calories',value=${#numbers.formatInteger(activityHistory.totalCalories,0,'COMMA')}, numeric=true)}">
+            </th:block>
+            <th:block
+                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='totalDistance',key='Total distance',value=${#numbers.formatDecimal(activityHistory.totalDistance,0,'COMMA',2,'POINT')}, numeric=true)}">
+            </th:block>
+            <th:block
+                th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='totalTime',key='Total time',value=${activityHistory.totalTime}, numeric=true)}">
+            </th:block>
+          </dl>
         </div>
       </div>
     </div>

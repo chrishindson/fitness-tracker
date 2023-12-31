@@ -30,9 +30,9 @@ public class TimeDTO {
   public LocalTime toLocalTime() {
     try {
       return LocalTime.of(
-          Integer.parseInt(this.getHours()),
-          Integer.parseInt(this.getMinutes()),
-          Integer.parseInt(this.getSeconds()));
+          Integer.parseInt(this.hours),
+          Integer.parseInt(this.minutes),
+          Integer.parseInt(this.seconds));
     } catch (Exception e) {
       return null;
     }

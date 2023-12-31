@@ -1,0 +1,40 @@
+<th:block
+    th:fragment="page-size-controls(pageList)"
+    th:unless="${pageList == null or pageList.isEmpty() or (pageList.getPageable().getPageSize() == 10 and pageList.getTotalPages() == 1)}"
+    th:with="pageSize1=${pageSize1?:10},pageSize2=${pageSize2?:50},pageSize3=${pageSize3?:100}">
+  <div class="nhsuk-body-m nhsuk-c--flex-space-between nhsuk-u-margin-bottom-0"
+       id="page-size-controls">
+    <div class="nhsuk-u-text-align-right" id="page">
+      <p>Page <span th:text="${pageList.getNumber() + 1}">1</span> of <span
+          th:text="${pageList.getTotalPages()}">41</span>
+        (<span th:text="${pageList.getTotalElements()}">815</span> total records)</p>
+    </div>
+    <div class="nhsuk-u-margin-bottom-0 nhsuk-u-nowrap" id="tablePageSizeControls">
+      <span>Page size:</span>
+      <a class="nhsuk-u-page-size nhsuk-link nhsuk-link--no-visited-state" id="page-size-1-link"
+         th:href="@{${@paramReplacer.getUpdatedUri('size', pageSize1)}}"
+         th:if="${pageList.getPageable().getPageSize() != pageSize1}"
+         th:text="${pageSize1}">10</a>
+      <p class="nhsuk-u-page-size nhsuk-u-font-weight-bold" id="page-size-1-identifier"
+         th:if="${pageList.getPageable().getPageSize() == pageSize1}" th:text="${pageSize1}">10</p>
+      <th:block
+          th:if="${pageList.getNumber() == 0 or (pageList.getTotalElements() - (pageList.getNumber()-1) * pageSize2) > pageSize2}">
+        <a class="nhsuk-u-page-size nhsuk-link nhsuk-link--no-visited-state" id="page-size-2-link"
+           th:href="@{${@paramReplacer.getUpdatedUri('size', pageSize2)}}"
+           th:if="${pageList.getPageable().getPageSize() != pageSize2}"
+           th:text="${pageSize2}">50</a>
+      </th:block>
+      <p class="nhsuk-u-page-size nhsuk-u-font-weight-bold" id="page-size-2-identifier"
+         th:if="${pageList.getPageable().getPageSize() == pageSize2}" th:text="${pageSize2}">50</p>
+      <th:block
+          th:if="${pageList.getNumber() == 0 or (pageList.getTotalElements() - (pageList.getNumber()-1) * pageSize3) > pageSize3}">
+        <a class="nhsuk-u-page-size nhsuk-link nhsuk-link--no-visited-state" id="page-size-3-link"
+           th:href="@{${@paramReplacer.getUpdatedUri('size', pageSize3)}}"
+           th:if="${pageList.getPageable().getPageSize() != pageSize3}"
+           th:text="${pageSize3}">100</a>
+      </th:block>
+      <p class="nhsuk-u-page-size nhsuk-u-font-weight-bold" id="page-size-3-identifier"
+         th:if="${pageList.getPageable().getPageSize() == pageSize3}" th:text="${pageSize3}">100</p>
+    </div>
+  </div>
+</th:block>

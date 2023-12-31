@@ -7596,6 +7596,49 @@ b {
     line-height: 1.31579;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ==========================================================================
    # MULTI-SELECT
    ========================================================================== */
@@ -7748,4 +7791,141 @@ b {
 .nhsuk-diary-link {
   text-decoration: none;
   color: inherit !important;
+}
+
+.header-sub-links {
+  display: none;
+}
+
+@media (min-width: 990px) {
+  .header-sub-links {
+    display: inline-block !important;
+    float: right;
+    color: #ffffff !important;
+  }
+}
+.header-sub-links--content {
+  margin: 0;
+}
+
+.header-sub-links--content-body {
+  padding: 0.5em;
+  text-decoration: none;
+}
+
+.header-sub-links--content-link {
+  display: inline-block;
+  color: #ffffff;
+}
+
+.header-sub-links--content-link:visited {
+  color: #ffffff;
+}
+
+.header-sub-links--content-link:hover {
+  background: #7c2855 !important;
+  box-shadow: none !important;
+  color: #ffffff !important;
+  text-decoration: underline !important;
+}
+
+@media (min-width: 990px) {
+  .nhsuk-header__navigation-item__mobile_only {
+    display: none;
+  }
+}
+.pagination .pagination_list-items li {
+  display: inline-block;
+}
+.pagination .pagination_list-items li.active a, .pagination .pagination_list-items li.active a:hover {
+  color: #005EA5;
+  -webkit-box-shadow: inset 0px -5px 0px 0px #005EA5;
+  -moz-box-shadow: inset 0px -5px 0px 0px #005EA5;
+  box-shadow: inset 0px -5px 0px 0px #005EA5;
+}
+
+.padding {
+  padding-left: 15px;
+}
+
+.pagination {
+  padding: 0;
+}
+
+.pagination__item {
+  display: inline-block;
+  list-style: none;
+}
+
+.pagination__link {
+  display: block;
+  padding: 5px 10px;
+  text-decoration: none;
+}
+.pagination__link:hover, .pagination__link:focus {
+  background: #F8F8F8;
+  outline: 3px solid #FFBF47;
+}
+.pagination__link.current {
+  color: #0B0C0C;
+  font-weight: 700;
+  border: none;
+  pointer-events: none;
+  cursor: default;
+}
+.pagination__link.current:hover, .pagination__link.current:focus {
+  color: #0B0C0C;
+  background: none;
+}
+
+.pagination__summary {
+  font-family: "Inter UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  padding: 8px 0;
+  float: right;
+}
+@media (min-width: 642px) {
+  .pagination__summary {
+    float: right;
+  }
+}
+
+@media (max-width: 48.0625em) {
+  .pagination__link-responsive {
+    display: none;
+  }
+}
+.nhsuk-u-page-size {
+  display: inline-block;
+}
+
+.nhsuk-c--flex-space-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.nhsuk-pagination__link--split {
+  padding-left: 32px;
+}
+
+.nhsuk-pagination__link--split-left {
+  float: left;
+}
+
+.nhsuk-pagination__link--split-right {
+  float: right;
+}
+
+.nhsuk-pagination__link--split-left .nhsuk-pagination__title {
+  padding-left: 32px;
+}
+
+.nhsuk-pagination__link--split-right .nhsuk-pagination__title, .nhsuk-pagination__link--split-right .nhsuk-pagination__page {
+  padding-right: 32px;
+  text-align: right;
+}
+
+.nhsuk-pagination__link--split-right .nhsuk-icon {
+  right: -6px;
 }

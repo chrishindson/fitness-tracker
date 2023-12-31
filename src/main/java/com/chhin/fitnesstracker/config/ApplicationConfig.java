@@ -4,6 +4,7 @@ import com.chhin.fitnesstracker.entity.FTUser;
 import com.chhin.fitnesstracker.service.FTUserService;
 import com.chhin.fitnesstracker.service.LoggedInUserService;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.core.Authentication;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @PropertySource("classpath:messages.properties")
+@ComponentScan({"com.chhin.fitnesstracker"})
 public class ApplicationConfig implements WebMvcConfigurer {
 
   @Bean

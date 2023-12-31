@@ -2,25 +2,23 @@
 
 </th:block>
 <th:block th:fragment="character-count(id, field, label, length, rows)" th:with="hints=${hints?:''}">
-  <div class="nhsuk-character-count" data-module="nhsuk-character-count"
-       th:data-maxlength="${length}">
+  <div class="nhsuk-character-count" data-module="nhsuk-character-count" th:data-maxlength="${length}"
+       th:classappend="${#fields.hasErrors(field)} ? 'nhsuk-form-group--error' : ''">
 
     <div class="nhsuk-form-group">
-      <label class="nhsuk-label" th:for="${id}" th:text="${label}">
+      <label class="nhsuk-label" th:for="${field}" th:id="${id} + '-label'" th:text="${label}">
       </label>
-      <div class="nhsuk-hint" id="more-detail-hint" th:text="${hints}">
+      <div class="nhsuk-hint" th:each="hint, itr : ${hints}" th:if="${hints}" th:text="${hint}">
+        Do not include personal information like your name, date of birth or NHS number.
       </div>
-      <textarea aria-describedby="more-detail-hint" class="nhsuk-textarea nhsuk-js-character-count"
-                data-ms-editor="true" th:field="*{__${field}__}"
-                th:id="${id}" th:name="${id}" th:rows="${rows}"
-                spellcheck="false"></textarea>
-      <div class="nhsuk-hint nhsuk-character-count__message"
-           id="more-detail-info" th:text="'You can enter up to ' + ${length} + ' characters'">
-      </div>
-      <div aria-live="polite" class="nhsuk-character-count__sr-status nhsuk-u-visually-hidden"
-           th:text="'You have ' + ${length} + ' characters remaining'">
-      </div>
+      <textarea class="nhsuk-textarea nhsuk-js-character-count" th:id="${id}" th:name="${id}" th:rows="${rows}"
+                th:field="*{__${field}__}"
+                th:classappend="${#fields.hasErrors(field) ? 'nhsuk-textarea--error' : ''}"
+                aria-describedby="more-detail-hint" spellcheck="false"></textarea>
     </div>
 
+    <div class="nhsuk-hint nhsuk-character-count__message" th:id="${id} + '-info'">
+      You can enter up to 200 characters
+    </div>
   </div>
 </th:block>
