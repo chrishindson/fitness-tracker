@@ -7727,6 +7727,15 @@ b {
   width: 1100px;
 }
 
+.nhsuk-footer-container {
+  border-top-color: #7c2855 !important;
+}
+
+.nhsuk-tag {
+  background-color: #7c2855 !important;
+  border: #7c2855 !important;
+}
+
 .nhsuk-grid-column-one-seventh {
   box-sizing: border-box;
   padding: 0 16px;

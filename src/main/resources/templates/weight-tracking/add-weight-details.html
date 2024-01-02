@@ -9,7 +9,7 @@
     <div class="nhsuk-grid-row">
       <div class="nhsuk-grid-column-full">
               <span
-                  th:replace="~{fitness-tracker-design-system/form/errors :: error-summary(${activityDetails},true)}"></span>
+                  th:replace="~{fitness-tracker-design-system/form/errors :: error-summary(${weightTrackingDTO},true)}"></span>
         <h1 th:text="${pageTitleRaw}">Dashboard</h1>
       </div>
     </div>
@@ -31,10 +31,10 @@
             th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='fatMass',field='fatMass',label='Fat mass')}">
         </th:block>
         <th:block
-            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='bodyFat',field='bodyFat',label='Body fat')}">
+            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='bodyWater',field='bodyWater',label='Body water')}">
         </th:block>
         <th:block
-            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='bodyWater',field='bodyWater',label='Body water')}">
+            th:insert="~{fitness-tracker-design-system/form/input :: text-input(id='bodyFat',field='bodyFat',label='Body fat')}">
         </th:block>
         <th:block
             th:insert="~{fitness-tracker-design-system/form/button :: primary-button(id='submit',text='Submit')}">

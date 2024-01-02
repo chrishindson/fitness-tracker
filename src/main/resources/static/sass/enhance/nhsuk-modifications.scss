@@ -1,6 +1,16 @@
 .nhsuk-header, .nhsuk-header__navigation {
-  background: #7c2855 ;
+  background: #7c2855;
 }
+
 .nhsuk-width-container {
   width: 1100px;
+}
+
+.nhsuk-footer-container {
+  border-top-color: #7c2855 !important;
+}
+
+.nhsuk-tag {
+  background-color: #7c2855 !important;
+  border: #7c2855 !important;
 }

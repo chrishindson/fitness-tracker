@@ -155,7 +155,7 @@ public class ActivityService {
     List<ActivityHistoryDTO> list =
         namedParameterJdbcTemplate.query(
             sql, params, new BeanPropertyRowMapper<>(ActivityHistoryDTO.class));
-    return list.getFirst();
+    return list.get(0);
   }
 
   public Activity findByActivityId(Long activityId) {

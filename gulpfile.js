@@ -59,14 +59,10 @@ gulp.task('watch', () => {
     watch('./src/main/resources/static/sass/*.scss', (done) => {
       gulp.series(['clean', 'styles', 'copy-sass-and-reload'])(done);
     });
-    watch(['./src/main/resources/**/*.html'],
-      gulp.series('copy-html-and-reload'));
-    watch(['./src/main/resources/**/*.css'],
-      gulp.series('copy-css-and-reload'));
-    watch(['./src/main/resources/static/js/**/*.js'],
-      gulp.series('copy-js-and-reload'));
-    watch(['./src/main/resources/static/es/**/*.js'],
-      gulp.series('compile', 'scripts', 'copy-js-and-reload'));
+    watch(['./src/main/resources/**/*.html'], gulp.series('copy-html-and-reload'));
+    watch(['./src/main/resources/**/*.css'], gulp.series('copy-css-and-reload'));
+    watch(['./src/main/resources/static/js/**/*.js'], gulp.series('copy-js-and-reload'));
+    watch(['./src/main/resources/static/es/**/*.js'], gulp.series('compile', 'scripts', 'copy-js-and-reload'));
   })
 })
 
@@ -76,6 +72,9 @@ gulp.task('gov-toolkit-install-scripts', () => {
     .pipe(gulp.dest('src/main/resources/static/js/'));
 });
 
+gulp.task('moj-toolkit-install-scripts', () => {
+  return gulp.src('node_modules/@ministryofjustice/frontend/moj/all.js').pipe(rename("moj.js")).pipe(gulp.dest(paths.scripts.dest))
+});
 gulp.task('nhs-toolkit-install-favicons', () => {
   return gulp.src('node_modules/nhsuk-frontend/packages/assets/favicons/*')
     .pipe(gulp.dest('src/main/resources/static/images/favicons/'));
@@ -90,20 +89,14 @@ gulp.task('nhs-toolkit-install-logos', () => {
   return gulp.src('node_modules/nhsuk-frontend/packages/assets/logos/*')
     .pipe(gulp.dest('src/main/resources/static/images/logos/'));
 });
-gulp.task('nhs-toolkit-install',
-  gulp.series('nhs-toolkit-install-favicons', 'nhs-toolkit-install-icons',
-    'nhs-toolkit-install-logos'));
+gulp.task('nhs-toolkit-install', gulp.series('nhs-toolkit-install-favicons', 'nhs-toolkit-install-icons', 'nhs-toolkit-install-logos'));
 gulp.task('clean', () => {
-  return del(['src/main/resources/static/css/style.css',
-    'src/main/resources/static/assets', 'src/main/resources/static/js/*.js',
-    './build/',]);
+  return del(['src/main/resources/static/css/style.css', 'src/main/resources/static/assets', 'src/main/resources/static/js/*.js', './build/',]);
 });
 gulp.task('copy-html', function () {
-  return gulp.src(['./src/main/resources/**/*.html']).pipe(
-    gulp.dest('target/classes/'))
+  return gulp.src(['./src/main/resources/**/*.html']).pipe(gulp.dest('target/classes/'))
 });
-gulp.task('copy-css', () => gulp.src(['./src/main/resources/**/*.css']).pipe(
-  production(uglifycss())).pipe(gulp.dest('target/classes/')));
+gulp.task('copy-css', () => gulp.src(['./src/main/resources/**/*.css']).pipe(production(uglifycss())).pipe(gulp.dest('target/classes/')));
 gulp.task('copy-js', () => gulp.src(['./src/main/resources/**/*.js'])
   .pipe(gulp.dest('./target/classes/')));
 
@@ -113,8 +106,7 @@ gulp.task('copy-css-and-reload', gulp.series('copy-css', reload));
 gulp.task('copy-js-and-reload', gulp.series('copy-js', reload));
 gulp.task('copy-sass-and-reload', gulp.series('styles', 'copy-css-and-reload'));
 gulp.task('scripts', function () {
-  return gulp.src(
-    ['./build/*.js'])
+  return gulp.src(['./build/*.js'])
     .pipe(babel({
       presets: ['@babel/preset-env']
     }))
@@ -130,7 +122,4 @@ gulp.task('clear-up', () => {
   return del('src/main/resources/static/js/!(*-min).js');
 })
 gulp.task('compile', compile);
-gulp.task('default', gulp.series(
-  ['clean', 'install-jquery', 'compile', 'styles', 'scripts',
-    'nhs-toolkit-install', 'gov-toolkit-install-scripts', 'minifyJS',
-    'clear-up']));
+gulp.task('default', gulp.series(['clean', 'install-jquery', 'compile', 'styles', 'scripts', 'nhs-toolkit-install', 'gov-toolkit-install-scripts', 'moj-toolkit-install-scripts', 'minifyJS', 'clear-up']));

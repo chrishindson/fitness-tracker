@@ -2,7 +2,8 @@
   <nav aria-label="Pagination" class="nhsuk-pagination" role="navigation">
     <ul class="nhsuk-list nhsuk-pagination__list">
       <li class="nhsuk-pagination-item--previous">
-        <a class="nhsuk-pagination__link nhsuk-pagination__link--prev" th:href="${previousLink}">
+        <a class="nhsuk-pagination__link nhsuk-pagination__link--prev nhsuk-link--no-visited-state"
+           th:href="${previousLink}">
           <span class="nhsuk-pagination__title">Previous</span>
           <span class="nhsuk-u-visually-hidden">:</span>
           <span class="nhsuk-pagination__page" th:text="${previousText}">Previous</span>
@@ -11,7 +12,8 @@
         </a>
       </li>
       <li class="nhsuk-pagination-item--next">
-        <a class="nhsuk-pagination__link nhsuk-pagination__link--next" th:href="${nextLink}">
+        <a class="nhsuk-pagination__link nhsuk-pagination__link--next nhsuk-link--no-visited-state"
+           th:href="${nextLink}">
           <span class="nhsuk-pagination__title">Next</span>
           <span class="nhsuk-u-visually-hidden">:</span>
           <span class="nhsuk-pagination__page" th:text="${nextText}">Next</span>
@@ -44,7 +46,7 @@
       <li class="pagination__item"
           style="margin-left: -10px;"
           th:if="${(items.getPageable().getPageNumber() + 1) != 1}">
-        <a aria-label="Previous page" class="pagination__link"
+        <a aria-label="Previous page" class="pagination__link nhsuk-link--no-visited-state"
            th:href="@{${@paramReplacer.getUpdatedUri('page', items.number )}}"
            th:id="previousButton">
           <span aria-hidden="true" role="presentation">&laquo;</span> Previous
@@ -57,7 +59,7 @@
           th:if="${i &gt; (items.getPageable().getPageNumber() + 1) - 4 and i &lt; (items.getPageable().getPageNumber() + 1) + 4}">
 
         <!-- Not this page! -->
-        <a class="pagination__link" th:aria-label="${'Page '+i}"
+        <a class="pagination__link nhsuk-link--no-visited-state" th:aria-label="${'Page '+i}"
            th:href="@{${@paramReplacer.getUpdatedUri('page', i)}}"
            th:id="${iteration.index + 1}"
            th:if="${i != (items.getPageable().getPageNumber() + 1)}"
@@ -65,7 +67,7 @@
         </a>
         <!-- This page! -->
         <p aria-current="page"
-           class="pagination__link nhsuk-u-font-weight-bold" th:aria-label="${'Page ' + i}"
+           class="pagination__link nhsuk-link--no-visited-state nhsuk-u-font-weight-bold" th:aria-label="${'Page ' + i}"
            th:id="${iteration.index + 1}"
            th:if="${i == (items.getPageable().getPageNumber() + 1)}"
            th:text="${iteration.index + 1}">
@@ -75,7 +77,7 @@
       <!-- Next Button -->
       <li class="pagination__item"
           th:if="${(items.getPageable().getPageNumber() + 1) != items.getTotalPages()}">
-        <a aria-label="Next page" class="pagination__link"
+        <a aria-label="Next page" class="pagination__link nhsuk-link--no-visited-state"
            th:href="@{${@paramReplacer.getUpdatedUri('page', items.number + 2)}}"
            th:id="nextButton">Next
           <span aria-hidden="true" role="presentation">&raquo;</span>
