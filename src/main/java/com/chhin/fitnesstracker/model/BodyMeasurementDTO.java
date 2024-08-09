@@ -14,12 +14,16 @@ import lombok.*;
 @NoArgsConstructor
 public class BodyMeasurementDTO {
 
-  private String bodyMeasurementArea;
+  private Long bodyMeasurementArea;
   private DateDTO measurementDate;
   private BigDecimal measurementSize;
   private Map<Long, String> bodyMeasurementAreaList;
 
   public LinkedHashMap<Long, String> getSortedMap() {
     return HelperUtils.getSortedMap(this.bodyMeasurementAreaList);
+  }
+
+  public String getBodyMeasurementDisplay() {
+    return this.bodyMeasurementAreaList.get(this.bodyMeasurementArea);
   }
 }

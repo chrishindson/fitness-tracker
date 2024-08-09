@@ -34,25 +34,6 @@
       </option>
     </select>
   </div>
-  <!--  <script type="text/javascript">-->
-  <!--      var fieldName = "[[${field}]]";-->
-  <!--      var hint = "[[${hints} != null && hints != '' ? hints : label}";-->
-
-  <!--      accessibleAutocomplete.enhanceSelectElement({-->
-  <!--          defaultValue: '',-->
-  <!--          autoselect: true,-->
-  <!--          confirmOnBlur: true,-->
-  <!--          selectElement: document.querySelector('#' + fieldName)-->
-  <!--      })-->
-
-  <!--      let parentDiv = document.querySelector('#' + fieldName + '-select')-->
-  <!--      let newLabel = document.createElement("label");-->
-  <!--      newLabel.innerHTML = hint;-->
-  <!--      newLabel.style.display = "none";-->
-  <!--      newLabel.setAttribute("for", parentDiv.id);-->
-  <!--      parentDiv.appendChild(newLabel);-->
-
-  <!--  </script>-->
 </th:block>
 <th:block th:fragment="select-autocomplete(id, field, label, list, selected, hints)">
   <div class="nhsuk-form-group" th:classappend="${#fields.hasErrors (field)? 'nhsuk-form-group--error' : ''}">
@@ -72,22 +53,6 @@
       </option>
     </select>
   </div>
-  <!--  <script>-->
-  <!--      var fieldName = "[[${field}]]";-->
-  <!--      var hint = "[[${hints != null && hints != '' ? hints: label}]]";-->
-  <!--      accessibleAutocomplete.enhanceSelectElement({-->
-  <!--          defaultValue: '',-->
-  <!--          autoselect: true,-->
-  <!--          confirmOnBlur: true,-->
-  <!--          selectElement: document.querySelector("#" + fieldName),-->
-  <!--      });-->
-  <!--      let parentDiv = document.querySelector('#' + fieldName + "-select").parentNode;-->
-  <!--      let newLabel = document.createElement("label");-->
-  <!--      newLabel.innerHTML = hint;-->
-  <!--      newLabel.style.display = "none";-->
-  <!--      newLabel.setAttribute("for", document.querySelector("#" + fieldName + "-select").id);-->
-  <!--      parentDiv.appendChild(newLabel);-->
-  <!--  </script>-->
 </th:block>
 
 </html>

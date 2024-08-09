@@ -14,15 +14,14 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(BODY_MEASUREMENT_MAPPING)
+@SessionAttributes({"bodyMeasurementDTO"})
 public class BodyMeasurementController extends AbstractController {
+  public static final String BODY_MEASUREMENT_DTO = "bodyMeasurementDTO";
   private final LoggedInUserService loggedInUserService;
   private final BodyMeasurementService bodyMeasurementService;
 
@@ -51,21 +50,21 @@ public class BodyMeasurementController extends AbstractController {
                     BodyMeasurementArea::getBodyMeasurementAreaDescription)));
     titleString = "Add body measurement";
     getBreadcrumbs(titleString, model, request);
-    model.addAttribute("bodyMeasurementDTO", bodyMeasurementDTO);
+    model.addAttribute(BODY_MEASUREMENT_DTO, bodyMeasurementDTO);
     return "body-measurement/add-body-measurement";
   }
 
   @PostMapping("/add-body-measurement")
   public String inputSubmit(
-          @Validated @ModelAttribute("bodyMeasurementDTO") BodyMeasurementDTO bodyMeasurementDTO,
-          RedirectAttributes redirectAttributes) {
-    redirectAttributes.addFlashAttribute("bodyMeasurementDTO", bodyMeasurementDTO);
-    return "redirect:/body-measurement/check";
+      @Validated @ModelAttribute(BODY_MEASUREMENT_DTO) BodyMeasurementDTO bodyMeasurementDTO,
+      RedirectAttributes redirectAttributes) {
+    redirectAttributes.addFlashAttribute(BODY_MEASUREMENT_DTO, bodyMeasurementDTO);
+    return "redirect:/body-measurement/check-body-measurement";
   }
 
-  @GetMapping("/check")
+  @GetMapping("/check-body-measurement")
   public String checkForm(
-      @ModelAttribute("bodyMeasurementDTO") BodyMeasurementDTO bodyMeasurementDTO,
+      @ModelAttribute(BODY_MEASUREMENT_DTO) BodyMeasurementDTO bodyMeasurementDTO,
       Model model,
       HttpServletRequest request) {
     titleString = "Check body measurement";
@@ -73,10 +72,12 @@ public class BodyMeasurementController extends AbstractController {
     return "body-measurement/check-body-measurement";
   }
 
-  @PostMapping("/check")
-  public String checkSubmit(@ModelAttribute("bodyMeasurementDTO") BodyMeasurementDTO bodyMeasurementDTO, HttpServletRequest request) {
+  @PostMapping("/check-body-measurement")
+  public String checkSubmit(
+      @ModelAttribute(BODY_MEASUREMENT_DTO) BodyMeasurementDTO bodyMeasurementDTO) {
     FTUser ftUser =
         loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);
+    bodyMeasurementService.saveBodyMeasurement(bodyMeasurementDTO, ftUser);
     return "redirect:/body-measurement/home";
   }
 
@@ -91,12 +92,5 @@ public class BodyMeasurementController extends AbstractController {
   @PostMapping("/history")
   public String historySubmit(HttpServletRequest request) {
     return "redirect:/body-measurement/record";
-  }
-
-  @GetMapping("/record")
-  public String recordForm(Model model, HttpServletRequest request) {
-    titleString = "Record";
-    getBreadcrumbs(titleString, model, request);
-    return "body-measurement/record";
   }
 }

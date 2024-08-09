@@ -19,7 +19,7 @@ public class BodyMeasurement {
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "body_measurement_gen")
   @SequenceGenerator(
       name = "body_measurement_gen",
-      sequenceName = "body_measurement_seq",
+      sequenceName = "body_measurement_pk_seq",
       allocationSize = 1)
   @Column(name = "body_measurement_id", nullable = false)
   private Long bodyMeasurementId;

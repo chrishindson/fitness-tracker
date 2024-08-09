@@ -5,7 +5,7 @@
 <body>
 <main class="nhsuk-main-wrapper" id="main-content" role="main">
   <form id="add-activity-details" method="post" novalidate
-        th:action="@{'/add-activity/add-activity-details'}" th:object="${bodyMeasurementDTO}">
+        th:action="@{'/body-measurement/check-body-measurement'}" th:object="${bodyMeasurementDTO}">
     <div class="nhsuk-grid-row">
       <div class="nhsuk-grid-column-full">
               <span
@@ -15,15 +15,17 @@
     </div>
     <div class="nhsuk-grid-row">
       <div class="nhsuk-grid-column-full">
-        <th:block
-            th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='measurementDate',key='Measurement date',value=${bodyMeasurementDTO.measurementDate.toDisplayDate()},numeric=false)}">
-        </th:block>
-        <th:block
-            th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='bodyMeasurementArea',key='Body area type',value=${bodyMeasurementDTO.bodyMeasurementArea},numeric=false)}">
-        </th:block>
-        <th:block
-            th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='measurementSize',key='Size (cm)',value=${bodyMeasurementDTO.measurementSize},numeric=false)}">
-        </th:block>
+        <dl class="nhsuk-summary-list">
+          <th:block
+              th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='measurementDate',key='Measurement date',value=${bodyMeasurementDTO.measurementDate.toDisplayDate()},numeric=false)}">
+          </th:block>
+          <th:block
+              th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='bodyMeasurementArea',key='Body area type',value=${bodyMeasurementDTO.getBodyMeasurementDisplay()},numeric=false)}">
+          </th:block>
+          <th:block
+              th:insert="~{fitness-tracker-design-system/component/summary-list :: summary-list-item(id='measurementSize',key='Size (cm)',value=${bodyMeasurementDTO.measurementSize},numeric=false)}">
+          </th:block>
+        </dl>
         <th:block
             th:insert="~{fitness-tracker-design-system/form/button :: primary-button(id='submit',text='Submit')}">
         </th:block>

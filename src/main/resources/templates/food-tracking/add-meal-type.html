@@ -30,8 +30,8 @@
         <div class="nhsuk-card-group">
           <th:block th:each="meal : ${foodTrackingDTO.mealTypeList}">
             <th:block
-                th:insert="~{fitness-tracker-design-system/component/card :: card(id=${meal.id},
-                  title=${meal.description},description=${foodTrackingDTO.getMealDetails(meal.id)},cardClassAppend=' nhsuk-u-one-half nhsuk-margin-3')}">
+                th:insert="~{fitness-tracker-design-system/component/card :: card(id=${meal.key},
+                  title=${meal.value},description=${foodTrackingDTO.getMealDetails(meal.key)},cardClassAppend=' nhsuk-u-one-half nhsuk-margin-3')}">
             </th:block>
           </th:block>
         </div>

@@ -7736,6 +7736,11 @@ b {
   border: #7c2855 !important;
 }
 
+.nhsuk-button--small {
+  font-size: 0.8em;
+  padding: 2px 3px;
+}
+
 .nhsuk-grid-column-one-seventh {
   box-sizing: border-box;
   padding: 0 16px;
