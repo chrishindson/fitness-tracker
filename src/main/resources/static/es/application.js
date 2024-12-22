@@ -1,6 +1,7 @@
 import './jquery.js'
 import $ from 'jquery';
 import jQuery from 'jquery';
+import {initAll} from '@ministryofjustice/frontend';
 import {enhanceSelect} from "./components/autocomplete";
 import {currentDate} from "./components/currentDate";
 import Checkboxes from "../../../../../node_modules/nhsuk-frontend/packages/components/checkboxes/checkboxes";
@@ -27,6 +28,7 @@ window.jQuery = jQuery;
   }
 
   ready(() => {
+    initAll();
     Checkboxes();
     Details();
     ErrorSummary();

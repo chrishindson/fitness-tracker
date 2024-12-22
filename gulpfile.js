@@ -7,7 +7,7 @@ const rename = require("gulp-rename");
 const babel = require('gulp-babel');
 const webpack = require("webpack");
 const uglifycss = require('gulp-uglifycss');
-
+const deletingRegexp = /\w*$/;
 const environments = require('gulp-environments');
 const production = environments.production;
 
@@ -93,6 +93,15 @@ gulp.task('nhs-toolkit-install', gulp.series('nhs-toolkit-install-favicons', 'nh
 gulp.task('clean', () => {
   return del(['src/main/resources/static/css/style.css', 'src/main/resources/static/assets', 'src/main/resources/static/js/*.js', './build/',]);
 });
+// gulp.task('clean', () => {
+//   return gulp.src(['src/main/resources/static/css/style.css', 'src/main/resources/static/assets', 'src/main/resources/static/js/*.js',], {
+//     allowEmpty: true
+//   })
+//     .pipe(del({
+//       reg: deletingRegexp,
+//       deleteMatch: true
+//     }))
+// });
 gulp.task('copy-html', function () {
   return gulp.src(['./src/main/resources/**/*.html']).pipe(gulp.dest('target/classes/'))
 });
@@ -122,4 +131,4 @@ gulp.task('clear-up', () => {
   return del('src/main/resources/static/js/!(*-min).js');
 })
 gulp.task('compile', compile);
-gulp.task('default', gulp.series(['clean', 'install-jquery', 'compile', 'styles', 'scripts', 'nhs-toolkit-install', 'gov-toolkit-install-scripts', 'moj-toolkit-install-scripts', 'minifyJS', 'clear-up']));
+gulp.task('default', gulp.series(['clean', 'install-jquery', 'compile', 'styles', 'scripts', 'nhs-toolkit-install', 'gov-toolkit-install-scripts', 'minifyJS', 'clear-up']));
