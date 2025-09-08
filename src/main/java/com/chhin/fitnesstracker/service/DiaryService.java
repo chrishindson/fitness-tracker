@@ -100,6 +100,6 @@ public class DiaryService {
     if (list.isEmpty()) {
       return null;
     }
-    return list.get(0);
+    return list.getFirst();
   }
 }

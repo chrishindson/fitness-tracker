@@ -152,8 +152,8 @@ public class ActivityController extends AbstractController {
 
   @GetMapping(ACTIVITY_HISTORY_MAPPING)
   public String viewActivityHistory(
-      @RequestParam(name = "page", defaultValue = "1", required = false) Integer page,
-      @RequestParam(name = "size", defaultValue = "10", required = false) Integer size,
+      @RequestParam(defaultValue = "1", required = false) Integer page,
+      @RequestParam(defaultValue = "10", required = false) Integer size,
       Model model, HttpServletRequest request) {
 
     FTUser ftUser = loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);
@@ -169,7 +169,7 @@ public class ActivityController extends AbstractController {
   }
 
   @GetMapping("/activity/activities/day")
-  public String viewActivityDaily(@RequestParam("activityDate") String activityDate,
+  public String viewActivityDaily(@RequestParam String activityDate,
                                   Model model, HttpServletRequest request) {
 
     FTUser ftUser = loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);
@@ -183,7 +183,7 @@ public class ActivityController extends AbstractController {
   }
 
   @GetMapping("/activity/activities")
-  public String viewActivityRecord(@RequestParam("activityId") Long activityId,
+  public String viewActivityRecord(@RequestParam Long activityId,
                                    Model model, HttpServletRequest request) {
 
     titleString = "Activity";
@@ -194,7 +194,7 @@ public class ActivityController extends AbstractController {
   }
 
   @PostMapping(value = "/activity/activities", params = "edit")
-  public String editActivityRecord(@RequestParam("activityId") Long activityId, Model model,
+  public String editActivityRecord(@RequestParam Long activityId, Model model,
                                    RedirectAttributes redirectAttributes) {
 
     ActivityDTO activityDTO = activityService.findByActivityDTOByActivityId(activityId);

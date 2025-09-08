@@ -5,31 +5,31 @@
     "gulp": "gulp"
   },
   "devDependencies": {
-    "gulp-sass": "^6.0.0"
+    "gulp-sass": "^6.0.1"
   },
   "dependencies": {
-    "@babel/core": "^7.25.8",
+    "@babel/core": "^7.28.4",
     "@babel/polyfill": "^7.12.1",
-    "@babel/preset-env": "^7.25.8",
-    "@ministryofjustice/frontend": "^3.3.0",
+    "@babel/preset-env": "^7.28.3",
+    "@ministryofjustice/frontend": "^5.1.5",
     "accessible-autocomplete": "^3.0.1",
-    "babel-loader": "^9.2.1",
-    "browser-sync": "^3.0.3",
-    "del": "^6.0.0",
-    "govuk-frontend": "^5.7.1",
-    "gulp": "^5.0.0",
+    "babel-loader": "^10.0.0",
+    "browser-sync": "^3.0.4",
+    "del": "6.0.0",
+    "govuk-frontend": "^5.11.2",
+    "gulp": "^5.0.1",
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
     "gulp-delete-file": "^1.0.2",
     "gulp-environments": "^1.0.1",
     "gulp-minify": "^3.1.0",
-    "gulp-rename": "^2.0.0",
+    "gulp-rename": "^2.1.0",
     "gulp-uglify": "^3.0.2",
     "gulp-uglifycss": "^1.1.0",
     "jquery": "^3.7.1",
-    "nhsuk-frontend": "^9.1.0",
-    "sass": "^1.83.0",
-    "webpack": "^5.97.1"
+    "nhsuk-frontend": "^10.0.0",
+    "sass": "^1.92.1",
+    "webpack": "^5.101.3"
   }
 }

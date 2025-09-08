@@ -61,7 +61,7 @@ public class DiaryController extends AbstractController {
 
   @GetMapping("/day")
   public String viewDailyOverview(
-      @RequestParam("diaryDate") String diaryDate, Model model, HttpServletRequest request) {
+      @RequestParam String diaryDate, Model model, HttpServletRequest request) {
     LocalDate diaryLocalDate = LocalDate.parse(diaryDate, DateTimeFormatter.ofPattern("yyyyMMdd"));
     FTUser ftUser =
         loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);

@@ -36,7 +36,7 @@ public class WebSecurityConfig {
   }
 
   @Bean
-  public AuthenticationManager authenticationManager(
+  AuthenticationManager authenticationManager(
       HttpSecurity httpSecurity, JdbcProvider jdbcProvider) throws Exception {
     return httpSecurity
         .getSharedObject(AuthenticationManagerBuilder.class)
@@ -45,7 +45,7 @@ public class WebSecurityConfig {
   }
 
   @Bean
-  public CorsConfigurationSource corsConfigurationSource() {
+  CorsConfigurationSource corsConfigurationSource() {
     final var configuration = new CorsConfiguration();
     configuration.setAllowedOrigins(List.of("/remote"));
     configuration.setAllowedMethods(List.of("*"));
@@ -57,7 +57,7 @@ public class WebSecurityConfig {
   }
 
   @Bean
-  public SecurityFilterChain filterChain(
+  SecurityFilterChain filterChain(
       HttpSecurity httpSecurity, AuthenticationManager authenticationManager) throws Exception {
 
     return httpSecurity
@@ -100,12 +100,12 @@ public class WebSecurityConfig {
   }
 
   @Bean
-  public PasswordEncoder passwordEncoder() {
+  PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
 
   @Bean
-  public WebSecurityLoginSuccessHandler webSecurityLoginSuccessHandler() {
+  WebSecurityLoginSuccessHandler webSecurityLoginSuccessHandler() {
     return new WebSecurityLoginSuccessHandler(ftUserService);
   }
 }

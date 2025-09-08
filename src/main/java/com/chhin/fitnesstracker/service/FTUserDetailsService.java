@@ -4,7 +4,6 @@ import com.chhin.fitnesstracker.entity.FTUser;
 import com.chhin.fitnesstracker.repository.FTUserRepository;
 import java.util.Collections;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -18,7 +17,6 @@ public class FTUserDetailsService implements UserDetailsService {
 
   private final FTUserRepository userRepository;
 
-  @Autowired
   public FTUserDetailsService(FTUserRepository userRepository) {
     this.userRepository = userRepository;
   }

@@ -14,7 +14,7 @@ const production = environments.production;
 const webpackConfig = "./webpack.config.js";
 const paths = {
   styles: {
-    src: 'src/main/resources/static/sass/**/*.scss',
+    src: 'src/main/resources/static/scss/**/*.scss',
     dest: 'src/main/resources/static/css/',
     clear: 'src/main/resources/static/css/*'
   }, scripts: {
@@ -50,13 +50,13 @@ gulp.task('install-jquery', () => {
 })
 
 gulp.task('styles', () => {
-  return gulp.src("src/main/resources/static/sass/style.scss")
+  return gulp.src("src/main/resources/static/scss/style.scss")
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest([paths.styles.dest]));
 });
 gulp.task('watch', () => {
-  return gulp.watch('src/main/resources/static/sass/*.scss', (done) => {
-    watch('./src/main/resources/static/sass/*.scss', (done) => {
+  return gulp.watch('src/main/resources/static/scss/*.scss', (done) => {
+    watch('./src/main/resources/static/scss/*.scss', (done) => {
       gulp.series(['clean', 'styles', 'copy-sass-and-reload'])(done);
     });
     watch(['./src/main/resources/**/*.html'], gulp.series('copy-html-and-reload'));

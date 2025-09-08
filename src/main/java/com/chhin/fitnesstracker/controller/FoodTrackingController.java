@@ -90,8 +90,8 @@ public class FoodTrackingController extends AbstractController {
 
   @GetMapping(MANAGE_FOOD_TYPES_MAPPING)
   public String viewManageFoodTypes(
-      @RequestParam(name = "page", defaultValue = "1", required = false) Integer page,
-      @RequestParam(name = "size", defaultValue = "10", required = false) Integer size,
+      @RequestParam(defaultValue = "1", required = false) Integer page,
+      @RequestParam(defaultValue = "10", required = false) Integer size,
       Model model,
       HttpServletRequest request) {
 
@@ -107,7 +107,7 @@ public class FoodTrackingController extends AbstractController {
 
   @GetMapping("/food-tracking/manage-food-types/edit")
   public String viewManageFoodTypes(
-      @RequestParam(name = "foodTypeId") Long foodTypeId,
+      @RequestParam Long foodTypeId,
       Model model,
       HttpServletRequest request) {
 
@@ -131,7 +131,7 @@ public class FoodTrackingController extends AbstractController {
 
   @GetMapping("/food-tracking/manage-stored-meals/edit")
   public String viewManageStoredMeals(
-      @RequestParam(name = "storedMealId") Long storedMealId,
+      @RequestParam Long storedMealId,
       Model model,
       HttpServletRequest request) {
 
@@ -155,8 +155,8 @@ public class FoodTrackingController extends AbstractController {
 
   @GetMapping(MANAGE_STORED_MEALS_MAPPING)
   public String viewManageStoredMeals(
-      @RequestParam(name = "page", defaultValue = "1", required = false) Integer page,
-      @RequestParam(name = "size", defaultValue = "10", required = false) Integer size,
+      @RequestParam(defaultValue = "1", required = false) Integer page,
+      @RequestParam(defaultValue = "10", required = false) Integer size,
       Model model,
       HttpServletRequest request) {
 
@@ -172,8 +172,8 @@ public class FoodTrackingController extends AbstractController {
 
   @GetMapping("food-tracking/add-stored-meal")
   public String viewAddStoredMeal(
-      @RequestParam(name = "page", defaultValue = "1", required = false) Integer page,
-      @RequestParam(name = "size", defaultValue = "10", required = false) Integer size,
+      @RequestParam(defaultValue = "1", required = false) Integer page,
+      @RequestParam(defaultValue = "10", required = false) Integer size,
       @ModelAttribute(FOOD_TRACKING_DTO) FoodTrackingDTO foodTrackingDTO,
       Model model,
       HttpServletRequest request) throws JsonProcessingException {
@@ -193,7 +193,7 @@ public class FoodTrackingController extends AbstractController {
   public String viewAddStoredMealPost(
       @RequestParam String list,
       @ModelAttribute(FOOD_TRACKING_DTO) FoodTrackingDTO foodTrackingDTO,
-      @ModelAttribute("storedMeal") StoredMeal storedMeal,
+      @ModelAttribute StoredMeal storedMeal,
       final RedirectAttributes redirectAttributes) throws JsonProcessingException {
     storedMeal.setStoredMealIngredientsList(JsonUtils.jsonToList(list));
     for (StoredMealIngredients smi : storedMeal.getStoredMealIngredientsList()) {

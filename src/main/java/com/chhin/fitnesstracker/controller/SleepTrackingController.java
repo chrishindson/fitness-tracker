@@ -79,8 +79,8 @@ public class SleepTrackingController extends AbstractController {
 
   @GetMapping("/sleep-history")
   public String viewSleepHistory(
-      @RequestParam(name = "page", defaultValue = "1", required = false) Integer page,
-      @RequestParam(name = "size", defaultValue = "10", required = false) Integer size,
+      @RequestParam(defaultValue = "1", required = false) Integer page,
+      @RequestParam(defaultValue = "10", required = false) Integer size,
       Model model, HttpServletRequest request) {
     Pageable pageable = PageRequest.of(page - 1, size);
     FTUser ftUser = loggedInUserService.getLoggedInUser().orElseThrow(FitnessTrackerRuntimeException::new);

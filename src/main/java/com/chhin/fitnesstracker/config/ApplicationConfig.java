@@ -21,7 +21,7 @@ public class ApplicationConfig implements WebMvcConfigurer {
 
   @Bean
   @SessionScope
-  public LoggedInUserService loggedInUserService(FTUserService ftUserService) {
+  LoggedInUserService loggedInUserService(FTUserService ftUserService) {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     String name;
     if (authentication instanceof OAuth2AuthenticationToken) {
